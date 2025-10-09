@@ -1,15 +1,11 @@
-import fetch from "node-fetch";
-import dotenv from "dotenv";
-import path from "path";
-import fs from "fs";
+const fetch = require("node-fetch");
+const fs = require("fs");
+const path = require("path");
 
-// Load .env from project root
-dotenv.config({ path: path.join(__dirname, "../.env") });
-
-const OPENROUTER_KEY = process.env.OPENROUTER_API_KEY || process.env.DEEPSEEK_API_KEY;
+const OPENROUTER_KEY = process.env.OPENROUTER_API_KEY;
 const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || "openai/gpt-3.5-turbo";
 
-// Helper: load and format the menu JSON
+// Load menu from file system
 function loadMenu() {
   try {
     const menuPath = path.join(__dirname, "../src/data/menu.json");
@@ -35,8 +31,8 @@ function formatMenu(menu) {
 }
 
 // Vercel serverless function handler
-export default async function handler(req, res) {
-  // Add CORS headers
+module.exports = async (req, res) => {
+  // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -61,12 +57,10 @@ export default async function handler(req, res) {
 
     const systemMsg = {
       role: "system",
-      content:
-`You are "Wiser", the friendly, helpful restaurant assistant for this website. Use the provided menu to answer user questions, recommend dishes, and explain ingredients or dietary suitability. Be warm, concise (1-3 short sentences) and personable. Do not invent menu items or prices. If the user asks about availability or real-time stock, advise them to contact the restaurant. Ask a single clarifying question if necessary.
+      content: `You are "Wiser", the friendly, helpful restaurant assistant for this website. Use the provided menu to answer user questions, recommend dishes, and explain ingredients or dietary suitability. Be warm, concise (1-3 short sentences) and personable. Do not invent menu items or prices. If the user asks about availability or real-time stock, advise them to contact the restaurant. Ask a single clarifying question if necessary.
 
 Menu (name — price — description):
- ${menuText}
-`
+ ${menuText}`
     };
 
     const payload = {
@@ -92,10 +86,10 @@ Menu (name — price — description):
     }
 
     const data = await response.json();
-    const reply = data?.choices?.[0]?.message?.content ?? data?.choices?.[0]?.text ?? "";
+    const reply = data?.choices?.[0]?.message?.content || data?.choices?.[0]?.text || "";
     res.json({ reply, raw: data });
   } catch (err) {
     console.error("[proxy] uncaught error", err);
     res.status(500).json({ error: "server_error", message: err?.message || String(err) });
   }
-}
+};
