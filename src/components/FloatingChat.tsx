@@ -23,7 +23,7 @@ export default function FloatingChat() {
             background: "linear-gradient(135deg,#f97316,#ef4444)",
             color: "#fff",
             border: "none",
-            boxShadow: "0 6px 24px rgba(0,0,0,0.2)",
+            boxShadow: "0 6px 24px rgba(255, 0, 0, 0.2)",
             cursor: "pointer",
             display: "flex",
             alignItems: "center",
@@ -31,7 +31,7 @@ export default function FloatingChat() {
             fontSize: 20,
           }}
         >
-          🤖
+          WISER
         </button>
       </div>
 
