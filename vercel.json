@@ -1,5 +1,8 @@
 {
-  "functions": {
-    "server/**/*.js": {}
-  }
+  "rewrites": [
+    {
+      "source": "/server/:path*",
+      "destination": "/server/:path*"
+    }
+  ]
 }
