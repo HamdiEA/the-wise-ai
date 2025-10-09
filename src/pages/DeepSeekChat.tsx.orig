@@ -1,0 +1,63 @@
+import React, { useState } from 'react';
+import { askDeepSeek, DeepSeekMessage } from '../lib/deepseek';
+
+const DEFAULT_SYSTEM = "You are Wiser — a playful, warm, and welcoming restaurant assistant. Use friendly language, short helpful replies, and an emoji or two when appropriate. Be helpful, concise, and delightful.";
+
+export default function DeepSeekChat() {
+  const [messages, setMessages] = useState<DeepSeekMessage[]>([{ role: 'system', content: DEFAULT_SYSTEM }]);
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  async function sendMessage() {
+    if (!input.trim()) return;
+    const userMsg: DeepSeekMessage = { role: 'user', content: input.trim() };
+    const nextMessages = [...messages, userMsg];
+    setMessages(nextMessages);
+    setInput('');
+    setLoading(true);
+    try {
+      // use the messages array to give full context to DeepSeek
+      const reply = await askDeepSeek(undefined, { messages: nextMessages });
+      const assistantMsg: DeepSeekMessage = { role: 'assistant', content: String(reply ?? 'Sorry, no reply.') };
+      setMessages(prev => [...prev, assistantMsg]);
+    } catch (err: any) {
+      const errMsg: DeepSeekMessage = { role: 'assistant', content: `😵‍💫 Oops — something went wrong: ${err?.message ?? err}` };
+      setMessages(prev => [...prev, errMsg]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div className="min-h-screen p-6 bg-background text-foreground max-w-3xl mx-auto">
+      <h1 className="text-3xl font-bold mb-4">Wiser — your friendly AI copilot 🤖🍽️</h1>
+      <p className="mb-4 text-muted-foreground">Ask Wiser about the menu, make recommendations, or ask it to write a friendly greeting for customers.</p>
+
+      <div className="space-y-4">
+        <div className="bg-card border p-4 rounded-lg shadow-sm max-h-96 overflow-auto">
+          {messages.map((m, i) => (
+            <div key={i} className={`mb-3 ${m.role === 'assistant' ? 'text-left' : (m.role === 'system' ? 'text-center text-sm text-muted-foreground' : 'text-right')}`}>
+              <div className="inline-block px-3 py-2 rounded-lg" style={{ backgroundColor: m.role === 'assistant' ? 'rgba(59,130,246,0.08)' : (m.role === 'system' ? 'transparent' : 'rgba(99,102,241,0.08)') }}>
+                <strong className="block text-sm">{m.role === 'assistant' ? 'Wiser' : (m.role === 'system' ? 'System' : 'You')}</strong>
+                <div className="whitespace-pre-wrap">{m.content}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex gap-2">
+          <input
+            className="flex-1 input px-3 py-2 rounded border"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Say something friendly to Wiser..."
+            onKeyDown={(e) => { if (e.key === 'Enter') sendMessage(); }}
+          />
+          <button className="btn" onClick={sendMessage} disabled={loading}>
+            {loading ? 'Thinking…' : 'Send'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
