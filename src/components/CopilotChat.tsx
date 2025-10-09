@@ -1,17 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { askDeepSeek, DeepSeekMessage } from '../lib/deepseek';
-import menuData from '../data/menu.json';
 
 export default function CopilotChat() {
   const [open, setOpen] = useState(false);
   const [lang, setLang] = useState<'en'|'fr'>('en');
   const [messages, setMessages] = useState<DeepSeekMessage[]>([
-    { role: 'system', content: `You are Wiser — a friendly restaurant copilot 🍽️. Speak in English or French based on the user's preference (use 'fr' to switch to French). Be warm, playful, add a short joke, and when answering about food reference the menu below. Keep replies brief and lovely.
-
-Menu items (for reference):
-- Vous avez déjà sélectionné le maximum de pizzas pour une pizza 1m\n- Supplement added\n- Margherita\n- Tuna\n- Vegetarien\n- Queen\n- Orientale\n- Pepperoni\n- Chicken Supreme\n- Regina\n- Chicken Grilli\n- Mexicain\n- Kentucky\n- Norwegian\n- Sea Food\n- Newton\n- Einstein\n- Barlow\n- Millikan\n- Ampere\n- Gauss\n- John Locke\n- Pesto\n- Chicken Spicy\n- Carnot\n- Mariotte\n- Kepler\n- Van der waals\n- Tesla\n- The Wise\n- Sauce Tomate, Mozzarella\n- Thon, Tomates Fraîches, Oignons, Olives, Sauce Tomate, Mozzarella\n- Thon, Jambon de Dinde, Champignons, Poivrons, Oignons, Olives, Mozzarella, Sauce Tomate\n- Champignons, Poivrons, Oignons, Olives, Tomates Fraîches, Mozzarella, Sauce Tomate\n- Jambon de Dinde, Champignons, Mozzarella, Sauce Tomate\n- Merguez, Poivrons, Oignons, Champignons, Tomates Fraîches, Sauce Tomate, Mozzarella\n- Pepperoni, Oignons, Sauce Tomate, Mozzarella\n- Poulet, Champignons, Poivrons, Sauce Tomate, Mozzarella\n- Sauce Tomate, Mozzarella, Fromage, Sauce Blanche\n- Jambon de Dinde, Champignons, Oignons, Olives, Sauce Tomate, Mozzarella
-
-If asked about prices or details not listed here, respond that the menu file is the source of truth and ask if they'd like recommendations.` }
+    { role: 'system', content: `You are Wiser — a friendly restaurant copilot 🍽️. Speak in English or French based on the user's preference (use 'fr' to switch to French). Be warm, playful, add a short joke, and when answering about food reference the menu. Keep replies brief and lovely.` }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -30,8 +24,7 @@ If asked about prices or details not listed here, respond that the menu file is 
     try {
       const augmented = [
         ...messages,
-        userMsg,
-        { role: 'system' as const, content: 'Context: the website menu is available to assist users.' }
+        userMsg
       ];
       const reply = await askDeepSeek(undefined, { messages: augmented });
       const assistantMsg = { role: 'assistant' as const, content: String(reply) };
@@ -84,7 +77,7 @@ If asked about prices or details not listed here, respond that the menu file is 
               value={input}
               onChange={(e:any)=>setInput(e.target.value)}
               onKeyDown={(e:any)=>{ if(e.key==='Enter') sendMessage(); }}
-              placeholder={lang==='en' ? 'Ask about the menu, e.g. "What desserts are gluten-free?"' : 'Demandez le menu, ex : "Quels desserts sont sans gluten ?"' }
+              placeholder={lang==='en' ? 'Ask about our menu, e.g. "What pizzas do you have?"' : 'Demandez notre menu, ex : "Quelles pizzas avez-vous ?"' }
               className="flex-1 text-sm px-3 py-2 border rounded-lg focus:outline-none"
             />
             <button
