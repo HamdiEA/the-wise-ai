@@ -19,7 +19,8 @@
           "description_en": "Our pizza menu includes: Margherita, Tuna, 4 Seasons, Vegetarian, Queen, Oriental, Pepperoni, Chicken Supreme, 4 Cheese, Regina, Chicken Grilli, Mexican, Kentucky, Norwegian, Sea Food, Newton, Einstein, Barlow, Millikan, Ampere, Gauss, John Locke, Pesto, Chicken Spicy, Carnot, Mariotte, Kepler, Van der waals, Tesla, and The Wise. We do not offer BBQ Chicken or Hawaiian pizzas.",
           "type_fr": "Information",
           "type_en": "Information",
-          "price": ""
+          "price": "",
+          "is_most_ordered": false
         }
       ]
     },
@@ -38,7 +39,8 @@
           "type_en": "Children's Menu",
           "price": "13.8dt",
           "details_fr": "Un menu complet pour enfants comprenant une mini pizza ou une portion de frites accompagnée d'un soda.",
-          "details_en": "A complete children's menu including a mini pizza or a portion of fries accompanied by a soda."
+          "details_en": "A complete children's menu including a mini pizza or a portion of fries accompanied by a soda.",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Menu Enfants Calico",
@@ -49,7 +51,8 @@
           "type_en": "Children's Menu",
           "price": "13.8dt",
           "details_fr": "Un menu complet pour enfants comprenant des nuggets de poulet et une portion de frites accompagnées d'un soda.",
-          "details_en": "A complete children's menu including chicken nuggets and a portion of fries accompanied by a soda."
+          "details_en": "A complete children's menu including chicken nuggets and a portion of fries accompanied by a soda.",
+          "is_most_ordered": true
         }
       ]
     },
@@ -64,7 +67,8 @@
           "description_en": "",
           "type_fr": "Salade",
           "type_en": "Salad",
-          "price": "17dt"
+          "price": "17dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Entrées Italienne",
@@ -73,7 +77,8 @@
           "description_en": "",
           "type_fr": "Salade",
           "type_en": "Salad",
-          "price": "19dt"
+          "price": "19dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Entrées Fruits de Mer",
@@ -82,7 +87,8 @@
           "description_en": "",
           "type_fr": "Salade",
           "type_en": "Salad",
-          "price": "27dt"
+          "price": "27dt",
+          "is_most_ordered": true
         },
         {
           "name_fr": "Entrées The Wise",
@@ -91,7 +97,8 @@
           "description_en": "",
           "type_fr": "Salade",
           "type_en": "Salad",
-          "price": "24dt"
+          "price": "24dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Entrées Omelette Thon-Fromage",
@@ -100,7 +107,8 @@
           "description_en": "",
           "type_fr": "Omelette",
           "type_en": "Omelette",
-          "price": "13dt"
+          "price": "13dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Entrées Omelette Jambon-Fromage",
@@ -109,7 +117,8 @@
           "description_en": "",
           "type_fr": "Omelette",
           "type_en": "Omelette",
-          "price": "18dt"
+          "price": "18dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Entrées Moule Mariné",
@@ -118,7 +127,8 @@
           "description_en": "",
           "type_fr": "Fruits de Mer",
           "type_en": "Seafood",
-          "price": "24dt"
+          "price": "24dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Entrées Calamars Dorés",
@@ -127,34 +137,28 @@
           "description_en": "",
           "type_fr": "Fruits de Mer",
           "type_en": "Seafood",
-          "price": "21dt"
+          "price": "21dt",
+          "is_most_ordered": false
         },
         {
-          "name_fr": "Entrées Calamars à l'Ail",
-          "name_en": "Appetizers Garlic Calamari",
+          "name_fr": "Entrées Crevettes à l'Ail",
+          "name_en": "Appetizers Garlic Shrimp",
           "description_fr": "",
           "description_en": "",
           "type_fr": "Fruits de Mer",
           "type_en": "Seafood",
-          "price": "25dt"
+          "price": "25dt",
+          "is_most_ordered": false
         },
         {
-          "name_fr": "Entrées Calamars à la Crème",
-          "name_en": "Appetizers Creamy Calamari",
+          "name_fr": "Entrées Crevettes à la Crème",
+          "name_en": "Appetizers Creamy Shrimp",
           "description_fr": "",
           "description_en": "",
           "type_fr": "Fruits de Mer",
           "type_en": "Seafood",
-          "price": "27dt"
-        },
-        {
-          "name_fr": "Entrées Crevettes Sautées",
-          "name_en": "Appetizers Sautéed Shrimp",
-          "description_fr": "",
-          "description_en": "",
-          "type_fr": "Fruits de Mer",
-          "type_en": "Seafood",
-          "price": "27dt"
+          "price": "27dt",
+          "is_most_ordered": true
         },
         {
           "name_fr": "Entrées Crevettes Panées",
@@ -163,7 +167,8 @@
           "description_en": "",
           "type_fr": "Fruits de Mer",
           "type_en": "Seafood",
-          "price": "25dt"
+          "price": "25dt",
+          "is_most_ordered": false
         }
       ]
     },
@@ -178,7 +183,8 @@
           "description_en": "",
           "type_fr": "Volaille",
           "type_en": "Poultry",
-          "price": "20dt"
+          "price": "20dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Plats Principaux Escalope Panée",
@@ -187,7 +193,8 @@
           "description_en": "",
           "type_fr": "Volaille",
           "type_en": "Poultry",
-          "price": "21dt"
+          "price": "21dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Plats Principaux Cordon Bleu",
@@ -196,7 +203,8 @@
           "description_en": "",
           "type_fr": "Volaille",
           "type_en": "Poultry",
-          "price": "23dt"
+          "price": "23dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Plats Principaux French Chicken",
@@ -205,7 +213,8 @@
           "description_en": "",
           "type_fr": "Volaille",
           "type_en": "Poultry",
-          "price": "26dt"
+          "price": "26dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Plats Principaux Suprême de Poulet à l'Italien",
@@ -214,7 +223,8 @@
           "description_en": "",
           "type_fr": "Volaille",
           "type_en": "Poultry",
-          "price": "26dt"
+          "price": "26dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Plats Principaux Chich Taouk",
@@ -223,7 +233,8 @@
           "description_en": "",
           "type_fr": "Volaille",
           "type_en": "Poultry",
-          "price": "22dt"
+          "price": "22dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Plats Principaux Escalope Sauce Champignons",
@@ -232,7 +243,8 @@
           "description_en": "",
           "type_fr": "Volaille",
           "type_en": "Poultry",
-          "price": "27dt"
+          "price": "27dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Plats Principaux Grillade Mixte",
@@ -241,7 +253,8 @@
           "description_en": "",
           "type_fr": "Viande",
           "type_en": "Meat",
-          "price": "33dt"
+          "price": "33dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Plats Principaux Émincé de Bœuf à la Crème",
@@ -250,7 +263,8 @@
           "description_en": "",
           "type_fr": "Viande",
           "type_en": "Meat",
-          "price": "33dt"
+          "price": "33dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Plats Principaux Filet de Bœuf",
@@ -259,7 +273,8 @@
           "description_en": "",
           "type_fr": "Viande",
           "type_en": "Meat",
-          "price": "42dt"
+          "price": "42dt",
+          "is_most_ordered": true
         },
         {
           "name_fr": "Plats Principaux Kabeb Viande",
@@ -268,7 +283,8 @@
           "description_en": "",
           "type_fr": "Viande",
           "type_en": "Meat",
-          "price": "28dt"
+          "price": "28dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Plats Principaux Steak Haché Fondant",
@@ -277,7 +293,8 @@
           "description_en": "",
           "type_fr": "Viande",
           "type_en": "Meat",
-          "price": "31dt"
+          "price": "31dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Plats Principaux Côte à l'Os",
@@ -286,7 +303,8 @@
           "description_en": "",
           "type_fr": "Viande",
           "type_en": "Meat",
-          "price": "35dt"
+          "price": "35dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Plats Principaux Sauce Poivre",
@@ -295,7 +313,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "5dt"
+          "price": "5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Plats Principaux Sauce Champignons",
@@ -304,7 +323,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "6dt"
+          "price": "6dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Plats Principaux Sauce Roquefort",
@@ -313,7 +333,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "7dt"
+          "price": "7dt",
+          "is_most_ordered": true
         }
       ]
     },
@@ -328,7 +349,8 @@
           "description_en": "Sea Bass or Grouper",
           "type_fr": "Poisson",
           "type_en": "Fish",
-          "price": "25dt"
+          "price": "25dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Fruits de Mer Loup",
@@ -337,7 +359,8 @@
           "description_en": "Chef's Garnish",
           "type_fr": "Poisson",
           "type_en": "Fish",
-          "price": "29dt"
+          "price": "29dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Fruits de Mer Loup à l'Ail",
@@ -346,7 +369,8 @@
           "description_en": "Chef's Garnish",
           "type_fr": "Poisson",
           "type_en": "Fish",
-          "price": "35dt"
+          "price": "35dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Fruits de Mer Fruits de Mer",
@@ -355,7 +379,8 @@
           "description_en": "Chef's Garnish",
           "type_fr": "Fruits de Mer",
           "type_en": "Seafood",
-          "price": "37dt"
+          "price": "37dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Fruits de Mer Oja Fruits de Mer",
@@ -364,7 +389,8 @@
           "description_en": "",
           "type_fr": "Fruits de Mer",
           "type_en": "Seafood",
-          "price": "43dt"
+          "price": "43dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Fruits de Mer Délice The Wise",
@@ -373,7 +399,8 @@
           "description_en": "Seafood / Fish Fillet / Chef's Garnish",
           "type_fr": "Fruits de Mer",
           "type_en": "Seafood",
-          "price": "48dt"
+          "price": "48dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Fruits de Mer Gratin Fruits de Mer",
@@ -382,7 +409,8 @@
           "description_en": "Chef's Garnish",
           "type_fr": "Fruits de Mer",
           "type_en": "Seafood",
-          "price": "59dt"
+          "price": "59dt",
+          "is_most_ordered": true
         }
       ]
     },
@@ -399,7 +427,8 @@
           "description_en": "",
           "type_fr": "Spaghetti, Pennes, Tagliatelles",
           "type_en": "Spaghetti, Penne, Tagliatelle",
-          "price": "36dt"
+          "price": "36dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pasta Lasposa (Fruits de Mer, Sauce Blanche)",
@@ -408,7 +437,8 @@
           "description_en": "",
           "type_fr": "Spaghetti, Pennes, Tagliatelles",
           "type_en": "Spaghetti, Penne, Tagliatelle",
-          "price": "39dt"
+          "price": "39dt",
+          "is_most_ordered": true
         },
         {
           "name_fr": "Pasta Pink (Viande Fumé, Sauce Pink, Oignon, Gruyère)",
@@ -417,7 +447,8 @@
           "description_en": "",
           "type_fr": "Spaghetti, Pennes, Tagliatelles",
           "type_en": "Spaghetti, Penne, Tagliatelle",
-          "price": "31dt"
+          "price": "31dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pasta Carbonara (Jambon, Champignons, Jaune d'œuf, Sauce Blanche)",
@@ -426,7 +457,8 @@
           "description_en": "",
           "type_fr": "Spaghetti, Pennes, Tagliatelles",
           "type_en": "Spaghetti, Penne, Tagliatelle",
-          "price": "22dt"
+          "price": "22dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pasta Bolognaise (Viande hachée, Sauce tomate)",
@@ -435,7 +467,8 @@
           "description_en": "",
           "type_fr": "Spaghetti, Pennes, Tagliatelles",
           "type_en": "Spaghetti, Penne, Tagliatelle",
-          "price": "25dt"
+          "price": "25dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pasta Putanesca (Thon, Olive, Câpre, Piments de Cayenne)",
@@ -444,7 +477,8 @@
           "description_en": "",
           "type_fr": "Spaghetti, Pennes, Tagliatelles",
           "type_en": "Spaghetti, Penne, Tagliatelle",
-          "price": "23dt"
+          "price": "23dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pasta Spinaci (Chevrettes, Champignons, Epinard, Tomates Cerises)",
@@ -453,7 +487,8 @@
           "description_en": "",
           "type_fr": "Spaghetti, Pennes, Tagliatelles",
           "type_en": "Spaghetti, Penne, Tagliatelle",
-          "price": "33dt"
+          "price": "33dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pasta Alfredo (Poulet, Champignons, Sauce Blanche)",
@@ -462,7 +497,8 @@
           "description_en": "",
           "type_fr": "Spaghetti, Pennes, Tagliatelles",
           "type_en": "Spaghetti, Penne, Tagliatelle",
-          "price": "26dt"
+          "price": "26dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pasta The Wise (Crevette, Saumon, Sauce Rosée)",
@@ -471,7 +507,8 @@
           "description_en": "",
           "type_fr": "Spaghetti, Pennes, Tagliatelles",
           "type_en": "Spaghetti, Penne, Tagliatelle",
-          "price": "39dt"
+          "price": "39dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pasta Lasagne Bolognaise",
@@ -480,7 +517,8 @@
           "description_en": "",
           "type_fr": "Lasagne",
           "type_en": "Lasagna",
-          "price": "21dt"
+          "price": "21dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pasta 4 Fromages",
@@ -489,7 +527,8 @@
           "description_en": "",
           "type_fr": "Spaghetti, Pennes, Tagliatelles",
           "type_en": "Spaghetti, Penne, Tagliatelle",
-          "price": "25dt"
+          "price": "25dt",
+          "is_most_ordered": false
         }
       ]
     },
@@ -506,7 +545,8 @@
           "description_en": "Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 11dt, Moyenne: 15dt, Large: 19dt, 1/2 Moyenne: 7.5dt, 1/2 Large: 9.5dt, 1/4 m: 13dt, 1/2 mètre: 26dt, 1 mètre: 52dt"
+          "price": "Petite: 11dt, Moyenne: 15dt, Large: 19dt, 1/2 Moyenne: 7.5dt, 1/2 Large: 9.5dt, 1/4 m: 13dt, 1/2 mètre: 26dt, 1 mètre: 52dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Thon",
@@ -515,7 +555,8 @@
           "description_en": "Tuna, Fresh Tomatoes, Onions, Olives, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 12.5dt, Moyenne: 17.5dt, Large: 26dt, 1/2 Moyenne: 8.75dt, 1/2 Large: 13dt, 1/4 m: 14.5dt, 1/2 mètre: 29dt, 1 mètre: 58dt"
+          "price": "Petite: 12.5dt, Moyenne: 17.5dt, Large: 26dt, 1/2 Moyenne: 8.75dt, 1/2 Large: 13dt, 1/4 m: 14.5dt, 1/2 mètre: 29dt, 1 mètre: 58dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza 4 Saisons",
@@ -524,7 +565,8 @@
           "description_en": "Tuna, Turkey Ham, Mushrooms, Peppers, Onions, Olives, Mozzarella, Tomato Sauce",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 14.5dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 15dt, 1/2 mètre: 30dt, 1 mètre: 60dt"
+          "price": "Petite: 14.5dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 15dt, 1/2 mètre: 30dt, 1 mètre: 60dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Végétarien",
@@ -533,7 +575,8 @@
           "description_en": "Mushrooms, Peppers, Onions, Olives, Fresh Tomatoes, Mozzarella, Tomato Sauce",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 12.5dt, Moyenne: 17.5dt, Large: 28dt, 1/2 Moyenne: 8.75dt, 1/2 Large: 14dt, 1/4 m: 14.5dt, 1/2 mètre: 29dt, 1 mètre: 58dt"
+          "price": "Petite: 12.5dt, Moyenne: 17.5dt, Large: 28dt, 1/2 Moyenne: 8.75dt, 1/2 Large: 14dt, 1/4 m: 14.5dt, 1/2 mètre: 29dt, 1 mètre: 58dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Reine",
@@ -542,7 +585,8 @@
           "description_en": "Turkey Ham, Mushrooms, Mozzarella, Tomato Sauce",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 12dt, Moyenne: 17dt, Large: 25dt, 1/2 Moyenne: 8.5dt, 1/2 Large: 12.5dt, 1/4 m: 14dt, 1/2 mètre: 28dt, 1 mètre: 56dt"
+          "price": "Petite: 12dt, Moyenne: 17dt, Large: 25dt, 1/2 Moyenne: 8.5dt, 1/2 Large: 12.5dt, 1/4 m: 14dt, 1/2 mètre: 28dt, 1 mètre: 56dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Orientale",
@@ -551,7 +595,8 @@
           "description_en": "Merguez Sausage, Peppers, Onions, Mushrooms, Fresh Tomatoes, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 12dt, Moyenne: 17.5dt, Large: 23dt, 1/2 Moyenne: 8.75dt, 1/2 Large: 11.5dt, 1/4 m: 14dt, 1/2 mètre: 28dt, 1 mètre: 56dt"
+          "price": "Petite: 12dt, Moyenne: 17.5dt, Large: 23dt, 1/2 Moyenne: 8.75dt, 1/2 Large: 11.5dt, 1/4 m: 14dt, 1/2 mètre: 28dt, 1 mètre: 56dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Pepperoni",
@@ -560,7 +605,8 @@
           "description_en": "Pepperoni, Onions, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 12.5dt, Moyenne: 17.5dt, Large: 28dt, 1/2 Moyenne: 8.75dt, 1/2 Large: 14dt, 1/4 m: 14.5dt, 1/2 mètre: 29dt, 1 mètre: 58dt"
+          "price": "Petite: 12.5dt, Moyenne: 17.5dt, Large: 28dt, 1/2 Moyenne: 8.75dt, 1/2 Large: 14dt, 1/4 m: 14.5dt, 1/2 mètre: 29dt, 1 mètre: 58dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Suprême Poulet",
@@ -569,7 +615,8 @@
           "description_en": "Chicken, Mushrooms, Peppers, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 15dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 16dt, 1/2 mètre: 32dt, 1 mètre: 64dt"
+          "price": "Petite: 15dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 16dt, 1/2 mètre: 32dt, 1 mètre: 64dt",
+          "is_most_ordered": true
         },
         {
           "name_fr": "Pizza 4 Fromages",
@@ -578,7 +625,8 @@
           "description_en": "Tomato Sauce, Mozzarella, Cheese, White Sauce",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 12.5dt, Moyenne: 17.5dt, Large: 28dt, 1/2 Moyenne: 8.75dt, 1/2 Large: 14dt, 1/4 m: 14.5dt, 1/2 mètre: 29dt, 1 mètre: 58dt"
+          "price": "Petite: 12.5dt, Moyenne: 17.5dt, Large: 28dt, 1/2 Moyenne: 8.75dt, 1/2 Large: 14dt, 1/4 m: 14.5dt, 1/2 mètre: 29dt, 1 mètre: 58dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Regina",
@@ -587,7 +635,8 @@
           "description_en": "Turkey Ham, Mushrooms, Onions, Olives, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 12dt, Moyenne: 17dt, Large: 25dt, 1/2 Moyenne: 8.5dt, 1/2 Large: 12.5dt, 1/4 m: 14dt, 1/2 mètre: 28dt, 1 mètre: 56dt"
+          "price": "Petite: 12dt, Moyenne: 17dt, Large: 25dt, 1/2 Moyenne: 8.5dt, 1/2 Large: 12.5dt, 1/4 m: 14dt, 1/2 mètre: 28dt, 1 mètre: 56dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Poulet Grillé",
@@ -596,7 +645,8 @@
           "description_en": "Grilled Chicken Strips, Peppers, Mushrooms, Onions, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 13dt, Moyenne: 20dt, Large: 29dt, 1/2 Moyenne: 10dt, 1/2 Large: 14.5dt, 1/4 m: 14dt, 1/2 mètre: 28dt, 1 mètre: 56dt"
+          "price": "Petite: 13dt, Moyenne: 20dt, Large: 29dt, 1/2 Moyenne: 10dt, 1/2 Large: 14.5dt, 1/4 m: 14dt, 1/2 mètre: 28dt, 1 mètre: 56dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Mexicain",
@@ -605,7 +655,8 @@
           "description_en": "Peppers, Jalapeño Peppers, Mushrooms, Onions, Tomatoes, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 13dt, Moyenne: 20dt, Large: 29dt, 1/2 Moyenne: 10dt, 1/2 Large: 14.5dt, 1/4 m: 15dt, 1/2 mètre: 30dt, 1 mètre: 60dt"
+          "price": "Petite: 13dt, Moyenne: 20dt, Large: 29dt, 1/2 Moyenne: 10dt, 1/2 Large: 14.5dt, 1/4 m: 15dt, 1/2 mètre: 30dt, 1 mètre: 60dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Kentucky",
@@ -614,7 +665,8 @@
           "description_en": "Kentucky Chicken, Mushrooms, Onions, Peppers, Tomatoes, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 14dt, Moyenne: 21dt, Large: 30dt, 1/2 Moyenne: 10.5dt, 1/2 Large: 15dt, 1/4 m: 15dt, 1/2 mètre: 30dt, 1 mètre: 60dt"
+          "price": "Petite: 14dt, Moyenne: 21dt, Large: 30dt, 1/2 Moyenne: 10.5dt, 1/2 Large: 15dt, 1/4 m: 15dt, 1/2 mètre: 30dt, 1 mètre: 60dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Norvégien",
@@ -623,7 +675,8 @@
           "description_en": "Smoked Salmon, Fresh Cream, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 17dt, Moyenne: 27dt, Large: 35dt, 1/2 Moyenne: 13.5dt, 1/2 Large: 17.5dt, 1/4 m: 19dt, 1/2 mètre: 38dt, 1 mètre: 76dt"
+          "price": "Petite: 17dt, Moyenne: 27dt, Large: 35dt, 1/2 Moyenne: 13.5dt, 1/2 Large: 17.5dt, 1/4 m: 19dt, 1/2 mètre: 38dt, 1 mètre: 76dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Fruits de Mer",
@@ -632,7 +685,8 @@
           "description_en": "Seafood, Peppers, Onions, Olives, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 17dt, Moyenne: 27dt, Large: 35dt, 1/2 Moyenne: 13.5dt, 1/2 Large: 17.5dt, 1/4 m: 19dt, 1/2 mètre: 38dt, 1 mètre: 76dt"
+          "price": "Petite: 17dt, Moyenne: 27dt, Large: 35dt, 1/2 Moyenne: 13.5dt, 1/2 Large: 17.5dt, 1/4 m: 19dt, 1/2 mètre: 38dt, 1 mètre: 76dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Newton",
@@ -641,7 +695,8 @@
           "description_en": "Grilled Chicken, Breaded Chicken, Mushrooms, Peppers, Onions, Tomatoes, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 18dt, Moyenne: 29dt, Large: 32dt, 1/2 Moyenne: 14.5dt, 1/2 Large: 16dt, 1/4 m: 15.5dt, 1/2 mètre: 31dt, 1 mètre: 62dt"
+          "price": "Petite: 18dt, Moyenne: 29dt, Large: 32dt, 1/2 Moyenne: 14.5dt, 1/2 Large: 16dt, 1/4 m: 15.5dt, 1/2 mètre: 31dt, 1 mètre: 62dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Einstein",
@@ -650,7 +705,8 @@
           "description_en": "Minced Beef, Mushrooms, Fresh Tomatoes, Onions, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 18dt, Moyenne: 29dt, Large: 32dt, 1/2 Moyenne: 14.5dt, 1/2 Large: 16dt, 1/4 m: 15.5dt, 1/2 mètre: 31dt, 1 mètre: 62dt"
+          "price": "Petite: 18dt, Moyenne: 29dt, Large: 32dt, 1/2 Moyenne: 14.5dt, 1/2 Large: 16dt, 1/4 m: 15.5dt, 1/2 mètre: 31dt, 1 mètre: 62dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Barlow",
@@ -659,7 +715,8 @@
           "description_en": "Minced Beef, Ham, Mushrooms, Peppers, Onions, Tomatoes, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 18dt, Moyenne: 29dt, Large: 32dt, 1/2 Moyenne: 14.5dt, 1/2 Large: 16dt, 1/4 m: 15.5dt, 1/2 mètre: 31dt, 1 mètre: 62dt"
+          "price": "Petite: 18dt, Moyenne: 29dt, Large: 32dt, 1/2 Moyenne: 14.5dt, 1/2 Large: 16dt, 1/4 m: 15.5dt, 1/2 mètre: 31dt, 1 mètre: 62dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Millikan",
@@ -668,7 +725,8 @@
           "description_en": "Anchovies, Sardine Fillet, Olives, Peppers, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 18dt, Moyenne: 29dt, Large: 32dt, 1/2 Moyenne: 14.5dt, 1/2 Large: 16dt, 1/4 m: 16dt, 1/2 mètre: 32dt, 1 mètre: 64dt"
+          "price": "Petite: 18dt, Moyenne: 29dt, Large: 32dt, 1/2 Moyenne: 14.5dt, 1/2 Large: 16dt, 1/4 m: 16dt, 1/2 mètre: 32dt, 1 mètre: 64dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Ampere",
@@ -677,7 +735,8 @@
           "description_en": "Pepperoni, Minced Beef, Onions, Peppers, Olives, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 18dt, Moyenne: 29dt, Large: 32dt, 1/2 Moyenne: 14.5dt, 1/2 Large: 16dt, 1/4 m: 17.5dt, 1/2 mètre: 35dt, 1 mètre: 70dt"
+          "price": "Petite: 18dt, Moyenne: 29dt, Large: 32dt, 1/2 Moyenne: 14.5dt, 1/2 Large: 16dt, 1/4 m: 17.5dt, 1/2 mètre: 35dt, 1 mètre: 70dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Gauss",
@@ -686,7 +745,8 @@
           "description_en": "Tuna, Egg, Roquefort, Gruyere, Onions, Olives, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 13dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 16dt, 1/2 mètre: 32dt, 1 mètre: 64dt"
+          "price": "Petite: 13dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 16dt, 1/2 mètre: 32dt, 1 mètre: 64dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza John Locke",
@@ -695,7 +755,8 @@
           "description_en": "Breaded Chicken, Spicy Sauce, Onions, Peppers, Olives, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 13dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 16dt, 1/2 mètre: 32dt, 1 mètre: 64dt"
+          "price": "Petite: 13dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 16dt, 1/2 mètre: 32dt, 1 mètre: 64dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Pesto",
@@ -704,7 +765,8 @@
           "description_en": "Pesto Sauce, Mozzarella, Pepperoni",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 13dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 16dt, 1/2 mètre: 32dt, 1 mètre: 64dt"
+          "price": "Petite: 13dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 16dt, 1/2 mètre: 32dt, 1 mètre: 64dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Poulet Épicé",
@@ -713,7 +775,8 @@
           "description_en": "Breaded Chicken, Spicy Sauce, Peppers, Onions, Olives, Mushrooms, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 13dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 16dt, 1/2 mètre: 32dt, 1 mètre: 64dt"
+          "price": "Petite: 13dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 16dt, 1/2 mètre: 32dt, 1 mètre: 64dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Carnot",
@@ -722,7 +785,8 @@
           "description_en": "Gruyere, Onions, Peppers, Mushrooms, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 15.5dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 17.5dt, 1/2 mètre: 35dt, 1 mètre: 70dt"
+          "price": "Petite: 15.5dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 17.5dt, 1/2 mètre: 35dt, 1 mètre: 70dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Mariotte",
@@ -731,7 +795,8 @@
           "description_en": "Breaded Chicken, Gruyere, Onions, Olives, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 14.5dt, Moyenne: 21dt, Large: 32dt, 1/2 Moyenne: 10.5dt, 1/2 Large: 16dt, 1/4 m: 16.5dt, 1/2 mètre: 33dt, 1 mètre: 66dt"
+          "price": "Petite: 14.5dt, Moyenne: 21dt, Large: 32dt, 1/2 Moyenne: 10.5dt, 1/2 Large: 16dt, 1/4 m: 16.5dt, 1/2 mètre: 33dt, 1 mètre: 66dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Kepler",
@@ -740,7 +805,8 @@
           "description_en": "Shrimp, Mushrooms, Onions, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 14dt, Moyenne: 21dt, Large: 32dt, 1/2 Moyenne: 10.5dt, 1/2 Large: 16dt, 1/4 m: 17dt, 1/2 mètre: 34dt, 1 mètre: 68dt"
+          "price": "Petite: 14dt, Moyenne: 21dt, Large: 32dt, 1/2 Moyenne: 10.5dt, 1/2 Large: 16dt, 1/4 m: 17dt, 1/2 mètre: 34dt, 1 mètre: 68dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Van der waals",
@@ -749,7 +815,8 @@
           "description_en": "Minced Meat, Mushrooms, Onions, Mozzarella, Barbecue Sauce",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 13dt, Moyenne: 21dt, Large: 32dt, 1/2 Moyenne: 10.5dt, 1/2 Large: 16dt, 1/4 m: 16.5dt, 1/2 mètre: 33dt, 1 mètre: 66dt"
+          "price": "Petite: 13dt, Moyenne: 21dt, Large: 32dt, 1/2 Moyenne: 10.5dt, 1/2 Large: 16dt, 1/4 m: 16.5dt, 1/2 mètre: 33dt, 1 mètre: 66dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Tesla",
@@ -758,7 +825,8 @@
           "description_en": "Smoked Chicken Supreme, Tomato Sauce, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 13dt, Moyenne: 21dt, Large: 32dt, 1/2 Moyenne: 10.5dt, 1/2 Large: 16dt, 1/4 m: 17dt, 1/2 mètre: 34dt, 1 mètre: 68dt"
+          "price": "Petite: 13dt, Moyenne: 21dt, Large: 32dt, 1/2 Moyenne: 10.5dt, 1/2 Large: 16dt, 1/4 m: 17dt, 1/2 mètre: 34dt, 1 mètre: 68dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza The Wise",
@@ -767,7 +835,8 @@
           "description_en": "Smoked Salmon, Shrimp, Seafood, Mozzarella",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Petite: 13dt, Moyenne: 21dt, Large: 32dt, 1/2 Moyenne: 10.5dt, 1/2 Large: 16dt, 1/4 m: 17dt, 1/2 mètre: 34dt, 1 mètre: 68dt"
+          "price": "Petite: 13dt, Moyenne: 21dt, Large: 32dt, 1/2 Moyenne: 10.5dt, 1/2 Large: 16dt, 1/4 m: 17dt, 1/2 mètre: 34dt, 1 mètre: 68dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Moitié-Moitié",
@@ -776,7 +845,8 @@
           "description_en": "Combine any two pizzas in one. Available in Moyenne, Large, 1/2m, and 1m sizes. Price is the sum of both halves.",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Exemple : Thon/Margherita (Moyenne) = 17.5dt + 15dt = 32.5dt"
+          "price": "Exemple : Thon/Margherita (Moyenne) = 17.5dt + 15dt = 32.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Pizza Mètre",
@@ -785,7 +855,8 @@
           "description_en": "Create your own meter pizza with up to 4 different flavors. Choose 1/4m, 1/2m, or 1m sizes.",
           "type_fr": "Pizza",
           "type_en": "Pizza",
-          "price": "Exemple : 1/4m chacun de Margherita, Thon, 4 Saisons, Végétarien = 13dt + 14.5dt + 15dt + 14.5dt = 57dt"
+          "price": "Exemple : 1/4m chacun de Margherita, Thon, 4 Saisons, Végétarien = 13dt + 14.5dt + 15dt + 14.5dt = 57dt",
+          "is_most_ordered": false
         }
       ]
     },
@@ -802,7 +873,8 @@
           "description_en": "Turkey Ham, Lettuce, Tomato, Mayonnaise",
           "type_fr": "Ciabatta",
           "type_en": "Ciabatta",
-          "price": "8.5dt"
+          "price": "8.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Jambon Dinde (Tacos)",
@@ -811,7 +883,8 @@
           "description_en": "Turkey Ham, Lettuce, Tomato, Mayonnaise, Tortilla",
           "type_fr": "Tacos",
           "type_en": "Tacos",
-          "price": "8.5dt"
+          "price": "8.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Escalope Poulet Grillé (Ciabatta)",
@@ -820,7 +893,8 @@
           "description_en": "Grilled chicken cutlet, Lettuce, Tomato, Mayonnaise",
           "type_fr": "Ciabatta",
           "type_en": "Ciabatta",
-          "price": "9.5dt"
+          "price": "9.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Escalope Poulet Grillé (Tacos)",
@@ -829,7 +903,8 @@
           "description_en": "Grilled chicken cutlet, Lettuce, Tomato, Mayonnaise, Tortilla",
           "type_fr": "Tacos",
           "type_en": "Tacos",
-          "price": "9.5dt"
+          "price": "9.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Escalope Poulet Pané (Ciabatta)",
@@ -838,7 +913,8 @@
           "description_en": "Breaded chicken cutlet, Lettuce, Tomato, Mayonnaise",
           "type_fr": "Ciabatta",
           "type_en": "Ciabatta",
-          "price": "10dt"
+          "price": "10dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Escalope Poulet Pané (Tacos)",
@@ -847,7 +923,8 @@
           "description_en": "Breaded chicken cutlet, Lettuce, Tomato, Mayonnaise, Tortilla",
           "type_fr": "Tacos",
           "type_en": "Tacos",
-          "price": "10dt"
+          "price": "10dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Chich Taouk (Ciabatta)",
@@ -856,7 +933,8 @@
           "description_en": "Marinated grilled chicken, Lettuce, Tomato, Tzatziki Sauce",
           "type_fr": "Ciabatta",
           "type_en": "Ciabatta",
-          "price": "10dt"
+          "price": "10dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Chich Taouk (Tacos)",
@@ -865,7 +943,8 @@
           "description_en": "Marinated grilled chicken, Lettuce, Tomato, Tzatziki Sauce, Tortilla",
           "type_fr": "Tacos",
           "type_en": "Tacos",
-          "price": "10dt"
+          "price": "10dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Cordon Bleu (Ciabatta)",
@@ -874,7 +953,8 @@
           "description_en": "Chicken cutlet, ham, cheese, Lettuce, Tomato",
           "type_fr": "Ciabatta",
           "type_en": "Ciabatta",
-          "price": "11dt"
+          "price": "11dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Cordon Bleu (Tacos)",
@@ -883,7 +963,8 @@
           "description_en": "Chicken cutlet, ham, cheese, Lettuce, Tomato, Tortilla",
           "type_fr": "Tacos",
           "type_en": "Tacos",
-          "price": "11dt"
+          "price": "11dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Kabeb (Ciabatta)",
@@ -892,7 +973,8 @@
           "description_en": "Kebab meat, onions, parsley, tahini sauce",
           "type_fr": "Ciabatta",
           "type_en": "Ciabatta",
-          "price": "12dt"
+          "price": "12dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Kabeb (Tacos)",
@@ -901,7 +983,8 @@
           "description_en": "Kebab meat, onions, parsley, tahini sauce, Tortilla",
           "type_fr": "Tacos",
           "type_en": "Tacos",
-          "price": "12dt"
+          "price": "12dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Mariotte (Spécial The Wise)",
@@ -910,7 +993,8 @@
           "description_en": "Breaded chicken, cheese, caramelized onions, salad",
           "type_fr": "Spécial The Wise",
           "type_en": "The Wise Special",
-          "price": "12dt"
+          "price": "12dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Wilson (Spécial The Wise)",
@@ -919,7 +1003,8 @@
           "description_en": "Minced beef, cheese, onions, pickles, special sauce",
           "type_fr": "Spécial The Wise",
           "type_en": "The Wise Special",
-          "price": "13dt"
+          "price": "13dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Savored (Spécial The Wise)",
@@ -928,7 +1013,8 @@
           "description_en": "Grilled chicken, avocado, tomato, red onions, special sauce",
           "type_fr": "Spécial The Wise",
           "type_en": "The Wise Special",
-          "price": "13dt"
+          "price": "13dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches TacoWise (Spécial The Wise)",
@@ -937,7 +1023,8 @@
           "description_en": "Minced meat, lettuce, cheese, tomato, taco sauce, tortilla",
           "type_fr": "Tacos",
           "type_en": "Tacos",
-          "price": "14dt"
+          "price": "14dt",
+          "is_most_ordered": true
         },
         {
           "name_fr": "Sandwiches Thon (Baguette Farcie / Makloub The Wise)",
@@ -946,7 +1033,8 @@
           "description_en": "Tuna, hard-boiled egg, olives, pickles, mayonnaise",
           "type_fr": "Baguette Farcie / Makloub",
           "type_en": "Stuffed Baguette / Makloub",
-          "price": "12dt"
+          "price": "12dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Pepperoni (Baguette Farcie / Makloub The Wise)",
@@ -955,7 +1043,8 @@
           "description_en": "Pepperoni, cheese, tomato, tomato sauce",
           "type_fr": "Baguette Farcie / Makloub",
           "type_en": "Stuffed Baguette / Makloub",
-          "price": "12dt"
+          "price": "12dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Oriental (Baguette Farcie / Makloub The Wise)",
@@ -964,7 +1053,8 @@
           "description_en": "Minced meat, harissa, onions, parsley",
           "type_fr": "Baguette Farcie / Makloub",
           "type_en": "Stuffed Baguette / Makloub",
-          "price": "12dt"
+          "price": "12dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Corleone (Baguette Farcie / Makloub The Wise)",
@@ -973,7 +1063,8 @@
           "description_en": "Minced meat, cheese, mushrooms, special sauce",
           "type_fr": "Baguette Farcie / Makloub",
           "type_en": "Stuffed Baguette / Makloub",
-          "price": "13dt"
+          "price": "13dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Kentucky (Baguette Farcie / Makloub The Wise)",
@@ -982,7 +1073,8 @@
           "description_en": "Fried chicken, lettuce, tomato, mayonnaise",
           "type_fr": "Baguette Farcie / Makloub",
           "type_en": "Stuffed Baguette / Makloub",
-          "price": "12dt"
+          "price": "12dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Cheesy Wise (Baguette Farcie / Makloub The Wise)",
@@ -991,7 +1083,8 @@
           "description_en": "Melted cheese, chicken, caramelized onions",
           "type_fr": "Baguette Farcie / Makloub",
           "type_en": "Stuffed Baguette / Makloub",
-          "price": "14dt"
+          "price": "14dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Chicken Wise (Baguette Farcie / Makloub The Wise)",
@@ -1000,7 +1093,8 @@
           "description_en": "Grilled chicken, cheese, salad, special sauce",
           "type_fr": "Baguette Farcie / Makloub",
           "type_en": "Stuffed Baguette / Makloub",
-          "price": "13dt"
+          "price": "13dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches The Wise (Baguette Farcie / Makloub The Wise)",
@@ -1009,7 +1103,8 @@
           "description_en": "Mixed meats, cheese, vegetables, special sauce",
           "type_fr": "Baguette Farcie / Makloub",
           "type_en": "Stuffed Baguette / Makloub",
-          "price": "14dt"
+          "price": "14dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Portion Frites (Suppléments Sandwich/Bowls)",
@@ -1018,7 +1113,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "4dt"
+          "price": "4dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Thon (Suppléments Sandwich/Bowls)",
@@ -1027,7 +1123,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "4.5dt"
+          "price": "4.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Nuggets (Suppléments Sandwich/Bowls)",
@@ -1036,7 +1133,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "4.5dt"
+          "price": "4.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Escalope Poulet Grillé (Suppléments Sandwich/Bowls)",
@@ -1045,7 +1143,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "4.5dt"
+          "price": "4.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Escalope Poulet Pané (Suppléments Sandwich/Bowls)",
@@ -1054,7 +1153,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "4.5dt"
+          "price": "4.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Jambon (Suppléments Sandwich/Bowls)",
@@ -1063,7 +1163,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "2.5dt"
+          "price": "2.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Œuf (Suppléments Sandwich/Bowls)",
@@ -1072,7 +1173,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "1dt"
+          "price": "1dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Champignons (Suppléments Sandwich/Bowls)",
@@ -1081,7 +1183,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "2.5dt"
+          "price": "2.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Gruyère (Suppléments Sandwich/Bowls)",
@@ -1090,7 +1193,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "3.5dt"
+          "price": "3.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Cheddar (Suppléments Sandwich/Bowls)",
@@ -1099,7 +1203,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "3dt"
+          "price": "3dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Mozzarella (Suppléments Sandwich/Bowls)",
@@ -1108,7 +1213,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "3dt"
+          "price": "3dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Cordon Bleu (Suppléments Sandwich/Bowls)",
@@ -1117,7 +1223,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "5dt"
+          "price": "5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Sandwiches Chich Taouk (Suppléments Sandwich/Bowls)",
@@ -1126,7 +1233,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "6dt"
+          "price": "6dt",
+          "is_most_ordered": true
         },
         {
           "name_fr": "Sandwiches Kabeb (Suppléments Sandwich/Bowls)",
@@ -1135,7 +1243,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "6dt"
+          "price": "6dt",
+          "is_most_ordered": false
         }
       ]
     },
@@ -1150,7 +1259,8 @@
           "description_en": "",
           "type_fr": "Burger",
           "type_en": "Burger",
-          "price": "13dt"
+          "price": "13dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Burgers Big Chicken Burger",
@@ -1159,7 +1269,8 @@
           "description_en": "",
           "type_fr": "Burger",
           "type_en": "Burger",
-          "price": "18dt"
+          "price": "18dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Burgers Cheese Burger",
@@ -1168,7 +1279,8 @@
           "description_en": "",
           "type_fr": "Burger",
           "type_en": "Burger",
-          "price": "15dt"
+          "price": "15dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Burgers Big Cheese Burger",
@@ -1177,7 +1289,8 @@
           "description_en": "",
           "type_fr": "Burger",
           "type_en": "Burger",
-          "price": "21dt"
+          "price": "21dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Burgers Americain Burger",
@@ -1186,7 +1299,8 @@
           "description_en": "",
           "type_fr": "Burger",
           "type_en": "Burger",
-          "price": "19dt"
+          "price": "19dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Burgers The Wise Burger",
@@ -1195,7 +1309,8 @@
           "description_en": "",
           "type_fr": "Burger",
           "type_en": "Burger",
-          "price": "22dt"
+          "price": "22dt",
+          "is_most_ordered": true
         }
       ]
     },
@@ -1210,7 +1325,8 @@
           "description_en": "Breaded Chicken Sticks (9 pieces)",
           "type_fr": "Poulet Pané",
           "type_en": "Breaded Chicken",
-          "price": "17dt"
+          "price": "17dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Chicken Box Cuisses de Poulet Épicées",
@@ -1219,7 +1335,8 @@
           "description_en": "Spicy Chicken Legs (6 pieces)",
           "type_fr": "Poulet Épicé",
           "type_en": "Spicy Chicken",
-          "price": "22dt"
+          "price": "22dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Chicken Box Poulet Pané Farci au Fromage",
@@ -1228,7 +1345,8 @@
           "description_en": "Cheese-Stuffed Breaded Chicken (6 pieces)",
           "type_fr": "Poulet Pané",
           "type_en": "Breaded Chicken",
-          "price": "25dt"
+          "price": "25dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Chicken Box Cuisses de Poulet Panées",
@@ -1237,7 +1355,8 @@
           "description_en": "Breaded Chicken Legs (6 pieces)",
           "type_fr": "Poulet Pané",
           "type_en": "Breaded Chicken",
-          "price": "22dt"
+          "price": "22dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Chicken Box Ailes de Poulet Épicées",
@@ -1246,7 +1365,8 @@
           "description_en": "Spicy Chicken Wings (8 pieces)",
           "type_fr": "Poulet Épicé",
           "type_en": "Spicy Chicken",
-          "price": "16dt"
+          "price": "16dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Chicken Box Mix Poulet",
@@ -1255,7 +1375,8 @@
           "description_en": "3 sticks + 2 wings + 3 legs (8 pieces)",
           "type_fr": "Mix Poulet",
           "type_en": "Chicken Mix",
-          "price": "28dt"
+          "price": "28dt",
+          "is_most_ordered": true
         }
       ]
     },
@@ -1272,7 +1393,8 @@
           "description_en": "Our Bowls are Topped with House Sauce, Fries, Mozzarella + Meat of Your Choice",
           "type_fr": "Volaille",
           "type_en": "Poultry",
-          "price": "14.5dt"
+          "price": "14.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Bowls Escalope Pané",
@@ -1281,7 +1403,8 @@
           "description_en": "Our Bowls are Topped with House Sauce, Fries, Mozzarella + Meat of Your Choice",
           "type_fr": "Volaille",
           "type_en": "Poultry",
-          "price": "15dt"
+          "price": "15dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Bowls Steak de Bœuf Haché",
@@ -1290,7 +1413,8 @@
           "description_en": "Our Bowls are Topped with House Sauce, Fries, Mozzarella + Meat of Your Choice",
           "type_fr": "Viande",
           "type_en": "Meat",
-          "price": "16dt"
+          "price": "16dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Bowls Pepperoni",
@@ -1299,7 +1423,8 @@
           "description_en": "Our Bowls are Topped with House Sauce, Fries, Mozzarella + Meat of Your Choice",
           "type_fr": "Charcuterie",
           "type_en": "Cold Cuts",
-          "price": "14.5dt"
+          "price": "14.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Bowls Crevettes Sautées ou Panées",
@@ -1308,7 +1433,8 @@
           "description_en": "Our Bowls are Topped with House Sauce, Fries, Mozzarella + Meat of Your Choice",
           "type_fr": "Fruits de Mer",
           "type_en": "Seafood",
-          "price": "19dt"
+          "price": "19dt",
+          "is_most_ordered": true
         }
       ]
     },
@@ -1323,7 +1449,8 @@
           "description_en": "",
           "type_fr": "Fruits de Mer",
           "type_en": "Seafood",
-          "price": "98dt"
+          "price": "98dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Spécial The Wise Paella (1 pers.)",
@@ -1332,7 +1459,8 @@
           "description_en": "",
           "type_fr": "Paella",
           "type_en": "Paella",
-          "price": "39dt"
+          "price": "39dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Spécial The Wise Paella (2 pers.)",
@@ -1341,7 +1469,8 @@
           "description_en": "",
           "type_fr": "Paella",
           "type_en": "Paella",
-          "price": "85dt"
+          "price": "85dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Spécial The Wise Symphonie Mixte (Terre, Mer)",
@@ -1350,7 +1479,8 @@
           "description_en": "",
           "type_fr": "Mixte",
           "type_en": "Mixed",
-          "price": "160dt"
+          "price": "160dt",
+          "is_most_ordered": true
         }
       ]
     },
@@ -1365,7 +1495,8 @@
           "description_en": "",
           "type_fr": "Crêpes Sucrées",
           "type_en": "Sweet Crepes",
-          "price": "9dt"
+          "price": "9dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Snacks Thon Fromage, Thon, Fromage (Crêpes Sucrées)",
@@ -1374,7 +1505,8 @@
           "description_en": "",
           "type_fr": "Crêpes Sucrées",
           "type_en": "Sweet Crepes",
-          "price": "8.5dt"
+          "price": "8.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Snacks Nutella Banane, Nutella, Banane, Garniture (Crêpes Sucrées)",
@@ -1383,7 +1515,8 @@
           "description_en": "",
           "type_fr": "Crêpes Sucrées",
           "type_en": "Sweet Crepes",
-          "price": "12dt"
+          "price": "12dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Snacks Jambon Fromage, Jambon, Fromage (Crêpes Sucrées)",
@@ -1392,7 +1525,8 @@
           "description_en": "",
           "type_fr": "Crêpes Sucrées",
           "type_en": "Sweet Crepes",
-          "price": "9dt"
+          "price": "9dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Snacks Dolce, Nutella, Speculoos (Crêpes Sucrées)",
@@ -1401,7 +1535,8 @@
           "description_en": "",
           "type_fr": "Crêpes Sucrées",
           "type_en": "Sweet Crepes",
-          "price": "11dt"
+          "price": "11dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Snacks Puttanesca, Sauce Puttanesca, Sauce Napolitaine, Câpre, Piment de Cayenne, Thon, Olive (Crêpes Sucrées)",
@@ -1410,7 +1545,8 @@
           "description_en": "",
           "type_fr": "Crêpes Sucrées",
           "type_en": "Sweet Crepes",
-          "price": "11.5dt"
+          "price": "11.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Snacks Ecubana, Banane, Miel (Crêpes Sucrées)",
@@ -1419,7 +1555,8 @@
           "description_en": "",
           "type_fr": "Crêpes Sucrées",
           "type_en": "Sweet Crepes",
-          "price": "14dt"
+          "price": "14dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Snacks Complet, Œuf, Harissa, Jambon, Thon, Mozzarella (Crêpes Sucrées)",
@@ -1428,7 +1565,8 @@
           "description_en": "",
           "type_fr": "Crêpes Sucrées",
           "type_en": "Sweet Crepes",
-          "price": "11dt"
+          "price": "11dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Snacks The Wise, Nutella, Chocolat Blanc, m&m's, Twix, Speculoos, Crème Cheese (Crêpes Sucrées)",
@@ -1437,7 +1575,8 @@
           "description_en": "",
           "type_fr": "Crêpes Sucrées",
           "type_en": "Sweet Crepes",
-          "price": "16dt"
+          "price": "16dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Snacks The Wise, Harissa, mozzarella, ricotta jambon fumée, emincé de poulet champignon sauté (Crêpes Sucrées)",
@@ -1446,7 +1585,8 @@
           "description_en": "",
           "type_fr": "Crêpes Sucrées",
           "type_en": "Sweet Crepes",
-          "price": "18dt"
+          "price": "18dt",
+          "is_most_ordered": true
         },
         {
           "name_fr": "Snacks Thon Fromage (Crêpes Salées)",
@@ -1455,7 +1595,8 @@
           "description_en": "",
           "type_fr": "Crêpes Salées",
           "type_en": "Savory Crepes",
-          "price": "10dt"
+          "price": "10dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Snacks Jambon Fromage (Crêpes Salées)",
@@ -1464,7 +1605,8 @@
           "description_en": "",
           "type_fr": "Crêpes Salées",
           "type_en": "Savory Crepes",
-          "price": "10.5dt"
+          "price": "10.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Snacks Puttanesca (Crêpes Salées)",
@@ -1473,7 +1615,8 @@
           "description_en": "",
           "type_fr": "Crêpes Salées",
           "type_en": "Savory Crepes",
-          "price": "11.5dt"
+          "price": "11.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Snacks The Wise (Crêpes Salées)",
@@ -1482,7 +1625,8 @@
           "description_en": "",
           "type_fr": "Crêpes Salées",
           "type_en": "Savory Crepes",
-          "price": "18dt"
+          "price": "18dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Snacks Nutella (Gaufres)",
@@ -1491,7 +1635,8 @@
           "description_en": "",
           "type_fr": "Gaufres",
           "type_en": "Waffles",
-          "price": "9.5dt"
+          "price": "9.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Snacks Tropicale, Nutella, Kiwi, Banane, Chantilly (Gaufres)",
@@ -1500,7 +1645,8 @@
           "description_en": "",
           "type_fr": "Gaufres",
           "type_en": "Waffles",
-          "price": "11dt"
+          "price": "11dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Snacks Big Dolce, Nutella, Oreo, Speculoos, Fruit sec, garnitures (Gaufres)",
@@ -1509,7 +1655,8 @@
           "description_en": "",
           "type_fr": "Gaufres",
           "type_en": "Waffles",
-          "price": "13dt"
+          "price": "13dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Snacks The Wise, Nutella, Oreo, Speculoos, Fruit sec, garnitures (Gaufres)",
@@ -1518,7 +1665,8 @@
           "description_en": "",
           "type_fr": "Gaufres",
           "type_en": "Waffles",
-          "price": "16dt"
+          "price": "16dt",
+          "is_most_ordered": false
         }
       ]
     },
@@ -1533,7 +1681,8 @@
           "description_en": "",
           "type_fr": "Café",
           "type_en": "Coffee",
-          "price": "2.5dt"
+          "price": "2.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Direct (Boissons Chaudes)",
@@ -1542,7 +1691,8 @@
           "description_en": "",
           "type_fr": "Café",
           "type_en": "Coffee",
-          "price": "3dt"
+          "price": "3dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Cappuccin (Boissons Chaudes)",
@@ -1551,7 +1701,8 @@
           "description_en": "",
           "type_fr": "Café",
           "type_en": "Coffee",
-          "price": "2.8dt"
+          "price": "2.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Crème (Boissons Chaudes)",
@@ -1560,7 +1711,8 @@
           "description_en": "",
           "type_fr": "Café",
           "type_en": "Coffee",
-          "price": "5.5dt"
+          "price": "5.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Cappuccino (Boissons Chaudes)",
@@ -1569,7 +1721,8 @@
           "description_en": "",
           "type_fr": "Café",
           "type_en": "Coffee",
-          "price": "4.5dt"
+          "price": "4.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Crème Nutella (Boissons Chaudes)",
@@ -1578,7 +1731,8 @@
           "description_en": "",
           "type_fr": "Café Spécial",
           "type_en": "Special Coffee",
-          "price": "5.4dt"
+          "price": "5.4dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Chocolat au lait (Boissons Chaudes)",
@@ -1587,7 +1741,8 @@
           "description_en": "",
           "type_fr": "Chocolat",
           "type_en": "Chocolate",
-          "price": "3dt"
+          "price": "3dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Thé à la menthe (Boissons Chaudes)",
@@ -1596,7 +1751,8 @@
           "description_en": "",
           "type_fr": "Thé",
           "type_en": "Tea",
-          "price": "1.8dt"
+          "price": "1.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Thé aux amandes (Boissons Chaudes)",
@@ -1605,7 +1761,8 @@
           "description_en": "",
           "type_fr": "Thé Spécial",
           "type_en": "Special Tea",
-          "price": "4.8dt"
+          "price": "4.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Thé pignon (Boissons Chaudes)",
@@ -1614,7 +1771,8 @@
           "description_en": "",
           "type_fr": "Thé Spécial",
           "type_en": "Special Tea",
-          "price": "7.8dt"
+          "price": "7.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Verveine (Boissons Chaudes)",
@@ -1623,7 +1781,8 @@
           "description_en": "",
           "type_fr": "Tisane",
           "type_en": "Herbal Tea",
-          "price": "2.8dt"
+          "price": "2.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Amoureux, Fraise, banane (Cocktails)",
@@ -1632,7 +1791,8 @@
           "description_en": "",
           "type_fr": "Cocktail",
           "type_en": "Cocktail",
-          "price": "9.2dt"
+          "price": "9.2dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Scandinave, kiwi, Banane (Cocktails)",
@@ -1641,7 +1801,8 @@
           "description_en": "",
           "type_fr": "Cocktail",
           "type_en": "Cocktail",
-          "price": "9.8dt"
+          "price": "9.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Black & white, Banane, Nutella (Cocktails)",
@@ -1650,7 +1811,8 @@
           "description_en": "",
           "type_fr": "Cocktail",
           "type_en": "Cocktail",
-          "price": "10.5dt"
+          "price": "10.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Palmier, Dattes, Banane (Cocktails)",
@@ -1659,7 +1821,8 @@
           "description_en": "",
           "type_fr": "Cocktail",
           "type_en": "Cocktail",
-          "price": "10.5dt"
+          "price": "10.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons The wise, Banane, Datte, Miel, Fruits Secs+Garnitures (Cocktails)",
@@ -1668,7 +1831,8 @@
           "description_en": "",
           "type_fr": "Cocktail",
           "type_en": "Cocktail",
-          "price": "12.8dt"
+          "price": "12.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Virgin Mojito (Mojito)",
@@ -1677,7 +1841,8 @@
           "description_en": "",
           "type_fr": "Mojito",
           "type_en": "Mojito",
-          "price": "7.8dt"
+          "price": "7.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Healthy Mojito (Mojito)",
@@ -1686,7 +1851,8 @@
           "description_en": "",
           "type_fr": "Mojito",
           "type_en": "Mojito",
-          "price": "7.8dt"
+          "price": "7.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Blue Mojito (Mojito)",
@@ -1695,7 +1861,8 @@
           "description_en": "",
           "type_fr": "Mojito",
           "type_en": "Mojito",
-          "price": "8.8dt"
+          "price": "8.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Red Mojito (Mojito)",
@@ -1704,7 +1871,8 @@
           "description_en": "",
           "type_fr": "Mojito",
           "type_en": "Mojito",
-          "price": "8.8dt"
+          "price": "8.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Fruit de Passion (Mojito)",
@@ -1713,7 +1881,8 @@
           "description_en": "",
           "type_fr": "Mojito",
           "type_en": "Mojito",
-          "price": "8.8dt"
+          "price": "8.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Energetic Mojito (Mojito)",
@@ -1722,7 +1891,8 @@
           "description_en": "",
           "type_fr": "Mojito Énergisant",
           "type_en": "Energy Mojito",
-          "price": "12.8dt"
+          "price": "12.8dt",
+          "is_most_ordered": true
         },
         {
           "name_fr": "Boissons Red Frutti (Smoothies)",
@@ -1731,7 +1901,8 @@
           "description_en": "",
           "type_fr": "Smoothie",
           "type_en": "Smoothie",
-          "price": "9.8dt"
+          "price": "9.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Pina Colada (Smoothies)",
@@ -1740,7 +1911,8 @@
           "description_en": "",
           "type_fr": "Smoothie",
           "type_en": "Smoothie",
-          "price": "10.5dt"
+          "price": "10.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Blue Berry (Smoothies)",
@@ -1749,7 +1921,8 @@
           "description_en": "",
           "type_fr": "Smoothie",
           "type_en": "Smoothie",
-          "price": "9.8dt"
+          "price": "9.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Passion kiwi (Smoothies)",
@@ -1758,7 +1931,8 @@
           "description_en": "",
           "type_fr": "Smoothie",
           "type_en": "Smoothie",
-          "price": "11.5dt"
+          "price": "11.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons The Wise (Smoothies)",
@@ -1767,7 +1941,8 @@
           "description_en": "",
           "type_fr": "Smoothie",
           "type_en": "Smoothie",
-          "price": "13.5dt"
+          "price": "13.5dt",
+          "is_most_ordered": true
         },
         {
           "name_fr": "Boissons Citron (Les Jus)",
@@ -1776,7 +1951,8 @@
           "description_en": "",
           "type_fr": "Jus de Fruit",
           "type_en": "Fruit Juice",
-          "price": "3.8dt"
+          "price": "3.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Citron aux amandes (Les Jus)",
@@ -1785,7 +1961,8 @@
           "description_en": "",
           "type_fr": "Jus de Fruit",
           "type_en": "Fruit Juice",
-          "price": "7.2dt"
+          "price": "7.2dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Banane (Les Jus)",
@@ -1794,7 +1971,8 @@
           "description_en": "",
           "type_fr": "Jus de Fruit",
           "type_en": "Fruit Juice",
-          "price": "7.8dt"
+          "price": "7.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Orange (Les Jus)",
@@ -1803,7 +1981,8 @@
           "description_en": "",
           "type_fr": "Jus de Fruit",
           "type_en": "Fruit Juice",
-          "price": "4.2dt"
+          "price": "4.2dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Fraise (Les Jus)",
@@ -1812,7 +1991,8 @@
           "description_en": "",
           "type_fr": "Jus de Fruit",
           "type_en": "Fruit Juice",
-          "price": "6.5dt"
+          "price": "6.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Jus Fruits (Les Jus)",
@@ -1821,7 +2001,8 @@
           "description_en": "",
           "type_fr": "Jus de Fruit",
           "type_en": "Fruit Juice",
-          "price": "9.8dt"
+          "price": "9.8dt",
+          "is_most_ordered": true
         },
         {
           "name_fr": "Boissons Nutella (Frappuccino)",
@@ -1830,7 +2011,8 @@
           "description_en": "",
           "type_fr": "Frappuccino",
           "type_en": "Frappuccino",
-          "price": "9.8dt"
+          "price": "9.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Spéculoos (Frappuccino)",
@@ -1839,7 +2021,8 @@
           "description_en": "",
           "type_fr": "Frappuccino",
           "type_en": "Frappuccino",
-          "price": "9.8dt"
+          "price": "9.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Oreo (Frappuccino)",
@@ -1848,7 +2031,8 @@
           "description_en": "",
           "type_fr": "Frappuccino",
           "type_en": "Frappuccino",
-          "price": "9.8dt"
+          "price": "9.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Twix (Frappuccino)",
@@ -1857,7 +2041,8 @@
           "description_en": "",
           "type_fr": "Frappuccino",
           "type_en": "Frappuccino",
-          "price": "9.8dt"
+          "price": "9.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Snickers (Frappuccino)",
@@ -1866,7 +2051,8 @@
           "description_en": "",
           "type_fr": "Frappuccino",
           "type_en": "Frappuccino",
-          "price": "9.8dt"
+          "price": "9.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons The wise, Banane, Nutella, Oreo, Garnitures (Frappuccino)",
@@ -1875,7 +2061,8 @@
           "description_en": "",
           "type_fr": "Frappuccino",
           "type_en": "Frappuccino",
-          "price": "13.8dt"
+          "price": "13.8dt",
+          "is_most_ordered": true
         },
         {
           "name_fr": "Boissons Mini The Wise (Jwajem)",
@@ -1884,7 +2071,8 @@
           "description_en": "",
           "type_fr": "Jwajem",
           "type_en": "Jwajem",
-          "price": "12dt"
+          "price": "12dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Spécial The Wise (Jwajem)",
@@ -1893,7 +2081,8 @@
           "description_en": "",
           "type_fr": "Jwajem",
           "type_en": "Jwajem",
-          "price": "17dt"
+          "price": "17dt",
+          "is_most_ordered": true
         },
         {
           "name_fr": "Boissons Tiramisu (Desserts)",
@@ -1902,7 +2091,8 @@
           "description_en": "",
           "type_fr": "Dessert",
           "type_en": "Dessert",
-          "price": "6.8dt"
+          "price": "6.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Cheese Cake (Desserts)",
@@ -1911,7 +2101,8 @@
           "description_en": "",
           "type_fr": "Dessert",
           "type_en": "Dessert",
-          "price": "6.8dt"
+          "price": "6.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons American Chocolate (Desserts)",
@@ -1920,7 +2111,8 @@
           "description_en": "",
           "type_fr": "Dessert",
           "type_en": "Dessert",
-          "price": "9.8dt"
+          "price": "9.8dt",
+          "is_most_ordered": true
         },
         {
           "name_fr": "Boissons Dose arôme (Suppléments)",
@@ -1929,7 +2121,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "2.8dt"
+          "price": "2.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Chantilly (Suppléments)",
@@ -1938,7 +2131,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "1.8dt"
+          "price": "1.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Nutella (Suppléments)",
@@ -1947,7 +2141,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "3.8dt"
+          "price": "3.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Amande (Suppléments)",
@@ -1956,7 +2151,8 @@
           "description_en": "",
           "type_fr": "Supplément",
           "type_en": "Supplement",
-          "price": "3.2dt"
+          "price": "3.2dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Eau Minérale 0.5L (Boissons)",
@@ -1965,7 +2161,8 @@
           "description_en": "",
           "type_fr": "Eau",
           "type_en": "Water",
-          "price": "1.3dt"
+          "price": "1.3dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Eau Minérale 1L (Boissons)",
@@ -1974,7 +2171,8 @@
           "description_en": "",
           "type_fr": "Eau",
           "type_en": "Water",
-          "price": "2.5dt"
+          "price": "2.5dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Soda (Boissons)",
@@ -1983,7 +2181,8 @@
           "description_en": "",
           "type_fr": "Soda",
           "type_en": "Soda",
-          "price": "2.8dt"
+          "price": "2.8dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Orangina (Boissons)",
@@ -1992,7 +2191,8 @@
           "description_en": "",
           "type_fr": "Soda",
           "type_en": "Soda",
-          "price": "3.2dt"
+          "price": "3.2dt",
+          "is_most_ordered": false
         },
         {
           "name_fr": "Boissons Energy Drink (Boissons)",
@@ -2001,7 +2201,8 @@
           "description_en": "",
           "type_fr": "Boisson Énergisante",
           "type_en": "Energy Drink",
-          "price": "8.8dt"
+          "price": "8.8dt",
+          "is_most_ordered": true
         }
       ]
     }
