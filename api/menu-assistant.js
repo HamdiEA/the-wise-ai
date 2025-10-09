@@ -1,9 +1,16 @@
-const fetch = require("node-fetch");
-const fs = require("fs");
-const path = require("path");
+// api/menu-assistant.js
+
+import fs from "fs";
+import path from "path";
+import fetch from "node-fetch";
 
 const OPENROUTER_KEY = process.env.OPENROUTER_API_KEY;
 const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || "openai/gpt-3.5-turbo";
+
+// __dirname equivalent for ESM
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Load menu from file system
 function loadMenu() {
@@ -31,20 +38,13 @@ function formatMenu(menu) {
 }
 
 // Vercel serverless function handler
-module.exports = async (req, res) => {
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  
-  // Handle preflight requests
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+export default async function handler(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
+  if (req.method === "OPTIONS") return res.status(200).end();
+  if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   try {
     const { messages } = req.body;
@@ -60,23 +60,23 @@ module.exports = async (req, res) => {
       content: `You are "Wiser", the friendly, helpful restaurant assistant for this website. Use the provided menu to answer user questions, recommend dishes, and explain ingredients or dietary suitability. Be warm, concise (1-3 short sentences) and personable. Do not invent menu items or prices. If the user asks about availability or real-time stock, advise them to contact the restaurant. Ask a single clarifying question if necessary.
 
 Menu (name — price — description):
- ${menuText}`
+${menuText}`,
     };
 
     const payload = {
       model: OPENROUTER_MODEL,
       messages: [systemMsg, ...messages],
       temperature: 0.7,
-      max_tokens: 600
+      max_tokens: 600,
     };
 
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${OPENROUTER_KEY}`,
-        "Content-Type": "application/json"
+        Authorization: `Bearer ${OPENROUTER_KEY}`,
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
@@ -92,4 +92,4 @@ Menu (name — price — description):
     console.error("[proxy] uncaught error", err);
     res.status(500).json({ error: "server_error", message: err?.message || String(err) });
   }
-};
+}
