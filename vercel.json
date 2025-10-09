@@ -4,5 +4,10 @@
       "source": "/server/:path*",
       "destination": "/server/:path*"
     }
-  ]
+  ],
+  "functions": {
+    "server/**/*.js": {
+      "runtime": "nodejs18.x"
+    }
+  }
 }
