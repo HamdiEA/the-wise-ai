@@ -412,9 +412,8 @@ const MenuSection = () => {
             { name: "Omelette Jambon-Fromage", price: "18dt" },
             { name: "Moule Mariné", price: "24dt" },
             { name: "Calamars Dorés", price: "21dt" },
-            { name: "à l'Ail", price: "25dt" },
-            { name: "à la Crème", price: "27dt" },
-            { name: "Crevettes Sautées", price: "27dt" },
+            { name: "Crevettes Sautées à l'Ail", price: "25dt" },
+            { name: "Crevettes Sautées à la Crème", price: "27dt" },
             { name: "Crevettes Panées", price: "25dt" }
           ]
         }
