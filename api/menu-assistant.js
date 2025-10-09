@@ -1,28 +1,18 @@
-import express from "express";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
 import path from "path";
 import fs from "fs";
-import cors from "cors";
 
-// Load .env from project root (do NOT commit real keys)
+// Load .env from project root
 dotenv.config({ path: path.join(__dirname, "../.env") });
-
-const app = express();
-app.use(cors());
-app.use(express.json({ limit: "1mb" }));
 
 const OPENROUTER_KEY = process.env.OPENROUTER_API_KEY || process.env.DEEPSEEK_API_KEY;
 const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || "openai/gpt-3.5-turbo";
 
-if (!OPENROUTER_KEY) {
-  console.warn("[warning] OPENROUTER_API_KEY not set in .env — the proxy will fail until you set it.");
-}
-
-// Helper: load and format the menu JSON (from src/data/menu.json)
+// Helper: load and format the menu JSON
 function loadMenu() {
   try {
-    const menuPath = path.join(__dirname, "..", "src", "data", "menu.json");
+    const menuPath = path.join(__dirname, "../src/data/menu.json");
     const raw = fs.readFileSync(menuPath, "utf-8");
     const j = JSON.parse(raw);
     return j.menu || j;
@@ -44,20 +34,22 @@ function formatMenu(menu) {
   return lines.join("\n");
 }
 
-// Health
-app.get("/api/health", (_req, res) => res.json({ ok: true }));
+// Vercel serverless function handler
+export default async function handler(req, res) {
+  // Add CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
-/**
- * POST /api/menu-assistant
- * body: { messages: [{role, content}, ...] }
- *
- * Server will:
- *  - load the menu JSON from the repository
- *  - prepend a system prompt that instructs the model to behave as the friendly copilot
- *  - forward the request to OpenRouter Chat Completion API
- *  - return { reply, raw } where reply is the assistant text (and raw is the original response for debugging)
- */
-app.post("/menu-assistant", async (req, res) => {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
   try {
     const { messages } = req.body;
     if (!messages || !Array.isArray(messages)) {
@@ -73,7 +65,7 @@ app.post("/menu-assistant", async (req, res) => {
 `You are "Wiser", the friendly, helpful restaurant assistant for this website. Use the provided menu to answer user questions, recommend dishes, and explain ingredients or dietary suitability. Be warm, concise (1-3 short sentences) and personable. Do not invent menu items or prices. If the user asks about availability or real-time stock, advise them to contact the restaurant. Ask a single clarifying question if necessary.
 
 Menu (name — price — description):
-${menuText}
+ ${menuText}
 `
     };
 
@@ -106,8 +98,4 @@ ${menuText}
     console.error("[proxy] uncaught error", err);
     res.status(500).json({ error: "server_error", message: err?.message || String(err) });
   }
-});
-
-
-
-export default app;
+}
