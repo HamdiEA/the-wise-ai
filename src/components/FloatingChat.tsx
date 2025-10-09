@@ -20,15 +20,19 @@ export default function FloatingChat() {
             width: 64,
             height: 64,
             borderRadius: 32,
-            background: "linear-gradient(135deg,#f97316,#ef4444)",
+            background: "linear-gradient(135deg, #c53030, #e53e3e)",
             color: "#fff",
             border: "none",
-            boxShadow: "0 6px 24px rgba(255, 0, 0, 0.2)",
+            boxShadow: "0 6px 24px rgba(197, 48, 48, 0.3)",
             cursor: "pointer",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            fontSize: 20,
+            fontSize: 14,
+            fontWeight: 600,
+            letterSpacing: "1px",
+            fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+            textTransform: "uppercase",
           }}
         >
           WISER
@@ -40,7 +44,7 @@ export default function FloatingChat() {
         <div style={{
           position: "fixed",
           inset: 0,
-          background: "rgba(255, 0, 0, 0.2)",
+          background: "rgba(197, 48, 48, 0.2)",
           zIndex: 9998,
           display: "flex",
           alignItems: "flex-end",
