@@ -1,28 +1,48 @@
 import fetch from "node-fetch";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// Get directory name for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const OPENROUTER_KEY = process.env.OPENROUTER_API_KEY;
 const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || "openai/gpt-3.5-turbo";
 
-// --- Load menu from the public folder ---
+// Load menu from file system - FIXED FOR VERCEL
 async function loadMenu() {
   try {
-    // Determine base URL for local vs production
-    const baseUrl =
-      process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : "http://localhost:3000";
+    // Try multiple possible paths for Vercel deployment
+    const possiblePaths = [
+      path.join(__dirname, "menu.json"), // In same directory as API
+      path.join(__dirname, "../public/menu.json"), // In public folder
+      path.join(__dirname, "../src/data/menu.json"), // Original location
+      path.join(process.cwd(), "public/menu.json"), // From project root
+      path.join(process.cwd(), "src/data/menu.json") // From project root
+    ];
 
-    const res = await fetch(`${baseUrl}/menu.json`);
-    if (!res.ok) throw new Error(`Failed to fetch menu.json (${res.status})`);
-    const data = await res.json();
-    return data.menu || data;
+    for (const menuPath of possiblePaths) {
+      try {
+        if (fs.existsSync(menuPath)) {
+          console.log("[menu] Found menu at:", menuPath);
+          const data = fs.readFileSync(menuPath, "utf8");
+          return JSON.parse(data);
+        }
+      } catch (e) {
+        console.log("[menu] Failed to read from:", menuPath, e.message);
+      }
+    }
+    
+    console.error("[menu] Could not find menu.json in any location");
+    return null;
   } catch (e) {
-    console.warn("[menu] Could not load menu.json:", e.message);
+    console.error("[menu] Error loading menu:", e.message);
     return null;
   }
 }
 
-// --- Format menu into readable text for the AI ---
+// Format menu into readable text for the AI
 function formatMenu(menu) {
   if (!menu || !Array.isArray(menu)) return "Menu not available.";
   const lines = [];
@@ -35,7 +55,7 @@ function formatMenu(menu) {
   return lines.join("\n");
 }
 
-// --- Main serverless function ---
+// Main serverless function
 export default async function handler(req, res) {
   // Handle CORS
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -57,6 +77,10 @@ export default async function handler(req, res) {
     // Load and format menu
     const menu = await loadMenu();
     const menuText = formatMenu(menu);
+    
+    // DEBUG: Log menu status
+    console.log("[debug] Menu loaded:", menu ? "Success" : "Failed");
+    console.log("[debug] Menu text length:", menuText.length);
 
     const systemMsg = {
       role: "system",
@@ -68,8 +92,11 @@ If the user asks about availability or real-time stock, advise them to contact t
 Ask a clarifying question if needed.
 
 Menu (name — price — description):
-${menuText}`,
+ ${menuText}`,
     };
+
+    // DEBUG: Log system prompt
+    console.log("[debug] System prompt length:", systemMsg.content.length);
 
     const payload = {
       model: OPENROUTER_MODEL,
