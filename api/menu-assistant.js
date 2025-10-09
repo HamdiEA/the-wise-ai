@@ -10,39 +10,6 @@ const __dirname = path.dirname(__filename);
 const OPENROUTER_KEY = process.env.OPENROUTER_API_KEY;
 const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || "openai/gpt-3.5-turbo";
 
-// Fallback menu data - EMBEDDED DIRECTLY IN THE CODE
-const FALLBACK_MENU = [
-  { name: "Margherita", price: "$12.99", description: "Classic tomato sauce and mozzarella" },
-  { name: "Tuna", price: "$14.99", description: "Tuna, tomatoes, onions, olives, tomato sauce, mozzarella" },
-  { name: "Vegetarien", price: "$13.99", description: "Mushrooms, peppers, onions, olives, fresh tomatoes, tomato sauce, mozzarella" },
-  { name: "Queen", price: "$15.99", description: "Turkey ham, mushrooms, mozzarella, tomato sauce" },
-  { name: "Orientale", price: "$16.99", description: "Merguez, peppers, onions, mushrooms, fresh tomatoes, tomato sauce, mozzarella" },
-  { name: "Pepperoni", price: "$14.99", description: "Pepperoni, onions, tomato sauce, mozzarella" },
-  { name: "Chicken Supreme", price: "$16.99", description: "Chicken, mushrooms, peppers, tomato sauce, mozzarella" },
-  { name: "Regina", price: "$15.99", description: "Tomato sauce, mozzarella, cheese, white sauce" },
-  { name: "Chicken Grilli", price: "$16.99", description: "Turkey ham, mushrooms, onions, olives, tomato sauce, mozzarella" },
-  { name: "Mexicain", price: "$17.99", description: "Spicy chicken, peppers, onions, tomatoes, tomato sauce, mozzarella" },
-  { name: "Kentucky", price: "$17.99", description: "Fried chicken, corn, peppers, tomato sauce, mozzarella" },
-  { name: "Norwegian", price: "$18.99", description: "Salmon, shrimp, mozzarella, dill sauce" },
-  { name: "Sea Food", price: "$19.99", description: "Mixed seafood, garlic, white sauce, mozzarella" },
-  { name: "Newton", price: "$16.99", description: "Turkey ham, mushrooms, artichokes, tomato sauce, mozzarella" },
-  { name: "Einstein", price: "$17.99", description: "Turkey ham, mushrooms, eggs, tomato sauce, mozzarella" },
-  { name: "Barlow", price: "$16.99", description: "Turkey ham, bacon, mushrooms, tomato sauce, mozzarella" },
-  { name: "Millikan", price: "$17.99", description: "Turkey ham, pineapple, peppers, tomato sauce, mozzarella" },
-  { name: "Ampere", price: "$16.99", description: "Turkey ham, peppers, onions, tomato sauce, mozzarella" },
-  { name: "Gauss", price: "$17.99", description: "Turkey ham, mushrooms, olives, tomato sauce, mozzarella" },
-  { name: "John Locke", price: "$18.99", description: "Turkey ham, bacon, eggs, tomato sauce, mozzarella" },
-  { name: "Pesto", price: "$15.99", description: "Pesto sauce, mozzarella, cherry tomatoes" },
-  { name: "Chicken Spicy", price: "$17.99", description: "Spicy chicken, peppers, onions, tomato sauce, mozzarella" },
-  { name: "Carnot", price: "$16.99", description: "Turkey ham, mushrooms, cheese, tomato sauce, mozzarella" },
-  { name: "Mariotte", price: "$17.99", description: "Turkey ham, peppers, cheese, tomato sauce, mozzarella" },
-  { name: "Kepler", price: "$16.99", description: "Turkey ham, pineapple, corn, tomato sauce, mozzarella" },
-  { name: "Van der waals", price: "$17.99", description: "Turkey ham, mushrooms, peppers, cheese, tomato sauce, mozzarella" },
-  { name: "Tesla", price: "$18.99", description: "Turkey ham, bacon, peppers, mushrooms, tomato sauce, mozzarella" },
-  { name: "The Wise", price: "$19.99", description: "Special pizza with all premium toppings" },
-  { name: "Menu Enfants", price: "$10.99", description: "Small pizza with simple toppings, drink, and dessert" }
-];
-
 // Load menu from file system
 async function loadMenu() {
   try {
@@ -60,66 +27,59 @@ async function loadMenu() {
         if (fs.existsSync(menuPath)) {
           console.log("[menu] Found menu at:", menuPath);
           const data = fs.readFileSync(menuPath, "utf8");
-          console.log("[menu] Raw menu data:", data.substring(0, 200)); // Log first 200 chars
-          const parsedData = JSON.parse(data);
-          console.log("[menu] Parsed menu data type:", typeof parsedData);
-          console.log("[menu] Parsed menu data:", JSON.stringify(parsedData).substring(0, 200));
-          return parsedData;
+          return JSON.parse(data);
         }
       } catch (e) {
         console.log("[menu] Failed to read from:", menuPath, e.message);
       }
     }
     
-    console.warn("[menu] Could not find menu.json in any location, using fallback menu");
-    return { menu: FALLBACK_MENU };
+    console.error("[menu] Could not find menu.json in any location");
+    return null;
   } catch (e) {
     console.error("[menu] Error loading menu:", e.message);
-    return { menu: FALLBACK_MENU };
+    return null;
   }
 }
 
-// Format menu into readable text for the AI
-function formatMenu(menu) {
-  console.log("[format] Input menu type:", typeof menu);
-  console.log("[format] Input menu:", JSON.stringify(menu).substring(0, 200));
-  
-  let menuItems = [];
-  
-  if (Array.isArray(menu)) {
-    menuItems = menu;
-  } else if (menu && typeof menu === 'object') {
-    if (menu.menu && Array.isArray(menu.menu)) {
-      menuItems = menu.menu;
-    } else {
-      // Try to get all array properties
-      for (const key in menu) {
-        if (Array.isArray(menu[key])) {
-          menuItems = menuItems.concat(menu[key]);
+// Format menu into readable text for the AI - UPDATED FOR COMPLEX STRUCTURE
+function formatMenu(menuData) {
+  if (!menuData || !menuData.menu) {
+    console.log("[format] No valid menu data found");
+    return "Menu not available.";
+  }
+
+  try {
+    const categories = menuData.menu;
+    let formattedText = "RESTAURANT MENU:\n\n";
+    
+    // Process each category
+    for (const category of categories) {
+      if (category.name_en && category.items && Array.isArray(category.items)) {
+        // Add category header
+        formattedText += `${category.name_en.toUpperCase()}:\n`;
+        
+        // Process each item in the category
+        for (const item of category.items) {
+          if (item.name_en) {
+            const name = item.name_en.trim();
+            const price = item.price ? ` — ${item.price}` : "";
+            const description = item.description_en ? ` — ${item.description_en}` : "";
+            formattedText += `- ${name}${price}${description}\n`;
+          }
         }
+        
+        formattedText += "\n"; // Add space between categories
       }
     }
+    
+    console.log("[format] Formatted menu length:", formattedText.length);
+    console.log("[format] Menu preview:", formattedText.substring(0, 300));
+    return formattedText;
+  } catch (e) {
+    console.error("[format] Error formatting menu:", e.message);
+    return "Error formatting menu data.";
   }
-  
-  console.log("[format] Extracted menu items count:", menuItems.length);
-  
-  if (menuItems.length === 0) {
-    console.log("[format] No menu items found, using fallback");
-    menuItems = FALLBACK_MENU;
-  }
-  
-  const lines = [];
-  for (const item of menuItems.slice(0, 200)) {
-    const name = item.name?.trim() || "";
-    const price = item.price ? ` — ${item.price}` : "";
-    const desc = item.description ? ` — ${item.description}` : "";
-    lines.push(`${name}${price}${desc}`);
-  }
-  
-  const result = lines.join("\n");
-  console.log("[format] Formatted menu length:", result.length);
-  console.log("[format] Formatted menu preview:", result.substring(0, 200));
-  return result;
 }
 
 // Main serverless function
@@ -142,11 +102,11 @@ export default async function handler(req, res) {
     }
 
     // Load and format menu
-    const menu = await loadMenu();
-    const menuText = formatMenu(menu);
+    const menuData = await loadMenu();
+    const menuText = formatMenu(menuData);
     
     // DEBUG: Log menu status
-    console.log("[debug] Menu loaded:", menu ? "Success" : "Failed");
+    console.log("[debug] Menu loaded:", menuData ? "Success" : "Failed");
     console.log("[debug] Menu text length:", menuText.length);
 
     const systemMsg = {
@@ -158,7 +118,6 @@ Do not invent menu items or prices.
 If the user asks about availability or real-time stock, advise them to contact the restaurant. 
 Ask a clarifying question if needed.
 
-Menu (name — price — description):
  ${menuText}`,
     };
 
