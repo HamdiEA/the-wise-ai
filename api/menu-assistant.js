@@ -57,7 +57,7 @@ app.get("/api/health", (_req, res) => res.json({ ok: true }));
  *  - forward the request to OpenRouter Chat Completion API
  *  - return { reply, raw } where reply is the assistant text (and raw is the original response for debugging)
  */
-app.post("/api/menu-assistant", async (req, res) => {
+app.post("/menu-assistant", async (req, res) => {
   try {
     const { messages } = req.body;
     if (!messages || !Array.isArray(messages)) {
@@ -108,8 +108,6 @@ ${menuText}
   }
 });
 
-// serve static if desired (keeps parity with original proxy)
-const PORT = process.env.PORT || 5174;
-app.listen(PORT, () => console.log(`✅ Menu assistant proxy running on http://localhost:${PORT}`));
+
 
 export default app;
