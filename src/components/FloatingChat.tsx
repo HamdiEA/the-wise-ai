@@ -40,7 +40,7 @@ export default function FloatingChat() {
         <div style={{
           position: "fixed",
           inset: 0,
-          background: "rgba(0,0,0,0.4)",
+          background: "rgba(255, 0, 0, 0.2)",
           zIndex: 9998,
           display: "flex",
           alignItems: "flex-end",
