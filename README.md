@@ -15,8 +15,8 @@ Live : https://thewisrerestaurants.com/
   - Answer menu questions (ingredients, availability, prices, combos)
   - Suggest items from the restaurant’s own menu.json
   - Handle French/English prompts (basic i18n in UI)
-- Secure AI calls** via a backend **proxy** (no keys on the client)
-- Production-ready setup** with Vite build + optional static serving from Node
+- Secure AI calls via a backend proxy (no keys on the client)
+- Production-ready setup with Vite build + optional static serving from Node
 
 ---
 
