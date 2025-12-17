@@ -1,0 +1,59 @@
+import express from 'express';
+import dotenv from 'dotenv';
+dotenv.config();
+// Ensure `fetch` is available (works on Node 18+, or dynamically import node-fetch for older Node versions)
+if (typeof fetch === 'undefined') {
+  try {
+    const _mod = await import('node-fetch');
+    // node-fetch v3 uses default export
+    globalThis.fetch = _mod.default || _mod;
+    console.log('Using node-fetch as fetch implementation.');
+  } catch (err) {
+    console.warn('Warning: fetch is not available and node-fetch could not be imported.', err);
+  }
+}
+
+
+const app = express();
+app.use(express.json());
+
+const DEEPSEEK_BASE = process.env.DEEPSEEK_BASE_URL || 'https://api.deepseek.com/v1';
+const API_KEY = process.env.DEEPSEEK_API_KEY;
+
+if (!API_KEY) {
+  console.warn('WARNING: DEEPSEEK_API_KEY not set. Set it in environment variables.');
+}
+
+app.post('/api/deepseek', async (req, res) => {
+  try {
+    const { model = 'deepseek-r1-0528', messages, temperature, max_tokens } = req.body;
+
+    // Build DeepSeek-compatible request (OpenAI-compatible format)
+    const body = {
+      model,
+      messages: messages ?? [{ role: 'user', content: req.body.prompt ?? '' }],
+      temperature: temperature ?? 0.2,
+      max_tokens: max_tokens ?? 512
+    };
+
+    const resp = await fetch(`${DEEPSEEK_BASE}/chat/completions`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${API_KEY}`
+      },
+      body: JSON.stringify(body)
+    });
+
+    const data = await resp.json();
+    res.status(resp.status).json(data);
+  } catch (err) {
+    console.error('DeepSeek proxy error', err);
+    res.status(500).json({ error: 'proxy_error', message: String(err) });
+  }
+});
+
+const port = process.env.PORT || 5174;
+app.listen(port, () => {
+  console.log(`DeepSeek proxy listening on http://localhost:${port}`);
+});

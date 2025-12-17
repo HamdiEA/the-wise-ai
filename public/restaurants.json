@@ -1,0 +1,48 @@
+{
+    "restaurants": [{
+            "id": "bardo",
+            "name_fr": "The Wise Bardo",
+            "name_en": "The Wise Bardo",
+            "city_fr": "Bardo, Tunis",
+            "city_en": "Bardo, Tunis",
+            "phone": "52 555 414",
+            "address_fr": "AV HABIB BOURGUIBA (RUE DES ORANGES) 2000, BARDO TUNIS",
+            "address_en": "AV HABIB BOURGUIBA (RUE DES ORANGES) 2000, BARDO TUNIS",
+            "horaires_fr": "Lun-Dim : 12h00 - 00h00",
+            "horaires_en": "Mon-Sun : 12:00 PM - 12:00 AM",
+            "maps_url": "https://maps.app.goo.gl/9H9w18iWNMz9trQq8",
+            "facebook": "https://www.facebook.com/profile.php?id=100083865516162",
+            "instagram": null
+        },
+        {
+            "id": "teboulba",
+            "name_fr": "The Wise Teboulba",
+            "name_en": "The Wise Teboulba",
+            "city_fr": "Teboulba",
+            "city_en": "Teboulba",
+            "phone": "93 560 560",
+            "address_fr": "RUE HABIB BOURGUIBA - TEBOULBA",
+            "address_en": "RUE HABIB BOURGUIBA - TEBOULBA",
+            "horaires_fr": "Lun-Dim : 12h00 - 00h00",
+            "horaires_en": "Mon-Sun : 12:00 PM - 12:00 AM",
+            "maps_url": null,
+            "facebook": null,
+            "instagram": "https://www.instagram.com/the.wise_teboulba/"
+        },
+        {
+            "id": "ksar_hellal",
+            "name_fr": "The Wise Ksar Hellal",
+            "name_en": "The Wise Ksar Hellal",
+            "city_fr": "Ksar Hellal, Monastir",
+            "city_en": "Ksar Hellal, Monastir",
+            "phone": "52 555 400",
+            "address_fr": "AV HAJ ALI SOUA KSAR HELLAL - MONASTIR",
+            "address_en": "AV HAJ ALI SOUA KSAR HELLAL - MONASTIR",
+            "horaires_fr": "Lun-Dim : 12h00 - 00h00",
+            "horaires_en": "Mon-Sun : 12:00 PM - 12:00 AM",
+            "maps_url": "https://maps.app.goo.gl/wd9MgJQgfEfK6JiS6",
+            "facebook": "https://www.facebook.com/profile.php?id=100058908593379",
+            "instagram": null
+        }
+    ]
+}
