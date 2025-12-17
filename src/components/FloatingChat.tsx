@@ -244,7 +244,7 @@ export default function FloatingChat() {
               <strong style={{color: "#fbbf24", fontSize: "14px"}}>Wiser AI — Assistant</strong>
               <button onClick={() => setOpen(false)} style={{border: "none", background: "transparent", cursor: "pointer", color: "#fff", fontSize: "20px", padding: "0 8px"}}>✕</button>
             </div>
-            <div style={{flex: 1, overflow: "hidden"}}>
+            <div style={{flex: 1, minHeight: 0, overflow: "hidden"}}>
               <SimpleCopilotChat />
             </div>
           </div>

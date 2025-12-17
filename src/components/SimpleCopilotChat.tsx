@@ -48,7 +48,7 @@ export default function SimpleCopilotChat() {
   async function send() {
     if (!input.trim()) return;
     if (reachedLimit) {
-      setError(lang === "en" ? "You reached the 5-message limit." : "Limite de 5 messages atteinte.");
+      setError(lang === "en" ? "You reached the limit of 5 messages per session." : "Vous avez atteint la limite de 5 messages par session.");
       return;
     }
     const userMsg: DeepSeekMessage = { role: "user", content: input.trim() };
@@ -120,7 +120,7 @@ export default function SimpleCopilotChat() {
       </div>
 
       {/* Messages Area */}
-      <div ref={messagesRef} style={{flex: 1, padding: "14px", overflow: "auto", display: "flex", flexDirection: "column", gap: 10, background: "rgba(0,0,0,0.15)", minHeight: 0}}>
+      <div ref={messagesRef} style={{flex: 1, padding: "14px", overflow: "auto", display: "flex", flexDirection: "column", gap: 10, background: "rgba(0,0,0,0.15)", minHeight: 0, maxHeight: "100%", touchAction: "pan-y"}}>
         {messages.length === 0 && (
           <div style={{display: "flex", alignItems: "center", justifyContent: "center", height: "100%", flexDirection: "column", gap: 12}}>
             <div style={{fontSize: 40, opacity: 0.6}}>💬</div>
