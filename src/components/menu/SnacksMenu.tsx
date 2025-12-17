@@ -137,6 +137,28 @@ const SnacksMenu = () => {
     }
   }, [orderItems]);
 
+  // Listen for global removals/clear to reset local quantities
+  React.useEffect(() => {
+    const handleRemoved = (e: any) => {
+      const names: string[] = e.detail?.names || [];
+      if (!names.length) return;
+      setOrderItems(prev => {
+        const next = { ...prev };
+        names.forEach(n => { if (next[n]) delete next[n]; });
+        return next;
+      });
+    };
+    const handleCleared = () => {
+      setOrderItems({});
+    };
+    window.addEventListener('orderItemsRemoved', handleRemoved);
+    window.addEventListener('orderCleared', handleCleared);
+    return () => {
+      window.removeEventListener('orderItemsRemoved', handleRemoved);
+      window.removeEventListener('orderCleared', handleCleared);
+    };
+  }, []);
+
   return (
     <section className="py-20 bg-black/20 backdrop-blur-sm relative overflow-hidden">
       {/* Background decoration */}

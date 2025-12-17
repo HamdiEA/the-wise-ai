@@ -28,13 +28,29 @@ export default function FloatingChat() {
     }
   }, []);
 
-  // Listen for order updates and accumulate them
+  // Listen for order updates: merge from menus, overwrite from OrderCard
   useEffect(() => {
     const handleOrderUpdate = (event: any) => {
       if (event.detail) {
         const newItems = event.detail.items || [];
+        const overwrite = !!event.detail.overwrite;
 
         setOrderItems((prevItems) => {
+          // If overwrite flag is set (events from OrderCard), replace entirely
+          if (overwrite) {
+            const calculatedTotalOverwrite = newItems.reduce((sum: number, item: OrderItem) => {
+              const priceNum = parseFloat(item.price.toString().replace('dt', ''));
+              return sum + priceNum * item.quantity;
+            }, 0);
+
+            localStorage.setItem(
+              "completeOrder",
+              JSON.stringify({ items: newItems, total: calculatedTotalOverwrite })
+            );
+
+            return newItems;
+          }
+
           // Start with existing items
           const itemMap = new Map<string, OrderItem>();
 

@@ -44,13 +44,16 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
     // Notify FloatingChat to refresh its state
     window.dispatchEvent(
       new CustomEvent("orderUpdated", {
-        detail: { items, total: newTotal },
+        // overwrite=true => FloatingChat replaces its list (used for delete/clear flows)
+        detail: { items, total: newTotal, overwrite: true },
       })
     );
   };
 
   const handleRemoveItem = (name: string) => {
     const updated = orderItems.filter((i) => i.name !== name);
+    // Notify menus to reset those specific item quantities
+    window.dispatchEvent(new CustomEvent("orderItemsRemoved", { detail: { names: [name] } }));
     dispatchOrderUpdate(updated);
     if (updated.length === 0) {
       setShowDetails(false);
@@ -58,6 +61,21 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
   };
 
   const handleClearAll = () => {
+    // Notify menus to reset all visible item quantities
+    if (orderItems.length) {
+      const names = orderItems.map((i) => i.name);
+      window.dispatchEvent(new CustomEvent("orderItemsRemoved", { detail: { names } }));
+    }
+    window.dispatchEvent(new Event("orderCleared"));
+    // Ensure all listeners and storage reflect an empty order
+    try {
+      localStorage.setItem("completeOrder", JSON.stringify({ items: [], total: 0 }));
+    } catch {}
+    window.dispatchEvent(
+      new CustomEvent("orderUpdated", {
+        detail: { items: [], total: 0, overwrite: true },
+      })
+    );
     // Use provided callback to clear upstream state and storage
     onClose?.();
     setShowDetails(false);
@@ -66,14 +84,14 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
   const handlePhoneClick = (phone: string) => {
     if (typeof window !== 'undefined' && 'ontouchstart' in window) {
       // Mobile - attempt to call
-      const confirmation = window.confirm(`Call ${phone}?`);
+      const confirmation = window.confirm(`Appeler ${phone} ?`);
       if (confirmation) {
         window.location.href = `tel:${phone}`;
       }
     } else {
       // Desktop - copy to clipboard
       navigator.clipboard.writeText(phone.replace(/(\d{2})(?=\d)/g, '$1 '));
-      alert("Phone number copied to clipboard");
+      alert("Numéro copié dans le presse-papiers");
     }
   };
 
@@ -175,12 +193,12 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
         >
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <ShoppingCart size={20} style={{ color: "#fff" }} />
-            <strong style={{ color: "#fff", fontSize: 14 }}>Your Order</strong>
+            <strong style={{ color: "#fff", fontSize: 14 }}>Votre commande</strong>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <button
               onClick={handleClearAll}
-              title="Clear all"
+              title="Tout effacer"
               style={{
                 border: "1px solid rgba(255,255,255,0.35)",
                 background: "rgba(0,0,0,0.15)",
@@ -191,7 +209,7 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
                 cursor: "pointer",
               }}
             >
-              Clear all
+              Tout effacer
             </button>
             <button
               onClick={() => setShowDetails(false)}
@@ -233,7 +251,7 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
                 borderBottom: "1px dashed rgba(251, 191, 36, 0.3)",
               }}
             >
-              <div style={{ marginBottom: 4 }}>Receipt</div>
+              <div style={{ marginBottom: 4 }}>Reçu</div>
               <div style={{ fontSize: 11 }}>The Wise Restaurant</div>
             </div>
 
@@ -280,7 +298,7 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
                   </div>
                   <button
                     onClick={() => handleRemoveItem(item.name)}
-                    title="Remove item"
+                    title="Supprimer l'article"
                     style={{
                       border: "1px solid rgba(251, 191, 36, 0.35)",
                       background: "rgba(251, 191, 36, 0.08)",
@@ -294,7 +312,7 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
                     }}
                   >
                     <X size={14} />
-                    <span style={{ fontSize: 11 }}>Remove</span>
+                    <span style={{ fontSize: 11 }}>Supprimer</span>
                   </button>
                 </div>
               </div>
@@ -314,7 +332,7 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
                   fontWeight: 700,
                 }}
               >
-                <span style={{ color: "#e5e7eb" }}>Total:</span>
+                <span style={{ color: "#e5e7eb" }}>Total&nbsp;:</span>
                 <span style={{ color: "#fbbf24" }}>{totalPrice.toFixed(2)}dt</span>
               </div>
             )}
@@ -340,7 +358,7 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
                 textTransform: "uppercase",
               }}
             >
-              Call to Order
+              Appeler pour commander
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {locations.map((location, index) => (
@@ -395,9 +413,9 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
             color: "#fff",
           }}
         >
-          <div style={{ fontSize: 12, opacity: 0.95 }}>Mention your items when calling</div>
+          <div style={{ fontSize: 12, opacity: 0.95 }}>Mentionnez vos articles lors de l’appel</div>
           <div style={{ fontSize: 12, fontWeight: 700 }}>
-            Total: {typeof totalPrice === 'number' ? totalPrice.toFixed(2) : '0.00'}dt
+            Total&nbsp;: {typeof totalPrice === 'number' ? totalPrice.toFixed(2) : '0.00'}dt
           </div>
         </div>
       </div>
