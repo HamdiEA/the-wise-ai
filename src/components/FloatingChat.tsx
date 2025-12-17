@@ -229,16 +229,16 @@ export default function FloatingChat() {
           justifyContent: "flex-end",
           padding: "20px",
         }} onClick={() => setOpen(false)}>
-          <div onClick={(e) => e.stopPropagation()} style={{
+          <div onClick={(e) => e.stopPropagation()} className="floating-chat-panel" style={{
             width: "100%",
-            maxWidth: "400px",
+            maxWidth: "420px",
             borderRadius: 16,
             boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
             background: "rgba(0, 0, 0, 0.7)",
             overflow: "hidden",
             display: "flex",
             flexDirection: "column",
-            maxHeight: "85vh",
+            maxHeight: "90vh",
           }}>
             <div style={{padding: "14px 16px", borderBottom: "1px solid rgba(251, 146, 60, 0.2)", display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(0,0,0,0.5)"}}>
               <strong style={{color: "#fbbf24", fontSize: "14px"}}>Wiser AI — Assistant</strong>
@@ -250,6 +250,17 @@ export default function FloatingChat() {
           </div>
         </div>
       )}
+      <style>{`
+        @media (max-width: 640px) {
+          .floating-chat-panel {
+            max-width: 100%;
+            width: 100%;
+            height: 92vh;
+            max-height: 92vh;
+            border-radius: 12px;
+          }
+        }
+      `}</style>
     </>
   );
 }

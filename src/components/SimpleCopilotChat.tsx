@@ -26,7 +26,15 @@ export default function SimpleCopilotChat() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [userCount, setUserCount] = useState(0);
   const messagesRef = useRef<HTMLDivElement | null>(null);
+
+  const reachedLimit = userCount >= 5;
+
+  // Always keep scroll at the bottom after new messages
+  useEffect(() => {
+    messagesRef.current?.scrollTo({ top: messagesRef.current.scrollHeight });
+  }, [messages]);
 
   // helper to build messages for API (prepend hidden system message)
   function buildApiMessages(additionalUser?: DeepSeekMessage) {
@@ -39,9 +47,14 @@ export default function SimpleCopilotChat() {
 
   async function send() {
     if (!input.trim()) return;
+    if (reachedLimit) {
+      setError(lang === "en" ? "You reached the 5-message limit." : "Limite de 5 messages atteinte.");
+      return;
+    }
     const userMsg: DeepSeekMessage = { role: "user", content: input.trim() };
     // update UI immediately (do not show system)
     setMessages((m) => [...m, userMsg]);
+    setUserCount((c) => c + 1);
     setInput("");
     setLoading(true);
     setError(null);
@@ -70,10 +83,11 @@ export default function SimpleCopilotChat() {
   function clearChat() {
     setMessages([]);
     setError(null);
+    setUserCount(0);
   }
 
   return (
-    <div style={{width: "100%", height: "100%", fontFamily: "'Inter', -apple-system, 'Segoe UI', sans-serif", background: "transparent", overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "none", borderRadius: 0}}>
+    <div className="chat-root" style={{width: "100%", height: "100%", fontFamily: "'Inter', -apple-system, 'Segoe UI', sans-serif", background: "transparent", overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "none", borderRadius: 0}}>
       
       {/* Header */}
       <div style={{padding: "14px 16px", borderBottom: "1px solid rgba(251, 146, 60, 0.2)", background: "rgba(0,0,0,0.3)", display: "flex", alignItems: "center", justifyContent: "space-between", flexShrink: 0}}>
@@ -106,7 +120,7 @@ export default function SimpleCopilotChat() {
       </div>
 
       {/* Messages Area */}
-      <div ref={messagesRef} style={{flex: 1, padding: "14px", overflow: "auto", display: "flex", flexDirection: "column", gap: 10, background: "rgba(0,0,0,0.15)", minHeight: "200px"}}> 
+      <div ref={messagesRef} style={{flex: 1, padding: "14px", overflow: "auto", display: "flex", flexDirection: "column", gap: 10, background: "rgba(0,0,0,0.15)", minHeight: 0}}>
         {messages.length === 0 && (
           <div style={{display: "flex", alignItems: "center", justifyContent: "center", height: "100%", flexDirection: "column", gap: 12}}>
             <div style={{fontSize: 40, opacity: 0.6}}>💬</div>
@@ -182,22 +196,22 @@ export default function SimpleCopilotChat() {
         />
         <button 
           onClick={send} 
-          disabled={loading} 
+          disabled={loading || reachedLimit} 
           style={{
             padding: "10px 16px", 
             borderRadius: 10, 
             border: "1px solid rgba(251, 146, 60, 0.5)",
             background: "linear-gradient(135deg, #d97706 0%, #b45309 100%)",
             color: "#fff",
-            cursor: loading ? "not-allowed" : "pointer",
+            cursor: loading || reachedLimit ? "not-allowed" : "pointer",
             fontSize: 13,
             fontWeight: 600,
-            opacity: loading ? 0.6 : 1,
+            opacity: loading || reachedLimit ? 0.6 : 1,
             transition: "all 0.2s",
             hover: !loading ? {boxShadow: "0 4px 12px rgba(217, 119, 6, 0.3)"} : {}
           }}
         >
-          {loading ? "⏳" : "→"}
+          {loading ? "⏳" : reachedLimit ? (lang === "en" ? "Limit" : "Limite") : "→"}
         </button>
       </div>
 
@@ -208,7 +222,7 @@ export default function SimpleCopilotChat() {
         </div>
       ) : (
         <div style={{padding: "8px 14px", fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", background: "rgba(0,0,0,0.2)", borderTop: "1px solid rgba(251, 146, 60, 0.1)", flexShrink: 0}}>
-          {lang === "en" ? "The Wise Menu" : "Menu The Wise"}
+          {lang === "en" ? "The Wise Menu" : "Menu The Wise"} {`· ${5 - userCount >= 0 ? 5 - userCount : 0}`} {lang === "en" ? "messages left" : "messages restantes"}
         </div>
       )}
 
@@ -221,6 +235,11 @@ export default function SimpleCopilotChat() {
           to {
             opacity: 1;
             transform: translateY(0);
+          }
+        }
+        @media (max-width: 640px) {
+          .chat-root {
+            height: 100%;
           }
         }
       `}</style>
