@@ -51,12 +51,26 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
   };
 
   const handleRemoveItem = (name: string) => {
-    const updated = orderItems.filter((i) => i.name !== name);
-    // Notify menus to reset those specific item quantities
-    window.dispatchEvent(new CustomEvent("orderItemsRemoved", { detail: { names: [name] } }));
-    dispatchOrderUpdate(updated);
-    if (updated.length === 0) {
-      setShowDetails(false);
+    const item = orderItems.find((i) => i.name === name);
+    if (!item) return;
+
+    if (item.quantity > 1) {
+      // Decrement quantity by 1
+      const updated = orderItems.map((i) => 
+        i.name === name ? { ...i, quantity: i.quantity - 1 } : i
+      );
+      // Notify menus to decrement by 1
+      window.dispatchEvent(new CustomEvent("orderItemDecremented", { detail: { name } }));
+      dispatchOrderUpdate(updated);
+    } else {
+      // Remove item completely
+      const updated = orderItems.filter((i) => i.name !== name);
+      // Notify menus to reset those specific item quantities
+      window.dispatchEvent(new CustomEvent("orderItemsRemoved", { detail: { names: [name] } }));
+      dispatchOrderUpdate(updated);
+      if (updated.length === 0) {
+        setShowDetails(false);
+      }
     }
   };
 

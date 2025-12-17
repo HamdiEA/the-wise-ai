@@ -101,6 +101,55 @@ export default function FloatingChat() {
     return () => window.removeEventListener("orderUpdated", handleOrderUpdate);
   }, []);
 
+  // Listen for explicit item removals/clears from menus and other components
+  useEffect(() => {
+    const handleItemsRemoved = (e: any) => {
+      const names: string[] = e.detail?.names || [];
+      if (!names.length) return;
+      setOrderItems((prev) => {
+        const filtered = prev.filter((it) => !names.includes(it.name));
+        const newTotal = filtered.reduce((sum, it) => {
+          const priceNum = parseFloat(it.price.toString().replace('dt', ''));
+          return sum + priceNum * it.quantity;
+        }, 0);
+        try {
+          localStorage.setItem("completeOrder", JSON.stringify({ items: filtered, total: newTotal }));
+        } catch {}
+        return filtered;
+      });
+    };
+    const handleItemDecremented = (e: any) => {
+      const name: string = e.detail?.name;
+      if (!name) return;
+      setOrderItems((prev) => {
+        const updated = prev.map((it) => 
+          it.name === name && it.quantity > 1 ? { ...it, quantity: it.quantity - 1 } : it
+        ).filter((it) => it.quantity > 0);
+        const newTotal = updated.reduce((sum, it) => {
+          const priceNum = parseFloat(it.price.toString().replace('dt', ''));
+          return sum + priceNum * it.quantity;
+        }, 0);
+        try {
+          localStorage.setItem("completeOrder", JSON.stringify({ items: updated, total: newTotal }));
+        } catch {}
+        return updated;
+      });
+    };
+    const handleCleared = () => {
+      setOrderItems([]);
+      setTotalPrice(0);
+      try { localStorage.removeItem("completeOrder"); } catch {}
+    };
+    window.addEventListener('orderItemsRemoved', handleItemsRemoved);
+    window.addEventListener('orderItemDecremented', handleItemDecremented);
+    window.addEventListener('orderCleared', handleCleared);
+    return () => {
+      window.removeEventListener('orderItemsRemoved', handleItemsRemoved);
+      window.removeEventListener('orderItemDecremented', handleItemDecremented);
+      window.removeEventListener('orderCleared', handleCleared);
+    };
+  }, []);
+
   // Update total price whenever order items change
   useEffect(() => {
     const calculatedTotal = orderItems.reduce((sum, item) => {

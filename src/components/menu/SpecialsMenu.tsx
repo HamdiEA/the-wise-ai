@@ -26,6 +26,9 @@ const SpecialsMenu = () => {
         const newQuantity = existing.quantity + delta;
         if (newQuantity <= 0) {
           const { [itemKey]: _, ...rest } = prev;
+          try {
+            window.dispatchEvent(new CustomEvent("orderItemsRemoved", { detail: { names: [itemKey] } }));
+          } catch {}
           setTimeout(() => {
             const newTotal = Object.values(rest).reduce((sum, i) => sum + (i.price * i.quantity), 0);
             window.dispatchEvent(new CustomEvent("orderUpdated", {
@@ -145,13 +148,28 @@ const SpecialsMenu = () => {
         return next;
       });
     };
+    const handleDecremented = (e: any) => {
+      const name: string = e.detail?.name;
+      if (!name) return;
+      setOrderItems(prev => {
+        if (!prev[name]) return prev;
+        const newQty = prev[name].quantity - 1;
+        if (newQty <= 0) {
+          const { [name]: _, ...rest } = prev;
+          return rest;
+        }
+        return { ...prev, [name]: { ...prev[name], quantity: newQty } };
+      });
+    };
     const handleCleared = () => {
       setOrderItems({});
     };
     window.addEventListener('orderItemsRemoved', handleRemoved);
+    window.addEventListener('orderItemDecremented', handleDecremented);
     window.addEventListener('orderCleared', handleCleared);
     return () => {
       window.removeEventListener('orderItemsRemoved', handleRemoved);
+      window.removeEventListener('orderItemDecremented', handleDecremented);
       window.removeEventListener('orderCleared', handleCleared);
     };
   }, []);

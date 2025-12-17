@@ -290,13 +290,28 @@ const PizzasMenu = () => {
         return next;
       });
     };
+    const handleDecremented = (e: any) => {
+      const name: string = e.detail?.name;
+      if (!name) return;
+      setOrderItems(prev => {
+        if (!prev[name]) return prev;
+        const newQty = prev[name].quantity - 1;
+        if (newQty <= 0) {
+          const { [name]: _, ...rest } = prev;
+          return rest;
+        }
+        return { ...prev, [name]: { ...prev[name], quantity: newQty } };
+      });
+    };
     const handleCleared = () => {
       setOrderItems({});
     };
     window.addEventListener('orderItemsRemoved', handleRemoved);
+    window.addEventListener('orderItemDecremented', handleDecremented);
     window.addEventListener('orderCleared', handleCleared);
     return () => {
       window.removeEventListener('orderItemsRemoved', handleRemoved);
+      window.removeEventListener('orderItemDecremented', handleDecremented);
       window.removeEventListener('orderCleared', handleCleared);
     };
   }, []);
