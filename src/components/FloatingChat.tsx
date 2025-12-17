@@ -14,18 +14,85 @@ export default function FloatingChat() {
   const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  // Listen for order updates from localStorage or global state
+  // Initialize from localStorage on mount
+  useEffect(() => {
+    const savedOrder = localStorage.getItem("completeOrder");
+    if (savedOrder) {
+      try {
+        const { items, total } = JSON.parse(savedOrder);
+        setOrderItems(items || []);
+        setTotalPrice(total || 0);
+      } catch (e) {
+        console.error("Failed to load order from localStorage", e);
+      }
+    }
+  }, []);
+
+  // Listen for order updates and accumulate them
   useEffect(() => {
     const handleOrderUpdate = (event: any) => {
       if (event.detail) {
-        setOrderItems(event.detail.items || []);
-        setTotalPrice(event.detail.total || 0);
+        const newItems = event.detail.items || [];
+
+        setOrderItems((prevItems) => {
+          // Start with existing items
+          const itemMap = new Map<string, OrderItem>();
+
+          // Add all previous items
+          prevItems.forEach((item) => {
+            itemMap.set(item.name, { ...item });
+          });
+
+          // Merge new items - accumulate quantities for same items
+          newItems.forEach((newItem: OrderItem) => {
+            const existing = itemMap.get(newItem.name);
+            if (existing) {
+              // Item exists - update it (replace with new data from current menu)
+              itemMap.set(newItem.name, newItem);
+            } else {
+              // New item - add it
+              itemMap.set(newItem.name, newItem);
+            }
+          });
+
+          // Convert back to array
+          const merged = Array.from(itemMap.values());
+
+          // Calculate total from all items
+          const calculatedTotal = merged.reduce(
+            (sum, item) => {
+              const priceNum = parseFloat(item.price.toString().replace('dt', ''));
+              return sum + priceNum * item.quantity;
+            },
+            0
+          );
+
+          // Persist to localStorage
+          localStorage.setItem(
+            "completeOrder",
+            JSON.stringify({
+              items: merged,
+              total: calculatedTotal,
+            })
+          );
+
+          return merged;
+        });
       }
     };
 
     window.addEventListener("orderUpdated", handleOrderUpdate);
     return () => window.removeEventListener("orderUpdated", handleOrderUpdate);
   }, []);
+
+  // Update total price whenever order items change
+  useEffect(() => {
+    const calculatedTotal = orderItems.reduce((sum, item) => {
+      const priceNum = parseFloat(item.price.toString().replace('dt', ''));
+      return sum + priceNum * item.quantity;
+    }, 0);
+    setTotalPrice(calculatedTotal);
+  }, [orderItems]);
 
   return (
     <>
@@ -36,6 +103,7 @@ export default function FloatingChat() {
         onClose={() => {
           setOrderItems([]);
           setTotalPrice(0);
+          localStorage.removeItem("completeOrder");
         }}
         isChatOpen={open}
       />

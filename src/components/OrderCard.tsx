@@ -24,6 +24,9 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
     { name: "Ksar Hellal Monastir", phone: "52555400" }
   ];
 
+  // Calculate total quantity
+  const totalQuantity = orderItems.reduce((sum, item) => sum + item.quantity, 0);
+
   const handlePhoneClick = (phone: string) => {
     if (typeof window !== 'undefined' && 'ontouchstart' in window) {
       // Mobile - attempt to call
@@ -87,7 +90,7 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
           }}
         >
           <ShoppingCart size={20} />
-          <span style={{ fontSize: 10 }}>{orderItems.length}</span>
+          <span style={{ fontSize: 10 }}>{totalQuantity}</span>
         </button>
       </div>
     );

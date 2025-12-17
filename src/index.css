@@ -59,6 +59,14 @@ All colors MUST be HSL.
     }
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    transition: opacity 0.3s ease-in-out;
+}
+
 @layer utilities {
     .text-gradient {
         @apply bg-gradient-to-r from-restaurant-red to-restaurant-red-light bg-clip-text text-transparent;
