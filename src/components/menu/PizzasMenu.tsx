@@ -31,7 +31,7 @@ const PizzasMenu = () => {
   const [quarterMeterPizzas, setQuarterMeterPizzas] = useState<string[]>([]);
   const [cheeseCrust, setCheeseCrust] = useState<Record<string, boolean>>({});
   const { toast } = useToast();
-  const categoryName = "🍕 Pizzas Artisanales";
+  const categoryName = "🍕 Pizzas";
 
   // Cheese crust prices for different sizes
   const cheeseCrustPrices = {
@@ -302,7 +302,7 @@ const PizzasMenu = () => {
             🍕 Pizzas
           </h1>
           <p className="text-gray-200 text-xl max-w-2xl mx-auto leading-relaxed drop-shadow-md">
-            Nos pizzas artisanales avec ingrédients frais
+            Nos pizzas avec ingrédients frais
           </p>
         </div>
 
@@ -332,7 +332,7 @@ const PizzasMenu = () => {
         <Card className="shadow-2xl border border-amber-400/30 bg-black/40 backdrop-blur-md">
           <CardHeader className="bg-gradient-to-r from-amber-500 to-amber-600 text-white">
             <CardTitle className="text-3xl font-bold text-center drop-shadow-lg">
-              🍕 Pizzas Artisanales
+              🍕 Pizzas
             </CardTitle>
           </CardHeader>
           <CardContent className="p-8">
