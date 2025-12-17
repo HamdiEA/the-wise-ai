@@ -1,26 +1,27 @@
 import { useState, useEffect, useRef } from "react";
 import { Play, Pause } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const VideoCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
+  // FIXED: Paths now point to the root (public folder) 
+  // and match standard web naming conventions.
   const videos = [
     {
-      src: "/src/assets/reel1.mp4",
+      src: "/reel1.mp4", 
       title: "The Wise Experience"
     },
     {
-      src: "/src/assets/story.mp4", 
+      src: "/story.mp4", 
       title: "Our Story"
     }
   ];
 
   useEffect(() => {
-    const videos = videoRefs.current;
-    const currentVideo = videos[currentSlide];
+    const videosElements = videoRefs.current;
+    const currentVideo = videosElements[currentSlide];
     
     if (currentVideo) {
       if (isPlaying) {
@@ -31,7 +32,7 @@ const VideoCarousel = () => {
     }
 
     // Pause other videos
-    videos.forEach((video, index) => {
+    videosElements.forEach((video, index) => {
       if (index !== currentSlide && video) {
         video.pause();
         video.currentTime = 0;
@@ -81,9 +82,9 @@ const VideoCarousel = () => {
               ref={(el) => (videoRefs.current[index] = el)}
               src={video.src}
               className="w-full h-full object-cover scale-110 md:scale-105"
-              muted
+              muted // Crucial for Vercel/Chrome autoplay
               loop
-              playsInline
+              playsInline // Crucial for mobile support
               onEnded={() => {
                 if (isPlaying) {
                   nextSlide();

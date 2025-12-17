@@ -276,7 +276,7 @@ const PizzasMenu = () => {
         <div className="mb-8">
           <Link to="/menu">
             <Button variant="outline" size="lg" className="flex items-center gap-3 bg-black/40 backdrop-blur-md border-amber-400/50 text-white hover:bg-amber-600/80 hover:text-white">
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeft className="h-5 w-5" />
               Retour aux catégories
             </Button>
           </Link>
@@ -300,7 +300,7 @@ const PizzasMenu = () => {
               variant="restaurant"
               className="w-full md:w-auto shadow-2xl"
             >
-              <ShoppingCart className="mr-2 h-5 w-5 flex-shrink-0" />
+              <ShoppingCart className="mr-3 h-6 w-6 flex-shrink-0" />
               <div className="flex flex-col items-start md:flex-row md:items-center gap-1 md:gap-2">
                 <span>Commander ({totalItems})</span>
                 {totalPrice > 0 && <span className="font-bold">{totalPrice.toFixed(2)}dt</span>}
