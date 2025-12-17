@@ -27,6 +27,42 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
   // Calculate total quantity
   const totalQuantity = orderItems.reduce((sum, item) => sum + item.quantity, 0);
 
+  const dispatchOrderUpdate = (items: OrderItem[]) => {
+    const newTotal = items.reduce((sum, it) => {
+      const priceNum = parseFloat(it.price.toString().replace('dt', '')) || 0;
+      return sum + priceNum * it.quantity;
+    }, 0);
+
+    // Update localStorage immediately for persistence
+    try {
+      localStorage.setItem(
+        "completeOrder",
+        JSON.stringify({ items, total: newTotal })
+      );
+    } catch {}
+
+    // Notify FloatingChat to refresh its state
+    window.dispatchEvent(
+      new CustomEvent("orderUpdated", {
+        detail: { items, total: newTotal },
+      })
+    );
+  };
+
+  const handleRemoveItem = (name: string) => {
+    const updated = orderItems.filter((i) => i.name !== name);
+    dispatchOrderUpdate(updated);
+    if (updated.length === 0) {
+      setShowDetails(false);
+    }
+  };
+
+  const handleClearAll = () => {
+    // Use provided callback to clear upstream state and storage
+    onClose?.();
+    setShowDetails(false);
+  };
+
   const handlePhoneClick = (phone: string) => {
     if (typeof window !== 'undefined' && 'ontouchstart' in window) {
       // Mobile - attempt to call
@@ -141,21 +177,38 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
             <ShoppingCart size={20} style={{ color: "#fff" }} />
             <strong style={{ color: "#fff", fontSize: 14 }}>Your Order</strong>
           </div>
-          <button
-            onClick={() => setShowDetails(false)}
-            style={{
-              border: "none",
-              background: "transparent",
-              cursor: "pointer",
-              color: "#fff",
-              fontSize: 20,
-              padding: "0 8px",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <X size={20} />
-          </button>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <button
+              onClick={handleClearAll}
+              title="Clear all"
+              style={{
+                border: "1px solid rgba(255,255,255,0.35)",
+                background: "rgba(0,0,0,0.15)",
+                color: "#fff",
+                borderRadius: 8,
+                padding: "6px 10px",
+                fontSize: 12,
+                cursor: "pointer",
+              }}
+            >
+              Clear all
+            </button>
+            <button
+              onClick={() => setShowDetails(false)}
+              style={{
+                border: "none",
+                background: "transparent",
+                cursor: "pointer",
+                color: "#fff",
+                fontSize: 20,
+                padding: "0 8px",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <X size={20} />
+            </button>
+          </div>
         </div>
 
         {/* Scrollable Content */}
@@ -215,15 +268,34 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
                     {item.quantity}x {item.name}
                   </div>
                 </div>
-                <div
-                  style={{
-                    color: "#fbbf24",
-                    fontWeight: 600,
-                    textAlign: "right",
-                    marginLeft: 12,
-                  }}
-                >
-                  {item.price}
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginLeft: 12 }}>
+                  <div
+                    style={{
+                      color: "#fbbf24",
+                      fontWeight: 600,
+                      textAlign: "right",
+                    }}
+                  >
+                    {item.price}
+                  </div>
+                  <button
+                    onClick={() => handleRemoveItem(item.name)}
+                    title="Remove item"
+                    style={{
+                      border: "1px solid rgba(251, 191, 36, 0.35)",
+                      background: "rgba(251, 191, 36, 0.08)",
+                      color: "#fbbf24",
+                      borderRadius: 6,
+                      padding: "4px 6px",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 4,
+                    }}
+                  >
+                    <X size={14} />
+                    <span style={{ fontSize: 11 }}>Remove</span>
+                  </button>
                 </div>
               </div>
             ))}
@@ -311,18 +383,22 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
           </div>
         </div>
 
-        {/* Footer Note */}
+        {/* Footer styled like header */}
         <div
           style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
             padding: "12px 16px",
-            fontSize: 11,
-            color: "#9ca3af",
-            textAlign: "center",
             borderTop: "1px solid rgba(251, 191, 36, 0.2)",
-            background: "rgba(0, 0, 0, 0.5)",
+            background: "linear-gradient(135deg, #d97706 0%, #b45309 100%)",
+            color: "#fff",
           }}
         >
-          Mention your items when calling
+          <div style={{ fontSize: 12, opacity: 0.95 }}>Mention your items when calling</div>
+          <div style={{ fontSize: 12, fontWeight: 700 }}>
+            Total: {typeof totalPrice === 'number' ? totalPrice.toFixed(2) : '0.00'}dt
+          </div>
         </div>
       </div>
     </div>
