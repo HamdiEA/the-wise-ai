@@ -31,6 +31,7 @@ const PizzasMenu = () => {
   const [quarterMeterPizzas, setQuarterMeterPizzas] = useState<string[]>([]);
   const [cheeseCrust, setCheeseCrust] = useState<Record<string, boolean>>({});
   const { toast } = useToast();
+  const categoryName = "🍕 Pizzas Artisanales";
 
   // Cheese crust prices for different sizes
   const cheeseCrustPrices = {
@@ -260,9 +261,23 @@ const PizzasMenu = () => {
     return Object.entries(orderItems).map(([key, item]) => ({
       name: key,
       quantity: item.quantity,
-      price: `${item.price}dt`
+      price: `${item.price}dt`,
+      category: categoryName,
     }));
   };
+
+  // Emit order updates to FloatingChat
+  React.useEffect(() => {
+    if (Object.keys(orderItems).length > 0) {
+      const totalPrice = Object.values(orderItems).reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      window.dispatchEvent(new CustomEvent("orderUpdated", {
+        detail: {
+          items: getOrderList(),
+          total: totalPrice,
+        }
+      }));
+    }
+  }, [orderItems]);
 
   const pizzas = Object.keys(pizzaSizesData);
 

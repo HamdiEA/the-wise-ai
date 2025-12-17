@@ -1,12 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SimpleCopilotChat from "./SimpleCopilotChat";
+import OrderCard from "./OrderCard";
+
+interface OrderItem {
+  name: string;
+  quantity: number;
+  price: string;
+  category?: string;
+}
 
 export default function FloatingChat() {
   const [open, setOpen] = useState(false);
+  const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  // Listen for order updates from localStorage or global state
+  useEffect(() => {
+    const handleOrderUpdate = (event: any) => {
+      if (event.detail) {
+        setOrderItems(event.detail.items || []);
+        setTotalPrice(event.detail.total || 0);
+      }
+    };
+
+    window.addEventListener("orderUpdated", handleOrderUpdate);
+    return () => window.removeEventListener("orderUpdated", handleOrderUpdate);
+  }, []);
 
   return (
     <>
-      {/* Bubble button - Hidden when chatbot is open */}
+      {/* Order Card Bubble - appears above AI bubble */}
+      <OrderCard 
+        orderItems={orderItems}
+        totalPrice={totalPrice}
+        onClose={() => {
+          setOrderItems([]);
+          setTotalPrice(0);
+        }}
+        isChatOpen={open}
+      />
+
+      {/* AI Chat Bubble - Hidden when chatbot is open */}
       {!open && (
         <div style={{
           position: "fixed",

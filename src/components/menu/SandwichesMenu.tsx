@@ -18,6 +18,7 @@ const SandwichesMenu = () => {
   const [orderItems, setOrderItems] = useState<Record<string, OrderItem>>({});
   const [showOrderDialog, setShowOrderDialog] = useState(false);
   const { toast } = useToast();
+  const categoryName = "🥪 Sandwiches & 🍔 Burgers";
 
   const handleQuantityChange = (itemKey: string, item: any, delta: number) => {
     setOrderItems(prev => {
@@ -26,6 +27,20 @@ const SandwichesMenu = () => {
         const newQuantity = existing.quantity + delta;
         if (newQuantity <= 0) {
           const { [itemKey]: _, ...rest } = prev;
+          setTimeout(() => {
+            const newTotal = Object.values(rest).reduce((sum, i) => sum + (i.price * i.quantity), 0);
+            window.dispatchEvent(new CustomEvent("orderUpdated", {
+              detail: {
+                items: Object.entries(rest).map(([key, item]) => ({
+                  name: key,
+                  quantity: item.quantity,
+                  price: `${item.price}dt`,
+                  category: categoryName,
+                })),
+                total: newTotal,
+              }
+            }));
+          }, 0);
           return rest;
         }
         return { ...prev, [itemKey]: { ...existing, quantity: newQuantity } };
@@ -113,9 +128,23 @@ const SandwichesMenu = () => {
     return Object.entries(orderItems).map(([key, item]) => ({
       name: key,
       quantity: item.quantity,
-      price: `${item.price}dt`
+      price: `${item.price}dt`,
+      category: categoryName,
     }));
   };
+
+  // Emit order updates to FloatingChat
+  React.useEffect(() => {
+    if (Object.keys(orderItems).length > 0) {
+      const totalPrice = Object.values(orderItems).reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      window.dispatchEvent(new CustomEvent("orderUpdated", {
+        detail: {
+          items: getOrderList(),
+          total: totalPrice,
+        }
+      }));
+    }
+  }, [orderItems]);
 
   return (
     <section className="py-20 bg-black/20 backdrop-blur-sm relative overflow-hidden">
