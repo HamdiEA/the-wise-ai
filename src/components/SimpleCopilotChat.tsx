@@ -73,12 +73,17 @@ export default function SimpleCopilotChat() {
     initToken();
   }, []);
 
+  // Auto-start countdown on mount if limit was reached before
+  useEffect(() => {
+    if (tokenInfo && reachedLimit && tokenInfo.resetAt) {
+      setCountdown("active");
+    }
+  }, [tokenInfo?.resetAt, reachedLimit]);
+
   // Countdown timer effect - triggers when limit is reached
   useEffect(() => {
-    if (!tokenInfo?.resetAt || !reachedLimit) {
-      if (countdown && !reachedLimit) {
-        setCountdown(null);
-      }
+    // Only run if we have a valid resetAt time, limit is reached, and countdown is "active"
+    if (!tokenInfo?.resetAt || !reachedLimit || countdown !== "active") {
       return;
     }
     
@@ -108,13 +113,13 @@ export default function SimpleCopilotChat() {
       setCountdown(`${hours}h ${minutes}m ${seconds}s`);
     };
     
-    // Update immediately
+    // Update immediately on mount
     updateCountdown();
     
     // Then update every second
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
-  }, [reachedLimit, tokenInfo?.resetAt, lang]);
+  }, [countdown, tokenInfo?.resetAt, reachedLimit, lang]);
 
   // Persist messages to localStorage whenever they change
   useEffect(() => {
@@ -218,22 +223,11 @@ export default function SimpleCopilotChat() {
     if (e.key === "Enter") send();
   }
 
-  // Simple clear conversation
+  // Simple clear conversation - only clears messages, preserves rate limit and countdown
   function clearChat() {
     setMessages([]);
     setError(null);
-    setCountdown(null);
     localStorage.removeItem("chatMessages");
-    
-    // Get fresh token to reset the counter
-    localStorage.removeItem("chatToken"); // Remove saved token so we get a fresh one
-    getAuthToken().then(info => {
-      setTokenInfo(info);
-      localStorage.setItem("chatToken", info.token);
-    }).catch(err => {
-      console.error("Failed to reset token:", err);
-      setError(lang === "en" ? "Failed to reset session" : "Échec de la réinitialisation de la session");
-    });
   }
 
   return (
