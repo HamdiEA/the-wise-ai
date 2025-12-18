@@ -43,16 +43,11 @@ export default function SimpleCopilotChat() {
         setTokenInfo(info);
         localStorage.setItem("chatToken", info.token);
         
-        // If limit is reached, check/store when it was reached
-        if (info.messagesUsed >= info.messagesLimit) {
-          const limitReachedTime = localStorage.getItem("limitReachedTime");
-          if (!limitReachedTime) {
-            // First time reaching limit - store current time
-            localStorage.setItem("limitReachedTime", String(Math.floor(Date.now() / 1000)));
-          }
+        // If limit is reached, start countdown based on server's resetAt time
+        if (info.messagesUsed >= info.messagesLimit && info.resetAt) {
           startCountdown();
         } else {
-          // Limit not reached, clear the stored limit time if it exists
+          // Limit not reached, clear any stored limit time
           localStorage.removeItem("limitReachedTime");
           setCountdown(null);
         }
@@ -68,19 +63,16 @@ export default function SimpleCopilotChat() {
 
   // Countdown timer effect
   useEffect(() => {
-    if (!countdown) return;
+    if (!countdown || !tokenInfo?.resetAt) return;
     
     const updateCountdown = () => {
-      const limitReachedTime = localStorage.getItem("limitReachedTime");
-      if (!limitReachedTime) {
+      if (!tokenInfo?.resetAt) {
         setCountdown(null);
         return;
       }
       
       const now = Math.floor(Date.now() / 1000);
-      const limitReachedAt = parseInt(limitReachedTime, 10);
-      const resetTime = limitReachedAt + (12 * 60 * 60); // 12 hours from limit
-      const remaining = resetTime - now;
+      const remaining = tokenInfo.resetAt - now;
       
       if (remaining <= 0) {
         setCountdown(null);
@@ -106,7 +98,7 @@ export default function SimpleCopilotChat() {
     updateCountdown();
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
-  }, [countdown, lang]);
+  }, [countdown, tokenInfo, lang]);
 
   function startCountdown() {
     setCountdown("starting");
@@ -163,9 +155,8 @@ export default function SimpleCopilotChat() {
       setTokenInfo(result.tokenInfo);
       localStorage.setItem("chatToken", result.tokenInfo.token);
       
-      // If we just reached the limit, store the time
-      if (result.tokenInfo.messagesUsed >= result.tokenInfo.messagesLimit && !localStorage.getItem("limitReachedTime")) {
-        localStorage.setItem("limitReachedTime", String(Math.floor(Date.now() / 1000)));
+      // If we just reached the limit, start countdown
+      if (result.tokenInfo.messagesUsed >= result.tokenInfo.messagesLimit && reachedLimit === false) {
         startCountdown();
       }
       
