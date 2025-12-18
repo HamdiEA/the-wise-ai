@@ -34,6 +34,10 @@ export default function SimpleCopilotChat() {
   const [countdown, setCountdown] = useState<string | null>(null);
   const messagesRef = useRef<HTMLDivElement | null>(null);
 
+  // Calculate derived states early
+  const reachedLimit = tokenInfo ? tokenInfo.messagesUsed >= tokenInfo.messagesLimit : false;
+  const messagesRemaining = tokenInfo ? tokenInfo.messagesLimit - tokenInfo.messagesUsed : 5;
+
   // Initialize JWT token on mount
   useEffect(() => {
     const initToken = async () => {
@@ -45,7 +49,7 @@ export default function SimpleCopilotChat() {
         
         // If limit is reached, start countdown based on server's resetAt time
         if (info.messagesUsed >= info.messagesLimit && info.resetAt) {
-          startCountdown();
+          setCountdown("active");
         } else {
           // Limit not reached, clear any stored limit time
           localStorage.removeItem("limitReachedTime");
@@ -63,13 +67,13 @@ export default function SimpleCopilotChat() {
 
   // Countdown timer effect - triggers when limit is reached
   useEffect(() => {
-    if (!tokenInfo?.resetAt) return;
+    if (!tokenInfo?.resetAt || !reachedLimit) return;
     
     const now = Math.floor(Date.now() / 1000);
     const remaining = tokenInfo.resetAt - now;
     
-    // If limit is reached and countdown not started, start it
-    if (reachedLimit && !countdown && remaining > 0) {
+    // If limit is reached and countdown not active, start it
+    if (!countdown || countdown === "starting") {
       setCountdown("active");
     }
     
@@ -105,9 +109,6 @@ export default function SimpleCopilotChat() {
       return () => clearInterval(interval);
     }
   }, [reachedLimit, tokenInfo?.resetAt, countdown, lang]);
-
-  const reachedLimit = tokenInfo ? tokenInfo.messagesUsed >= tokenInfo.messagesLimit : false;
-  const messagesRemaining = tokenInfo ? tokenInfo.messagesLimit - tokenInfo.messagesUsed : 5;
 
   // Persist messages to localStorage whenever they change
   useEffect(() => {
