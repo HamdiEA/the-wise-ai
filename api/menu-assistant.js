@@ -83,15 +83,22 @@ module.exports = async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
     if (req.method === 'OPTIONS') return res.status(200).end();
-    if (req.method !== 'POST')
+    if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
+    }
 
     try {
-        const { messages } = req.body;
+        // Check for API key
+        if (!OPENROUTER_KEY) {
+            console.error('[openrouter] Missing OPENROUTER_API_KEY environment variable');
+            return res.status(500).json({ error: 'API configuration error' });
+        }
+
+        const body = req.body || {};
+        const messages = body.messages;
+
         if (!messages || !Array.isArray(messages)) {
-            return res
-                .status(400)
-                .json({ error: 'invalid_input', message: 'expected messages array' });
+            return res.status(400).json({ error: 'invalid_input', message: 'expected messages array' });
         }
 
         // Load and format menu
@@ -103,50 +110,55 @@ module.exports = async function handler(req, res) {
 
         const systemMsg = {
             role: 'system',
-            content: `You are "Wiser", the friendly, helpful restaurant assistant for this website. 
-Use the provided menu to answer user questions, recommend dishes, and explain ingredients or dietary suitability. 
-Be warm, concise (1–3 short sentences), and personable. 
-Do not invent menu items or prices. 
-If the user asks about availability or real-time stock, advise them to contact the restaurant. 
-Ask a clarifying question if needed.
-
- ${menuText}`,
+            content: 'You are "Wiser", the friendly, helpful restaurant assistant for this website. Use the provided menu to answer user questions, recommend dishes, and explain ingredients or dietary suitability. Be warm, concise (1–3 short sentences), and personable. Do not invent menu items or prices. If the user asks about availability or real-time stock, advise them to contact the restaurant.\n\n' + menuText
         };
 
         console.log('[debug] System prompt length:', systemMsg.content.length);
 
         const payload = {
             model: OPENROUTER_MODEL,
-            messages: [systemMsg, ...messages],
+            messages: [systemMsg].concat(messages),
             temperature: 0.7,
-            max_tokens: 600,
+            max_tokens: 600
         };
 
         const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
             method: 'POST',
             headers: {
-                Authorization: `Bearer ${OPENROUTER_KEY}`,
-                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + OPENROUTER_KEY,
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify(payload),
+            body: JSON.stringify(payload)
         });
 
         if (!response.ok) {
             const text = await response.text();
             console.error('[openrouter] error', response.status, text);
-            return res
-                .status(500)
-                .json({ error: 'openrouter_error', status: response.status, body: text });
+            return res.status(500).json({
+                error: 'openrouter_error',
+                status: response.status,
+                details: text
+            });
         }
 
         const data = await response.json();
-        const reply =
-            data ? .choices ? .[0] ? .message ? .content || data ? .choices ? .[0] ? .text || '';
-        res.json({ reply, raw: data });
+
+        let reply = '';
+        if (data && data.choices && data.choices[0]) {
+            if (data.choices[0].message && data.choices[0].message.content) {
+                reply = data.choices[0].message.content;
+            } else if (data.choices[0].text) {
+                reply = data.choices[0].text;
+            }
+        }
+
+        return res.status(200).json({ reply: reply, raw: data });
+
     } catch (err) {
         console.error('[proxy] uncaught error', err);
-        res
-            .status(500)
-            .json({ error: 'server_error', message: err ? .message || String(err) });
+        return res.status(500).json({
+            error: 'server_error',
+            message: err && err.message ? err.message : String(err)
+        });
     }
 };
