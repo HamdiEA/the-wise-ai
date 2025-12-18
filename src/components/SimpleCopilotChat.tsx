@@ -75,23 +75,29 @@ export default function SimpleCopilotChat() {
 
   // Countdown timer effect - triggers when limit is reached
   useEffect(() => {
+    console.log('Countdown effect triggered:', { reachedLimit, resetAt: tokenInfo?.resetAt, countdown });
+    
     if (!tokenInfo?.resetAt || !reachedLimit) {
       if (countdown && !reachedLimit) {
+        console.log('Clearing countdown because limit not reached');
         setCountdown(null);
       }
       return;
     }
     
+    console.log('Starting countdown timer');
     // Set up countdown update function
     const updateCountdown = () => {
       const now = Math.floor(Date.now() / 1000);
       const remaining = tokenInfo.resetAt - now;
       
       if (remaining <= 0) {
+        console.log('Countdown expired, resetting');
         setCountdown(null);
         localStorage.removeItem("limitReachedTime");
         // Reset token automatically
         getAuthToken().then(info => {
+          console.log('Got fresh token after limit reset');
           setTokenInfo(info);
           localStorage.setItem("chatToken", info.token);
           setError(lang === "en" 
@@ -105,7 +111,9 @@ export default function SimpleCopilotChat() {
       const minutes = Math.floor((remaining % 3600) / 60);
       const seconds = Math.floor(remaining % 60);
       
-      setCountdown(`${hours}h ${minutes}m ${seconds}s`);
+      const formatted = `${hours}h ${minutes}m ${seconds}s`;
+      console.log('Countdown update:', formatted);
+      setCountdown(formatted);
     };
     
     // Update immediately
@@ -162,6 +170,7 @@ export default function SimpleCopilotChat() {
       
       // Update token info with new count
       setTokenInfo(result.tokenInfo);
+      console.log('TokenInfo updated:', { messagesUsed: result.tokenInfo.messagesUsed, limit: result.tokenInfo.messagesLimit, reachedLimit: result.tokenInfo.messagesUsed >= result.tokenInfo.messagesLimit });
       localStorage.setItem("chatToken", result.tokenInfo.token);
       console.log("Message sent, token updated:", { messagesUsed: result.tokenInfo.messagesUsed, limit: result.tokenInfo.messagesLimit });
       

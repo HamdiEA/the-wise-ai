@@ -108,7 +108,9 @@ export async function askDeepSeek(prompt?: string, opts?: { messages?: DeepSeekM
     throw new Error('Authentication token required');
   }
 
+  console.log('About to verify and increment token');
   const tokenInfo = await verifyAndIncrementToken(opts.token);
+  console.log('Token verified, messagesUsed:', tokenInfo.messagesUsed, 'limit:', tokenInfo.messagesLimit);
 
   const payload: any = {};
   if (opts?.messages) payload.messages = opts.messages;
@@ -140,6 +142,7 @@ export async function askDeepSeek(prompt?: string, opts?: { messages?: DeepSeekM
     else reply = data;
   }
 
+  console.log('Returning from askDeepSeek with token info:', { messagesUsed: tokenInfo.messagesUsed, limit: tokenInfo.messagesLimit });
   return {
     reply,
     tokenInfo
