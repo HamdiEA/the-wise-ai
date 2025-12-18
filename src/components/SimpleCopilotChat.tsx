@@ -166,7 +166,7 @@ export default function SimpleCopilotChat() {
   }
 
   return (
-    <div className="chat-root" style={{width: "100%", height: "100%", fontFamily: "'Inter', -apple-system, 'Segoe UI', sans-serif", background: "transparent", overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "none", borderRadius: 0}}>
+    <div className="chat-root" style={{width: "100%", height: "100%", maxHeight: "100vh", fontFamily: "'Inter', -apple-system, 'Segoe UI', sans-serif", background: "transparent", overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "none", borderRadius: 0, position: "relative"}}>
       
       {/* Header */}
       <div style={{padding: "14px 16px", borderBottom: "1px solid rgba(251, 146, 60, 0.2)", background: "rgba(0,0,0,0.3)", display: "flex", alignItems: "center", justifyContent: "space-between", flexShrink: 0}}>
@@ -199,7 +199,7 @@ export default function SimpleCopilotChat() {
       </div>
 
       {/* Messages Area */}
-      <div ref={messagesRef} style={{flex: 1, padding: "14px", overflow: "auto", display: "flex", flexDirection: "column", gap: 10, background: "rgba(0,0,0,0.15)", minHeight: 0, maxHeight: "100%", touchAction: "pan-y"}}>
+      <div ref={messagesRef} style={{flex: 1, padding: "14px", overflowY: "auto", overflowX: "hidden", display: "flex", flexDirection: "column", gap: 10, background: "rgba(0,0,0,0.15)", minHeight: 0, WebkitOverflowScrolling: "touch"}}>
         {messages.length === 0 && (
           <div style={{display: "flex", alignItems: "center", justifyContent: "center", height: "100%", flexDirection: "column", gap: 12}}>
             <div style={{fontSize: 40, opacity: 0.6}}>💬</div>
