@@ -9,11 +9,15 @@ interface MenuLayoutProps {
 const MenuLayout = ({ children }: MenuLayoutProps) => {
   return (
     <GlobalBackground>
-      <Header />
-      <div className="pt-20">
-        {children}
+      <div className="flex flex-col flex-1">
+        <Header />
+        <div className="flex-1 flex flex-col pt-20">
+          <div className="flex-1">
+            {children}
+          </div>
+          <Footer />
+        </div>
       </div>
-      <Footer />
     </GlobalBackground>
   );
 };

@@ -23,14 +23,18 @@ const HeroSection = () => {
       
       {/* Content */}
       <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 animate-fade-in">
-        <h1 className="text-6xl md:text-8xl font-bold mb-6 drop-shadow-2xl">
+        <div className="inline-flex items-center gap-3 bg-black/50 border border-amber-400/40 text-xs md:text-sm px-4 py-2 rounded-full mb-4 shadow-lg">
+          <span className="text-amber-300 font-semibold">Festive Season</span>
+          <span className="text-white opacity-80">Christmas · New Year’s Eve · Winter Warmers</span>
+        </div>
+        <h1 className="text-6xl md:text-8xl font-bold mb-4 drop-shadow-2xl">
           The Wise
         </h1>
-        <p className="text-2xl md:text-3xl mb-4 opacity-95 drop-shadow-lg">
+        <p className="text-2xl md:text-3xl mb-3 opacity-95 drop-shadow-lg">
           Restaurant
         </p>
         <p className="text-lg md:text-xl mb-8 opacity-85 max-w-2xl mx-auto drop-shadow-md">
-          Choose Your Food Wisely - Experience exceptional cuisine across our three locations in Tunisia
+          Celebrate with cozy dishes, sparkling drinks, and limited-time holiday delights across our three locations.
         </p>
         <Link to="/menu">
           <Button 
@@ -38,7 +42,7 @@ const HeroSection = () => {
             variant="restaurant"
             className="text-white px-10 py-4 text-lg font-semibold shadow-2xl hover:shadow-restaurant-red/50 transition-all duration-300 transform hover:scale-105"
           >
-            View Our Menu
+            View Holiday Menu
           </Button>
         </Link>
       </div>

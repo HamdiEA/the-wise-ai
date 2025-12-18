@@ -25,8 +25,10 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-warm-neutral text-white py-12">
-      <div className="container mx-auto px-4">
+    <footer className="bg-black/30 backdrop-blur-xl border-t border-amber-400/20 shadow-2xl text-white py-12 relative overflow-hidden">
+      <div className="footer-snow" aria-hidden="true" />
+      <div className="footer-snow-fall" aria-hidden="true" />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
