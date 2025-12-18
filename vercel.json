@@ -9,15 +9,15 @@
     },
     "routes": [{
             "src": "/api/auth/token",
-            "dest": "/api/auth/token.js"
+            "dest": "/api/auth/token"
         },
         {
             "src": "/api/auth/verify",
-            "dest": "/api/auth/verify.js"
+            "dest": "/api/auth/verify"
         },
         {
             "src": "/api/menu-assistant",
-            "dest": "/api/menu-assistant.js"
+            "dest": "/api/menu-assistant"
         },
         {
             "src": "/(.*\\..*)",
