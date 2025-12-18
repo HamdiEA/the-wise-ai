@@ -38,14 +38,11 @@ export default function SimpleCopilotChat() {
     const initToken = async () => {
       try {
         const saved = localStorage.getItem("chatToken");
-        console.log("[init] Initializing token, saved token exists:", !!saved);
         const info = await getAuthToken(saved || undefined);
-        console.log("[init] Token initialized successfully:", info);
         setTokenInfo(info);
         localStorage.setItem("chatToken", info.token);
       } catch (err) {
         console.error("Failed to initialize token:", err);
-        console.error("Error details:", err instanceof Error ? err.message : String(err));
         setError(lang === "en" ? "Failed to initialize chat session" : "Échec de l'initialisation de la session");
       } finally {
         setTokenLoading(false);
