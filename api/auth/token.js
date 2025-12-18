@@ -3,43 +3,44 @@ const jwt = require('jsonwebtoken');
 const SECRET = 'wise-secret-key';
 
 module.exports = async(req, res) => {
+    // CORS headers
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    if (req.method === 'OPTIONS') return res.status(200).end();
-    if (req.method !== 'POST') return res.status(405).end();
+    // Handle preflight
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
 
-    let body = {};
-
-    try {
-        // Try different ways to get body
-        if (req.body) {
-            if (typeof req.body === 'string') {
-                body = JSON.parse(req.body);
-            } else {
-                body = req.body;
-            }
-        }
-    } catch (parseError) {
-        console.error('Parse error:', parseError);
+    if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Method not allowed' });
     }
 
     try {
-        const existingToken = body.token;
-        const refresh = body.refresh;
+        // Vercel automatically parses JSON for POST requests
+        const body = req.body || {};
+        const { token: existingToken, refresh } = body;
 
-        // Return existing token if still valid
+        // If we have a token and not forcing refresh, try to reuse it
         if (existingToken && !refresh) {
-            const decoded = jwt.verify(existingToken, SECRET);
-            const now = Math.floor(Date.now() / 1000);
-            if ((decoded.iat + 43200) > now) {
-                return res.json({
-                    token: existingToken,
-                    messagesUsed: decoded.messagesUsed || 0,
-                    messagesLimit: 5,
-                    resetAt: decoded.iat + 43200
-                });
+            try {
+                const decoded = jwt.verify(existingToken, SECRET);
+                const now = Math.floor(Date.now() / 1000);
+                const resetAt = decoded.iat + 43200;
+
+                // Token is still valid
+                if (resetAt > now) {
+                    return res.status(200).json({
+                        token: existingToken,
+                        messagesUsed: decoded.messagesUsed || 0,
+                        messagesLimit: 5,
+                        resetAt: resetAt
+                    });
+                }
+            } catch (verifyErr) {
+                // Token is invalid/expired, generate new one
+                console.log('Token verification failed');
             }
         }
 
@@ -47,15 +48,18 @@ module.exports = async(req, res) => {
         const iat = Math.floor(Date.now() / 1000);
         const token = jwt.sign({ messagesUsed: 0, iat }, SECRET);
 
-        return res.json({
+        return res.status(200).json({
             token,
             messagesUsed: 0,
             messagesLimit: 5,
             resetAt: iat + 43200
         });
 
-    } catch (error) {
-        console.error('Token error:', error ? .message || error);
-        return res.status(500).json({ error: error ? .message || 'Server error' });
+    } catch (err) {
+        console.error('Token error:', err);
+        return res.status(500).json({
+            error: 'Token generation failed',
+            message: err.message
+        });
     }
 };
