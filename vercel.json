@@ -18,7 +18,11 @@
             "dest": "/api/menu-assistant.js"
         },
         {
-            "src": "/((?!api).*)",
+            "src": "/api/.*",
+            "dest": "/api"
+        },
+        {
+            "src": "/(.*)",
             "dest": "/index.html"
         }
     ]
