@@ -270,7 +270,7 @@ export default function SimpleCopilotChat() {
       <div style={{flex: 1, display: "flex", flexDirection: "column", minHeight: 0, overflow: "hidden"}}>
         
         {/* Messages Area - Scrollable */}
-        <div ref={messagesRef} style={{flex: 1, padding: "14px 14px 20px 14px", overflowY: "auto", overflowX: "hidden", display: "flex", flexDirection: "column", gap: 10, background: "rgba(0,0,0,0.15)", minHeight: 0, WebkitOverflowScrolling: "touch", wordBreak: "break-word"}}>
+        <div ref={messagesRef} style={{flex: 1, padding: "14px 14px 20px 14px", overflowY: "auto", overflowX: "hidden", display: "flex", flexDirection: "column", gap: 10, background: "rgba(0,0,0,0.15)", minHeight: 0, maxHeight: "100%", WebkitOverflowScrolling: "touch", wordBreak: "break-word"}}>
           {messages.length === 0 && (
             <div style={{display: "flex", alignItems: "center", justifyContent: "center", height: "100%", flexDirection: "column", gap: 12}}>
               <div style={{fontSize: 40, opacity: 0.6}}>💬</div>
