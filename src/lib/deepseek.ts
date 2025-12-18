@@ -11,12 +11,12 @@ export interface TokenInfo {
 /**
  * Get or refresh JWT token from the server
  */
-export async function getAuthToken(existingToken?: string): Promise<TokenInfo> {
+export async function getAuthToken(existingToken?: string, forceRefresh?: boolean): Promise<TokenInfo> {
   try {
     const res = await fetch('/api/auth/token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token: existingToken })
+      body: JSON.stringify({ token: existingToken, refresh: forceRefresh })
     });
 
     if (!res.ok) {
@@ -70,7 +70,11 @@ export async function verifyAndIncrementToken(token: string): Promise<TokenInfo>
 
   if (!res.ok) {
     const data = await res.json();
-    if (data.expired || data.limitReached) {
+    if (data.limitReached) {
+      // Message limit reached, request fresh token
+      throw new Error('Message limit reached. Use getAuthToken(undefined, true) to refresh.');
+    }
+    if (data.expired || data.resetRequired) {
       throw new Error(data.error);
     }
     throw new Error(`Verification error: ${res.status}`);

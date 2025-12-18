@@ -28,9 +28,9 @@ module.exports = async function handler(req, res) {
         const fingerprint = Buffer.from(`${clientIp}-${userAgent}`).toString('base64');
 
         // Check if there's an existing valid token
-        const { token: existingToken } = req.body || {};
+        const { token: existingToken, refresh: forceRefresh } = req.body || {};
 
-        if (existingToken) {
+        if (existingToken && !forceRefresh) {
             try {
                 const decoded = jwt.verify(existingToken, JWT_SECRET);
 
