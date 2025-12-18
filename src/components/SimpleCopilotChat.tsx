@@ -46,6 +46,7 @@ export default function SimpleCopilotChat() {
         const info = await getAuthToken(saved || undefined);
         setTokenInfo(info);
         localStorage.setItem("chatToken", info.token);
+        setError(null); // Clear any initialization errors
         
         // If limit is reached, start countdown based on server's resetAt time
         if (info.messagesUsed >= info.messagesLimit && info.resetAt) {
@@ -57,7 +58,14 @@ export default function SimpleCopilotChat() {
         }
       } catch (err) {
         console.error("Failed to initialize token:", err);
-        setError(lang === "en" ? "Failed to initialize chat session" : "Échec de l'initialisation de la session");
+        // Don't set an error here - let the user try to send a message first
+        // The fallback will handle it
+        setTokenInfo({
+          token: 'local-fallback-token',
+          messagesUsed: 0,
+          messagesLimit: 5,
+          resetAt: Math.floor(Date.now() / 1000) + (12 * 60 * 60)
+        });
       } finally {
         setTokenLoading(false);
       }
@@ -155,6 +163,7 @@ export default function SimpleCopilotChat() {
       // Update token info with new count
       setTokenInfo(result.tokenInfo);
       localStorage.setItem("chatToken", result.tokenInfo.token);
+      console.log("Message sent, token updated:", { messagesUsed: result.tokenInfo.messagesUsed, limit: result.tokenInfo.messagesLimit });
       
       // If we just reached the limit, the useEffect will trigger countdown automatically
       const assistantMsg: DeepSeekMessage = { 
@@ -212,14 +221,18 @@ export default function SimpleCopilotChat() {
   function clearChat() {
     setMessages([]);
     setError(null);
-    // Get new token to reset the counter
+    setCountdown(null);
+    localStorage.removeItem("chatMessages");
+    
+    // Get fresh token to reset the counter
+    localStorage.removeItem("chatToken"); // Remove saved token so we get a fresh one
     getAuthToken().then(info => {
       setTokenInfo(info);
       localStorage.setItem("chatToken", info.token);
     }).catch(err => {
       console.error("Failed to reset token:", err);
+      setError(lang === "en" ? "Failed to reset session" : "Échec de la réinitialisation de la session");
     });
-    localStorage.removeItem("chatMessages");
   }
 
   return (
@@ -256,7 +269,7 @@ export default function SimpleCopilotChat() {
       </div>
 
       {/* Messages Area */}
-      <div ref={messagesRef} style={{flex: 1, padding: "14px", overflowY: "auto", overflowX: "hidden", display: "flex", flexDirection: "column", gap: 10, background: "rgba(0,0,0,0.15)", minHeight: 0, WebkitOverflowScrolling: "touch"}}>
+      <div ref={messagesRef} style={{flex: 1, padding: "14px 14px 20px 14px", overflowY: "auto", overflowX: "hidden", display: "flex", flexDirection: "column", gap: 10, background: "rgba(0,0,0,0.15)", minHeight: 0, WebkitOverflowScrolling: "touch"}}>
         {messages.length === 0 && (
           <div style={{display: "flex", alignItems: "center", justifyContent: "center", height: "100%", flexDirection: "column", gap: 12}}>
             <div style={{fontSize: 40, opacity: 0.6}}>💬</div>
@@ -352,8 +365,8 @@ export default function SimpleCopilotChat() {
       </div>
 
       {/* Error or Footer */}
-      {reachedLimit && countdown && !error ? (
-        <div style={{padding: "8px 14px", fontSize: 11, color: "#fbbf24", background: "rgba(217, 119, 6, 0.2)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center", flexShrink: 0}}>
+      {reachedLimit && countdown ? (
+        <div style={{padding: "10px 14px", fontSize: 12, color: "#fbbf24", background: "rgba(217, 119, 6, 0.2)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center", flexShrink: 0}}>
           <div style={{fontWeight: 500}}>Available in {countdown}</div>
         </div>
       ) : error ? (
@@ -361,11 +374,11 @@ export default function SimpleCopilotChat() {
           {error}
         </div>
       ) : tokenLoading ? (
-        <div style={{padding: "8px 14px", fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", background: "rgba(0,0,0,0.2)", borderTop: "1px solid rgba(251, 146, 60, 0.1)", flexShrink: 0}}>
+        <div style={{padding: "10px 14px", fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", background: "rgba(0,0,0,0.2)", borderTop: "1px solid rgba(251, 146, 60, 0.1)", flexShrink: 0}}>
           {lang === "en" ? "Initializing..." : "Initialisation..."}
         </div>
       ) : (
-        <div style={{padding: "8px 14px", fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", background: "rgba(0,0,0,0.2)", borderTop: "1px solid rgba(251, 146, 60, 0.1)", flexShrink: 0, display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+        <div style={{padding: "10px 14px", fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", background: "rgba(0,0,0,0.2)", borderTop: "1px solid rgba(251, 146, 60, 0.1)", flexShrink: 0, display: "flex", justifyContent: "space-between", alignItems: "center"}}>
           <span>
             {lang === "en" ? "The Wise Menu" : "Menu The Wise"} {`· ${messagesRemaining}`} {lang === "en" ? "messages left (12h reset)" : "messages restantes (réinit 12h)"}
           </span>

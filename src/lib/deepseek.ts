@@ -44,8 +44,11 @@ export async function getAuthToken(existingToken?: string, forceRefresh?: boolea
  * Verify token and increment message count
  */
 export async function verifyAndIncrementToken(token: string): Promise<TokenInfo> {
+  console.log('Verifying token...');
+  
   // Fallback for local dev
   if (token === 'local-fallback-token') {
+    console.log('Using fallback token');
     const saved = localStorage.getItem('local-dev-count');
     const count = saved ? parseInt(saved, 10) : 0;
     const newCount = count + 1;
@@ -68,8 +71,12 @@ export async function verifyAndIncrementToken(token: string): Promise<TokenInfo>
     }
   });
 
+  console.log('Verify response status:', res.status);
+
   if (!res.ok) {
     const data = await res.json();
+    console.log('Verify error data:', data);
+    
     // Check for message limit (status 429)
     if (res.status === 429 || data.limitReached) {
       const err = new Error('Message limit reached');
@@ -82,7 +89,9 @@ export async function verifyAndIncrementToken(token: string): Promise<TokenInfo>
     throw new Error(`Verification error: ${res.status}`);
   }
 
-  return await res.json();
+  const result = await res.json();
+  console.log('Token verified, new messages count:', result.messagesUsed);
+  return result;
 }
 
 /**
