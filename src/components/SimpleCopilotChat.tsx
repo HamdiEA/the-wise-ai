@@ -43,9 +43,18 @@ export default function SimpleCopilotChat() {
         setTokenInfo(info);
         localStorage.setItem("chatToken", info.token);
         
-        // If limit is reached, start countdown
-        if (info.messagesUsed >= info.messagesLimit && info.resetAt) {
-          startCountdown(info.resetAt);
+        // If limit is reached, check/store when it was reached
+        if (info.messagesUsed >= info.messagesLimit) {
+          const limitReachedTime = localStorage.getItem("limitReachedTime");
+          if (!limitReachedTime) {
+            // First time reaching limit - store current time
+            localStorage.setItem("limitReachedTime", String(Math.floor(Date.now() / 1000)));
+          }
+          startCountdown();
+        } else {
+          // Limit not reached, clear the stored limit time if it exists
+          localStorage.removeItem("limitReachedTime");
+          setCountdown(null);
         }
       } catch (err) {
         console.error("Failed to initialize token:", err);
@@ -59,14 +68,23 @@ export default function SimpleCopilotChat() {
 
   // Countdown timer effect
   useEffect(() => {
-    if (!countdown || !tokenInfo?.resetAt) return;
+    if (!countdown) return;
     
-    const interval = setInterval(() => {
+    const updateCountdown = () => {
+      const limitReachedTime = localStorage.getItem("limitReachedTime");
+      if (!limitReachedTime) {
+        setCountdown(null);
+        return;
+      }
+      
       const now = Math.floor(Date.now() / 1000);
-      const remaining = tokenInfo.resetAt - now;
+      const limitReachedAt = parseInt(limitReachedTime, 10);
+      const resetTime = limitReachedAt + (12 * 60 * 60); // 12 hours from limit
+      const remaining = resetTime - now;
       
       if (remaining <= 0) {
         setCountdown(null);
+        localStorage.removeItem("limitReachedTime");
         // Reset token automatically
         getAuthToken().then(info => {
           setTokenInfo(info);
@@ -78,22 +96,20 @@ export default function SimpleCopilotChat() {
         return;
       }
       
-      const resetTime = new Date(tokenInfo.resetAt * 1000);
-      const hours = String(resetTime.getHours()).padStart(2, '0');
-      const minutes = String(resetTime.getMinutes()).padStart(2, '0');
-      setCountdown(`${hours}:${minutes}`);
-    }, 1000);
+      const hours = Math.floor(remaining / 3600);
+      const minutes = Math.floor((remaining % 3600) / 60);
+      const seconds = remaining % 60;
+      
+      setCountdown(`${hours}h ${minutes}m ${seconds}s`);
+    };
     
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
-  }, [countdown, tokenInfo, lang]);
+  }, [countdown, lang]);
 
-  function startCountdown(resetAt: number) {
+  function startCountdown() {
     setCountdown("starting");
-    
-    const resetTime = new Date(resetAt * 1000);
-    const hours = String(resetTime.getHours()).padStart(2, '0');
-    const minutes = String(resetTime.getMinutes()).padStart(2, '0');
-    setCountdown(`${hours}:${minutes}`);
   }
 
   const reachedLimit = tokenInfo ? tokenInfo.messagesUsed >= tokenInfo.messagesLimit : false;
@@ -146,6 +162,12 @@ export default function SimpleCopilotChat() {
       // Update token info with new count
       setTokenInfo(result.tokenInfo);
       localStorage.setItem("chatToken", result.tokenInfo.token);
+      
+      // If we just reached the limit, store the time
+      if (result.tokenInfo.messagesUsed >= result.tokenInfo.messagesLimit && !localStorage.getItem("limitReachedTime")) {
+        localStorage.setItem("limitReachedTime", String(Math.floor(Date.now() / 1000)));
+        startCountdown();
+      }
       
       const assistantMsg: DeepSeekMessage = { 
         role: "assistant", 
@@ -342,7 +364,7 @@ export default function SimpleCopilotChat() {
       {/* Error or Footer */}
       {reachedLimit && countdown && !error ? (
         <div style={{padding: "8px 14px", fontSize: 11, color: "#fbbf24", background: "rgba(217, 119, 6, 0.2)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center", flexShrink: 0}}>
-          <div style={{fontWeight: 500}}>Available again at {countdown}</div>
+          <div style={{fontWeight: 500}}>Available in {countdown}</div>
         </div>
       ) : error ? (
         <div style={{padding: "10px 14px", fontSize: 12, color: "#fb923c", background: "rgba(251, 146, 60, 0.15)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center", flexShrink: 0}}>
