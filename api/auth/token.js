@@ -20,13 +20,19 @@ module.exports = async function handler(req, res) {
     }
 
     try {
+        // Get request body
+        let body = {};
+        if (req.body) {
+            body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+        }
+
         // Generate a unique session ID based on IP and user agent for fingerprinting
         const clientIp = req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || 'unknown';
         const userAgent = req.headers['user-agent'] || 'unknown';
         const fingerprint = Buffer.from(`${clientIp}-${userAgent}`).toString('base64');
 
         // Check if there's an existing valid token
-        const { token: existingToken, refresh: forceRefresh } = req.body || {};
+        const { token: existingToken, refresh: forceRefresh } = body || {};
 
         if (existingToken && !forceRefresh) {
             try {
@@ -77,10 +83,12 @@ module.exports = async function handler(req, res) {
         });
 
     } catch (error) {
-        console.error('Token error:', error.message);
+        console.error('Token error:', error);
+        console.error('Error message:', error ? .message);
+        console.error('Error stack:', error ? .stack);
         res.status(500).json({
             error: 'Failed to generate token',
-            message: error.message
+            message: error ? .message || 'Unknown error'
         });
     }
 }
