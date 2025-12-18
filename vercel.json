@@ -17,7 +17,7 @@
         },
         {
             "src": "/api/menu-assistant",
-            "dest": "/api/deepseek-proxy.cjs"
+            "dest": "/api/menu-assistant.js"
         },
         {
             "src": "/(.*)",
