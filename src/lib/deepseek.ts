@@ -44,11 +44,8 @@ export async function getAuthToken(existingToken?: string, forceRefresh?: boolea
  * Verify token and increment message count
  */
 export async function verifyAndIncrementToken(token: string): Promise<TokenInfo> {
-  console.log('Verifying token...');
-  
   // Fallback for local dev
   if (token === 'local-fallback-token') {
-    console.log('Using fallback token');
     const saved = localStorage.getItem('local-dev-count');
     const count = saved ? parseInt(saved, 10) : 0;
     const newCount = count + 1;
@@ -71,12 +68,8 @@ export async function verifyAndIncrementToken(token: string): Promise<TokenInfo>
     }
   });
 
-  console.log('Verify response status:', res.status);
-
   if (!res.ok) {
     const data = await res.json();
-    console.log('Verify error data:', data);
-    
     // Check for message limit (status 429)
     if (res.status === 429 || data.limitReached) {
       const err = new Error('Message limit reached');
@@ -89,9 +82,7 @@ export async function verifyAndIncrementToken(token: string): Promise<TokenInfo>
     throw new Error(`Verification error: ${res.status}`);
   }
 
-  const result = await res.json();
-  console.log('Token verified, new messages count:', result.messagesUsed);
-  return result;
+  return await res.json();
 }
 
 /**
@@ -108,9 +99,7 @@ export async function askDeepSeek(prompt?: string, opts?: { messages?: DeepSeekM
     throw new Error('Authentication token required');
   }
 
-  console.log('About to verify and increment token');
   const tokenInfo = await verifyAndIncrementToken(opts.token);
-  console.log('Token verified, messagesUsed:', tokenInfo.messagesUsed, 'limit:', tokenInfo.messagesLimit);
 
   const payload: any = {};
   if (opts?.messages) payload.messages = opts.messages;
@@ -142,7 +131,6 @@ export async function askDeepSeek(prompt?: string, opts?: { messages?: DeepSeekM
     else reply = data;
   }
 
-  console.log('Returning from askDeepSeek with token info:', { messagesUsed: tokenInfo.messagesUsed, limit: tokenInfo.messagesLimit });
   return {
     reply,
     tokenInfo

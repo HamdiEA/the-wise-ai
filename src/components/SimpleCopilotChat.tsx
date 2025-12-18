@@ -75,29 +75,23 @@ export default function SimpleCopilotChat() {
 
   // Countdown timer effect - triggers when limit is reached
   useEffect(() => {
-    console.log('Countdown effect triggered:', { reachedLimit, resetAt: tokenInfo?.resetAt, countdown });
-    
     if (!tokenInfo?.resetAt || !reachedLimit) {
       if (countdown && !reachedLimit) {
-        console.log('Clearing countdown because limit not reached');
         setCountdown(null);
       }
       return;
     }
     
-    console.log('Starting countdown timer');
     // Set up countdown update function
     const updateCountdown = () => {
       const now = Math.floor(Date.now() / 1000);
       const remaining = tokenInfo.resetAt - now;
       
       if (remaining <= 0) {
-        console.log('Countdown expired, resetting');
         setCountdown(null);
         localStorage.removeItem("limitReachedTime");
         // Reset token automatically
         getAuthToken().then(info => {
-          console.log('Got fresh token after limit reset');
           setTokenInfo(info);
           localStorage.setItem("chatToken", info.token);
           setError(lang === "en" 
@@ -111,9 +105,7 @@ export default function SimpleCopilotChat() {
       const minutes = Math.floor((remaining % 3600) / 60);
       const seconds = Math.floor(remaining % 60);
       
-      const formatted = `${hours}h ${minutes}m ${seconds}s`;
-      console.log('Countdown update:', formatted);
-      setCountdown(formatted);
+      setCountdown(`${hours}h ${minutes}m ${seconds}s`);
     };
     
     // Update immediately
@@ -373,24 +365,25 @@ export default function SimpleCopilotChat() {
         </button>
       </div>
 
-      {/* Error or Footer */}
-      {reachedLimit && countdown ? (
-        <div style={{padding: "10px 14px", fontSize: 12, color: "#fbbf24", background: "rgba(217, 119, 6, 0.2)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center", flexShrink: 0}}>
-          <div style={{fontWeight: 500}}>Available in {countdown}</div>
-        </div>
-      ) : error ? (
-        <div style={{padding: "10px 14px", fontSize: 12, color: "#fb923c", background: "rgba(251, 146, 60, 0.15)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center", flexShrink: 0}}>
-          {error}
-        </div>
-      ) : tokenLoading ? (
-        <div style={{padding: "10px 14px", fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", background: "rgba(0,0,0,0.2)", borderTop: "1px solid rgba(251, 146, 60, 0.1)", flexShrink: 0}}>
-          {lang === "en" ? "Initializing..." : "Initialisation..."}
-        </div>
-      ) : (
-        <div style={{padding: "10px 14px", fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", background: "rgba(0,0,0,0.2)", borderTop: "1px solid rgba(251, 146, 60, 0.1)", flexShrink: 0, display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-          <span>
-            {lang === "en" ? "The Wise Menu" : "Menu The Wise"} {`· ${messagesRemaining}`} {lang === "en" ? "messages left (12h reset)" : "messages restantes (réinit 12h)"}
-          </span>
+      {/* Error or Footer - Always visible container */}
+      <div style={{flexShrink: 0, display: "flex", flexDirection: "column"}}>
+        {reachedLimit && countdown ? (
+          <div style={{padding: "10px 14px", fontSize: 12, color: "#fbbf24", background: "rgba(217, 119, 6, 0.2)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center"}}>
+            <div style={{fontWeight: 500}}>Available in {countdown}</div>
+          </div>
+        ) : error ? (
+          <div style={{padding: "10px 14px", fontSize: 12, color: "#fb923c", background: "rgba(251, 146, 60, 0.15)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center"}}>
+            {error}
+          </div>
+        ) : tokenLoading ? (
+          <div style={{padding: "10px 14px", fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", background: "rgba(0,0,0,0.2)", borderTop: "1px solid rgba(251, 146, 60, 0.1)"}}>
+            {lang === "en" ? "Initializing..." : "Initialisation..."}
+          </div>
+        ) : (
+          <div style={{padding: "10px 14px", fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", background: "rgba(0,0,0,0.2)", borderTop: "1px solid rgba(251, 146, 60, 0.1)", display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+            <span>
+              {lang === "en" ? "The Wise Menu" : "Menu The Wise"} {`· ${messagesRemaining}`} {lang === "en" ? "messages left (12h reset)" : "messages restantes (réinit 12h)"}
+            </span>
           <button
             onClick={() => {
               setMessages([]);
@@ -418,7 +411,8 @@ export default function SimpleCopilotChat() {
             {lang === "en" ? "Clear" : "Effacer"}
           </button>
         </div>
-      )}
+        )}
+      </div>
 
       <style>{`
         @keyframes slideIn {
