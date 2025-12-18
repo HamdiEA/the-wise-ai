@@ -1,7 +1,7 @@
 // Vercel serverless function to verify and update JWT tokens
 const jwt = require('jsonwebtoken');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
+const JWT_SECRET = 'wise-secret-key';
 
 module.exports = async function handler(req, res) {
     // Enable CORS
@@ -26,27 +26,17 @@ module.exports = async function handler(req, res) {
         const token = authHeader.substring(7);
         const decoded = jwt.verify(token, JWT_SECRET);
 
-        // Verify fingerprint
-        const clientIp = req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || 'unknown';
-        const userAgent = req.headers['user-agent'] || 'unknown';
-        const fingerprint = Buffer.from(`${clientIp}-${userAgent}`).toString('base64');
-
-        if (decoded.fingerprint !== fingerprint) {
-            return res.status(403).json({ error: 'Token fingerprint mismatch' });
-        }
-
         const now = Math.floor(Date.now() / 1000);
-        const tokenAge = now - decoded.iat;
         const resetInterval = 12 * 60 * 60;
+        const resetAt = decoded.iat + resetInterval;
 
-        // Check if token has expired (12 hours) - auto-reset by returning error
-        if (tokenAge >= resetInterval) {
-            console.log('[verify] 12-hour window expired, token needs reset');
+        // Check if token has expired (12 hours)
+        if (now >= resetAt) {
             return res.status(401).json({
                 error: 'Token expired - 12 hour reset required',
                 expired: true,
                 resetRequired: true,
-                resetAt: decoded.iat + resetInterval
+                resetAt
             });
         }
 
@@ -57,27 +47,24 @@ module.exports = async function handler(req, res) {
                 error: 'Message limit reached',
                 messagesUsed,
                 messagesLimit: 5,
-                resetAt: decoded.iat + resetInterval,
+                resetAt,
                 limitReached: true
             });
         }
 
-        // Increment message count and generate new token
+        // Increment message count and return new token
         const newPayload = {
-            fingerprint: decoded.fingerprint,
             messagesUsed: messagesUsed + 1,
-            iat: decoded.iat // Keep original timestamp for reset tracking
+            iat: decoded.iat // Keep original timestamp for 12-hour reset tracking
         };
 
-        const newToken = jwt.sign(newPayload, JWT_SECRET, {
-            expiresIn: '12h'
-        });
+        const newToken = jwt.sign(newPayload, JWT_SECRET);
 
-        res.status(200).json({
+        return res.status(200).json({
             token: newToken,
             messagesUsed: newPayload.messagesUsed,
             messagesLimit: 5,
-            resetAt: decoded.iat + resetInterval,
+            resetAt,
             messagesRemaining: 5 - newPayload.messagesUsed
         });
 
@@ -85,12 +72,11 @@ module.exports = async function handler(req, res) {
         if (error.name === 'TokenExpiredError') {
             return res.status(401).json({
                 error: 'Token expired',
-                expired: true,
-                resetRequired: true
+                expired: true
             });
         }
 
-        console.error('Token verification error:', error);
-        res.status(401).json({ error: 'Invalid token' });
+        console.error('Token verification error:', error.message);
+        return res.status(401).json({ error: 'Invalid token' });
     }
-}
+};
