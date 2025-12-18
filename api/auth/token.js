@@ -10,29 +10,42 @@ module.exports = async(req, res) => {
     if (req.method === 'OPTIONS') return res.status(200).end();
     if (req.method !== 'POST') return res.status(405).end();
 
+    let body = {};
+
     try {
-        const body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
-        const { token: existingToken, refresh } = body;
+        // Try different ways to get body
+        if (req.body) {
+            if (typeof req.body === 'string') {
+                body = JSON.parse(req.body);
+            } else {
+                body = req.body;
+            }
+        }
+    } catch (parseError) {
+        console.error('Parse error:', parseError);
+    }
+
+    try {
+        const existingToken = body.token;
+        const refresh = body.refresh;
 
         // Return existing token if still valid
         if (existingToken && !refresh) {
-            try {
-                const decoded = jwt.verify(existingToken, SECRET);
-                const now = Math.floor(Date.now() / 1000);
-                if ((decoded.iat + 43200) > now) {
-                    return res.status(200).json({
-                        token: existingToken,
-                        messagesUsed: decoded.messagesUsed || 0,
-                        messagesLimit: 5,
-                        resetAt: decoded.iat + 43200
-                    });
-                }
-            } catch (e) {}
+            const decoded = jwt.verify(existingToken, SECRET);
+            const now = Math.floor(Date.now() / 1000);
+            if ((decoded.iat + 43200) > now) {
+                return res.json({
+                    token: existingToken,
+                    messagesUsed: decoded.messagesUsed || 0,
+                    messagesLimit: 5,
+                    resetAt: decoded.iat + 43200
+                });
+            }
         }
 
         // Generate new token
         const iat = Math.floor(Date.now() / 1000);
-        const token = jwt.sign({ messagesUsed: 0, iat }, SECRET, { expiresIn: '12h' });
+        const token = jwt.sign({ messagesUsed: 0, iat }, SECRET);
 
         return res.json({
             token,
@@ -41,8 +54,8 @@ module.exports = async(req, res) => {
             resetAt: iat + 43200
         });
 
-    } catch (e) {
-        console.log(e);
-        return res.status(500).json({ error: 'Failed' });
+    } catch (error) {
+        console.error('Token error:', error ? .message || error);
+        return res.status(500).json({ error: error ? .message || 'Server error' });
     }
 };
