@@ -34,29 +34,26 @@ module.exports = async function handler(req, res) {
             try {
                 const decoded = jwt.verify(existingToken, JWT_SECRET);
 
-                // Verify fingerprint matches
-                if (decoded.fingerprint === fingerprint) {
-                    const now = Math.floor(Date.now() / 1000);
-                    const tokenAge = now - decoded.iat;
-                    const resetInterval = 12 * 60 * 60; // 12 hours in seconds
+                const now = Math.floor(Date.now() / 1000);
+                const tokenAge = now - decoded.iat;
+                const resetInterval = 12 * 60 * 60; // 12 hours in seconds
 
-                    // If token is still within the 12-hour window, return it
-                    // (keep returning same token even if messages at limit - don't regenerate)
-                    if (tokenAge < resetInterval) {
-                        return res.status(200).json({
-                            token: existingToken,
-                            messagesUsed: decoded.messagesUsed || 0,
-                            messagesLimit: 5,
-                            resetAt: decoded.iat + resetInterval,
-                            expiresIn: resetInterval - tokenAge
-                        });
-                    }
+                // If token is still within the 12-hour window, return it
+                // (keep returning same token even if fingerprint changes or messages at limit)
+                if (tokenAge < resetInterval) {
+                    return res.status(200).json({
+                        token: existingToken,
+                        messagesUsed: decoded.messagesUsed || 0,
+                        messagesLimit: 5,
+                        resetAt: decoded.iat + resetInterval,
+                        expiresIn: resetInterval - tokenAge
+                    });
+                }
 
-                    // If 12 hours have passed, generate fresh token (auto-reset)
-                    if (tokenAge >= resetInterval) {
-                        console.log('[token] 12-hour window expired, generating fresh token');
-                        // Fall through to generate new token below
-                    }
+                // If 12 hours have passed, generate fresh token (auto-reset)
+                if (tokenAge >= resetInterval) {
+                    console.log('[token] 12-hour window expired, generating fresh token');
+                    // Fall through to generate new token below
                 }
             } catch (err) {
                 // Token expired or invalid, generate new one
