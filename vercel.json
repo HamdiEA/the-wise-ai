@@ -23,9 +23,5 @@
             "src": "/(.*)",
             "dest": "/$1"
         }
-    ],
-    "env": {
-        "OPENROUTER_API_KEY": "@openrouter_api_key",
-        "JWT_SECRET": "@jwt_secret"
-    }
+    ]
 }
