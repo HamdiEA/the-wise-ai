@@ -39,12 +39,14 @@ module.exports = async function handler(req, res) {
         const tokenAge = now - decoded.iat;
         const resetInterval = 12 * 60 * 60;
 
-        // Check if token has expired (12 hours)
+        // Check if token has expired (12 hours) - auto-reset by returning error
         if (tokenAge >= resetInterval) {
+            console.log('[verify] 12-hour window expired, token needs reset');
             return res.status(401).json({
-                error: 'Token expired',
+                error: 'Token expired - 12 hour reset required',
                 expired: true,
-                resetRequired: true
+                resetRequired: true,
+                resetAt: decoded.iat + resetInterval
             });
         }
 

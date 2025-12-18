@@ -40,8 +40,8 @@ module.exports = async function handler(req, res) {
                     const tokenAge = now - decoded.iat;
                     const resetInterval = 12 * 60 * 60; // 12 hours in seconds
 
-                    // If token is still within the 12-hour window, return it
-                    if (tokenAge < resetInterval) {
+                    // If token is still within the 12-hour window AND messages not at limit, return it
+                    if (tokenAge < resetInterval && (decoded.messagesUsed || 0) < 5) {
                         return res.status(200).json({
                             token: existingToken,
                             messagesUsed: decoded.messagesUsed || 0,
@@ -50,10 +50,16 @@ module.exports = async function handler(req, res) {
                             expiresIn: resetInterval - tokenAge
                         });
                     }
+
+                    // If 12 hours have passed, generate fresh token (auto-reset)
+                    if (tokenAge >= resetInterval) {
+                        console.log('[token] 12-hour window expired, generating fresh token');
+                        // Fall through to generate new token below
+                    }
                 }
             } catch (err) {
                 // Token expired or invalid, generate new one
-                console.log('Token validation failed, generating new token');
+                console.log('Token validation failed, generating new token:', err.message);
             }
         }
 
