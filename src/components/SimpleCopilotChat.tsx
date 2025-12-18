@@ -31,6 +31,7 @@ export default function SimpleCopilotChat() {
   const [error, setError] = useState<string | null>(null);
   const [tokenInfo, setTokenInfo] = useState<TokenInfo | null>(null);
   const [tokenLoading, setTokenLoading] = useState(true);
+  const [countdown, setCountdown] = useState<string | null>(null);
   const messagesRef = useRef<HTMLDivElement | null>(null);
 
   // Initialize JWT token on mount
@@ -41,6 +42,11 @@ export default function SimpleCopilotChat() {
         const info = await getAuthToken(saved || undefined);
         setTokenInfo(info);
         localStorage.setItem("chatToken", info.token);
+        
+        // If limit is reached, start countdown
+        if (info.messagesUsed >= info.messagesLimit && info.resetAt) {
+          startCountdown(info.resetAt);
+        }
       } catch (err) {
         console.error("Failed to initialize token:", err);
         setError(lang === "en" ? "Failed to initialize chat session" : "Échec de l'initialisation de la session");
@@ -50,6 +56,61 @@ export default function SimpleCopilotChat() {
     };
     initToken();
   }, []);
+
+  // Countdown timer effect
+  useEffect(() => {
+    if (!countdown) return;
+    
+    const interval = setInterval(() => {
+      setTokenInfo(prev => {
+        if (!prev || !prev.resetAt) return prev;
+        
+        const now = Math.floor(Date.now() / 1000);
+        const remaining = prev.resetAt - now;
+        
+        if (remaining <= 0) {
+          setCountdown(null);
+          // Reset token automatically
+          getAuthToken().then(info => {
+            setTokenInfo(info);
+            localStorage.setItem("chatToken", info.token);
+            setError(lang === "en" 
+              ? "Message limit reset! You can send messages again." 
+              : "Limite de messages réinitialisée ! Vous pouvez renvoyer des messages.");
+          });
+          return prev;
+        }
+        
+        return prev;
+      });
+    }, 1000);
+    
+    return () => clearInterval(interval);
+  }, [countdown, lang]);
+
+  function startCountdown(resetAt: number) {
+    setCountdown("starting");
+    
+    const updateCountdown = () => {
+      const now = Math.floor(Date.now() / 1000);
+      const remaining = resetAt - now;
+      
+      if (remaining <= 0) {
+        setCountdown(null);
+        return;
+      }
+      
+      const hours = Math.floor(remaining / 3600);
+      const minutes = Math.floor((remaining % 3600) / 60);
+      const seconds = remaining % 60;
+      
+      setCountdown(`${hours}h ${minutes}m ${seconds}s`);
+    };
+    
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }
 
   const reachedLimit = tokenInfo ? tokenInfo.messagesUsed >= tokenInfo.messagesLimit : false;
   const messagesRemaining = tokenInfo ? tokenInfo.messagesLimit - tokenInfo.messagesUsed : 5;
@@ -298,6 +359,12 @@ export default function SimpleCopilotChat() {
       {error ? (
         <div style={{padding: "10px 14px", fontSize: 12, color: "#fb923c", background: "rgba(251, 146, 60, 0.15)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center", flexShrink: 0}}>
           {error}
+        </div>
+      ) : reachedLimit && countdown ? (
+        <div style={{padding: "12px 14px", fontSize: 12, color: "#fbbf24", background: "rgba(217, 119, 6, 0.2)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center", flexShrink: 0}}>
+          <div style={{fontWeight: 600, marginBottom: 4}}>{lang === "en" ? "📊 Message Limit Reached" : "📊 Limite de Messages Atteinte"}</div>
+          <div style={{fontSize: 18, fontWeight: 700, fontFamily: "monospace", letterSpacing: "1px"}}>{countdown}</div>
+          <div style={{fontSize: 11, marginTop: 4, opacity: 0.8}}>{lang === "en" ? "Reset countdown" : "Réinitialisation du compte à rebours"}</div>
         </div>
       ) : tokenLoading ? (
         <div style={{padding: "8px 14px", fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", background: "rgba(0,0,0,0.2)", borderTop: "1px solid rgba(251, 146, 60, 0.1)", flexShrink: 0}}>
