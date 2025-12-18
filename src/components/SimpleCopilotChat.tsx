@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { askDeepSeek, DeepSeekMessage } from "../lib/deepseek";
+import { askDeepSeek, DeepSeekMessage, getAuthToken, TokenInfo } from "../lib/deepseek";
 import logo from "@/assets/wise-logo.png";
 
 const EN_SYSTEM = `You are Wiser AI — a helpful and warm restaurant assistant. Answer concisely (1-3 short sentences) unless asked for more. 
@@ -22,14 +22,42 @@ Utilisez cette information pour: recommander des plats selon les préférences, 
 
 export default function SimpleCopilotChat() {
   const [lang, setLang] = useState<"en" | "fr">("en");
-  const [messages, setMessages] = useState<DeepSeekMessage[]>([]); // only user & assistant stored here for UI
+  const [messages, setMessages] = useState<DeepSeekMessage[]>(() => {
+    const saved = localStorage.getItem("chatMessages");
+    return saved ? JSON.parse(saved) : [];
+  });
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [userCount, setUserCount] = useState(0);
+  const [tokenInfo, setTokenInfo] = useState<TokenInfo | null>(null);
+  const [tokenLoading, setTokenLoading] = useState(true);
   const messagesRef = useRef<HTMLDivElement | null>(null);
 
-  const reachedLimit = userCount >= 5;
+  // Initialize JWT token on mount
+  useEffect(() => {
+    const initToken = async () => {
+      try {
+        const saved = localStorage.getItem("chatToken");
+        const info = await getAuthToken(saved || undefined);
+        setTokenInfo(info);
+        localStorage.setItem("chatToken", info.token);
+      } catch (err) {
+        console.error("Failed to initialize token:", err);
+        setError(lang === "en" ? "Failed to initialize chat session" : "Échec de l'initialisation de la session");
+      } finally {
+        setTokenLoading(false);
+      }
+    };
+    initToken();
+  }, []);
+
+  const reachedLimit = tokenInfo ? tokenInfo.messagesUsed >= tokenInfo.messagesLimit : false;
+  const messagesRemaining = tokenInfo ? tokenInfo.messagesLimit - tokenInfo.messagesUsed : 5;
+
+  // Persist messages to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("chatMessages", JSON.stringify(messages));
+  }, [messages]);
 
   // Always keep scroll at the bottom after new messages
   useEffect(() => {
@@ -48,27 +76,71 @@ export default function SimpleCopilotChat() {
   async function send() {
     if (!input.trim()) return;
     if (reachedLimit) {
-      setError(lang === "en" ? "You reached the limit of 5 messages per session." : "Vous avez atteint la limite de 5 messages par session.");
+      setError(lang === "en" 
+        ? "You reached the limit of 5 messages. Resets in 12 hours." 
+        : "Vous avez atteint la limite de 5 messages. Réinitialisation dans 12h.");
       return;
     }
+    if (!tokenInfo) {
+      setError(lang === "en" ? "Session not initialized" : "Session non initialisée");
+      return;
+    }
+
     const userMsg: DeepSeekMessage = { role: "user", content: input.trim() };
-    // update UI immediately (do not show system)
     setMessages((m) => [...m, userMsg]);
-    setUserCount((c) => c + 1);
     setInput("");
     setLoading(true);
     setError(null);
 
     try {
-      const reply = await askDeepSeek(undefined, { messages: buildApiMessages(userMsg) });
-      const assistantMsg: DeepSeekMessage = { role: "assistant", content: typeof reply === "string" ? reply : JSON.stringify(reply) };
+      const result = await askDeepSeek(undefined, { 
+        messages: buildApiMessages(userMsg),
+        token: tokenInfo.token
+      });
+      
+      // Update token info with new count
+      setTokenInfo(result.tokenInfo);
+      localStorage.setItem("chatToken", result.tokenInfo.token);
+      
+      const assistantMsg: DeepSeekMessage = { 
+        role: "assistant", 
+        content: typeof result.reply === "string" ? result.reply : JSON.stringify(result.reply) 
+      };
       setMessages((m) => [...m, assistantMsg]);
+      
       setTimeout(() => {
         messagesRef.current?.scrollTo({ top: messagesRef.current.scrollHeight, behavior: "smooth" });
       }, 50);
     } catch (err: any) {
-      setError(String(err?.message || err));
-      setMessages((m) => [...m, { role: "assistant", content: lang === "en" ? "Oops — I couldn't reach the assistant. Try again." : "Oups — impossible de contacter l'assistant. Réessayez." }]);
+      const errorMsg = String(err?.message || err);
+      
+      // Handle token expiration
+      if (errorMsg.includes("expired") || errorMsg.includes("Token expired")) {
+        try {
+          const newInfo = await getAuthToken();
+          setTokenInfo(newInfo);
+          localStorage.setItem("chatToken", newInfo.token);
+          setError(lang === "en" 
+            ? "Session refreshed. Your message limit has been reset!" 
+            : "Session actualisée. Votre limite de messages a été réinitialisée!");
+        } catch {
+          setError(lang === "en" 
+            ? "Session expired. Please refresh the page." 
+            : "Session expirée. Veuillez actualiser la page.");
+        }
+      } else if (errorMsg.includes("limit")) {
+        setError(lang === "en" 
+          ? "You've reached your 5 message limit. Resets in 12 hours." 
+          : "Limite de 5 messages atteinte. Réinitialisation dans 12h.");
+      } else {
+        setError(errorMsg);
+        setMessages((m) => [...m, { 
+          role: "assistant", 
+          content: lang === "en" 
+            ? "Oops — I couldn't reach the assistant. Try again." 
+            : "Oups — impossible de contacter l'assistant. Réessayez." 
+        }]);
+      }
     } finally {
       setLoading(false);
     }
@@ -83,7 +155,14 @@ export default function SimpleCopilotChat() {
   function clearChat() {
     setMessages([]);
     setError(null);
-    setUserCount(0);
+    // Get new token to reset the counter
+    getAuthToken().then(info => {
+      setTokenInfo(info);
+      localStorage.setItem("chatToken", info.token);
+    }).catch(err => {
+      console.error("Failed to reset token:", err);
+    });
+    localStorage.removeItem("chatMessages");
   }
 
   return (
@@ -220,9 +299,41 @@ export default function SimpleCopilotChat() {
         <div style={{padding: "10px 14px", fontSize: 12, color: "#fb923c", background: "rgba(251, 146, 60, 0.15)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center", flexShrink: 0}}>
           {error}
         </div>
-      ) : (
+      ) : tokenLoading ? (
         <div style={{padding: "8px 14px", fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", background: "rgba(0,0,0,0.2)", borderTop: "1px solid rgba(251, 146, 60, 0.1)", flexShrink: 0}}>
-          {lang === "en" ? "The Wise Menu" : "Menu The Wise"} {`· ${5 - userCount >= 0 ? 5 - userCount : 0}`} {lang === "en" ? "messages left" : "messages restantes"}
+          {lang === "en" ? "Initializing..." : "Initialisation..."}
+        </div>
+      ) : (
+        <div style={{padding: "8px 14px", fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", background: "rgba(0,0,0,0.2)", borderTop: "1px solid rgba(251, 146, 60, 0.1)", flexShrink: 0, display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+          <span>
+            {lang === "en" ? "The Wise Menu" : "Menu The Wise"} {`· ${messagesRemaining}`} {lang === "en" ? "messages left (12h reset)" : "messages restantes (réinit 12h)"}
+          </span>
+          <button
+            onClick={() => {
+              setMessages([]);
+              localStorage.removeItem("chatMessages");
+            }}
+            style={{
+              padding: "4px 8px",
+              fontSize: 9,
+              background: "rgba(251, 146, 60, 0.2)",
+              border: "1px solid rgba(251, 146, 60, 0.3)",
+              borderRadius: 4,
+              color: "rgba(251, 146, 60, 0.8)",
+              cursor: "pointer",
+              transition: "all 0.2s"
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "rgba(251, 146, 60, 0.3)";
+              e.currentTarget.style.color = "rgba(251, 146, 60, 1)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "rgba(251, 146, 60, 0.2)";
+              e.currentTarget.style.color = "rgba(251, 146, 60, 0.8)";
+            }}
+          >
+            {lang === "en" ? "Clear" : "Effacer"}
+          </button>
         </div>
       )}
 
