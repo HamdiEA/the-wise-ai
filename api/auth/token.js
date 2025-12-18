@@ -30,17 +30,25 @@ module.exports = async function handler(req, res) {
         // Check if there's an existing valid token
         const { token: existingToken, refresh: forceRefresh } = req.body || {};
 
+        console.log('[token] existingToken:', existingToken ? 'provided' : 'not provided');
+        console.log('[token] forceRefresh:', forceRefresh);
+
         if (existingToken && !forceRefresh) {
             try {
+                console.log('[token] Attempting to verify existing token...');
                 const decoded = jwt.verify(existingToken, JWT_SECRET);
+                console.log('[token] Token verified successfully');
 
                 const now = Math.floor(Date.now() / 1000);
                 const tokenAge = now - decoded.iat;
                 const resetInterval = 12 * 60 * 60; // 12 hours in seconds
 
+                console.log('[token] Token age:', tokenAge, 'seconds');
+
                 // If token is still within the 12-hour window, return it
                 // (keep returning same token even if fingerprint changes or messages at limit)
                 if (tokenAge < resetInterval) {
+                    console.log('[token] Returning existing token');
                     return res.status(200).json({
                         token: existingToken,
                         messagesUsed: decoded.messagesUsed || 0,
@@ -57,9 +65,11 @@ module.exports = async function handler(req, res) {
                 }
             } catch (err) {
                 // Token expired or invalid, generate new one
-                console.log('Token validation failed, generating new token:', err.message);
+                console.log('[token] Token verification failed:', err.message);
             }
         }
+
+        console.log('[token] Generating new token');
 
         // Generate new token with 12-hour expiration
         const payload = {
