@@ -59,57 +59,41 @@ export default function SimpleCopilotChat() {
 
   // Countdown timer effect
   useEffect(() => {
-    if (!countdown) return;
+    if (!countdown || !tokenInfo?.resetAt) return;
     
     const interval = setInterval(() => {
-      setTokenInfo(prev => {
-        if (!prev || !prev.resetAt) return prev;
-        
-        const now = Math.floor(Date.now() / 1000);
-        const remaining = prev.resetAt - now;
-        
-        if (remaining <= 0) {
-          setCountdown(null);
-          // Reset token automatically
-          getAuthToken().then(info => {
-            setTokenInfo(info);
-            localStorage.setItem("chatToken", info.token);
-            setError(lang === "en" 
-              ? "Message limit reset! You can send messages again." 
-              : "Limite de messages réinitialisée ! Vous pouvez renvoyer des messages.");
-          });
-          return prev;
-        }
-        
-        return prev;
-      });
+      const now = Math.floor(Date.now() / 1000);
+      const remaining = tokenInfo.resetAt - now;
+      
+      if (remaining <= 0) {
+        setCountdown(null);
+        // Reset token automatically
+        getAuthToken().then(info => {
+          setTokenInfo(info);
+          localStorage.setItem("chatToken", info.token);
+          setError(lang === "en" 
+            ? "Message limit reset! You can send messages again." 
+            : "Limite de messages réinitialisée ! Vous pouvez renvoyer des messages.");
+        });
+        return;
+      }
+      
+      const resetTime = new Date(tokenInfo.resetAt * 1000);
+      const hours = String(resetTime.getHours()).padStart(2, '0');
+      const minutes = String(resetTime.getMinutes()).padStart(2, '0');
+      setCountdown(`${hours}:${minutes}`);
     }, 1000);
     
     return () => clearInterval(interval);
-  }, [countdown, lang]);
+  }, [countdown, tokenInfo, lang]);
 
   function startCountdown(resetAt: number) {
     setCountdown("starting");
     
-    const updateCountdown = () => {
-      const now = Math.floor(Date.now() / 1000);
-      const remaining = resetAt - now;
-      
-      if (remaining <= 0) {
-        setCountdown(null);
-        return;
-      }
-      
-      const hours = Math.floor(remaining / 3600);
-      const minutes = Math.floor((remaining % 3600) / 60);
-      const seconds = remaining % 60;
-      
-      setCountdown(`${hours}h ${minutes}m ${seconds}s`);
-    };
-    
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-    return () => clearInterval(interval);
+    const resetTime = new Date(resetAt * 1000);
+    const hours = String(resetTime.getHours()).padStart(2, '0');
+    const minutes = String(resetTime.getMinutes()).padStart(2, '0');
+    setCountdown(`${hours}:${minutes}`);
   }
 
   const reachedLimit = tokenInfo ? tokenInfo.messagesUsed >= tokenInfo.messagesLimit : false;
@@ -357,10 +341,8 @@ export default function SimpleCopilotChat() {
 
       {/* Error or Footer */}
       {reachedLimit && countdown && !error ? (
-        <div style={{padding: "12px 14px", fontSize: 12, color: "#fbbf24", background: "rgba(217, 119, 6, 0.2)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center", flexShrink: 0}}>
-          <div style={{fontWeight: 600, marginBottom: 4}}>{lang === "en" ? "📊 Message Limit Reached" : "📊 Limite de Messages Atteinte"}</div>
-          <div style={{fontSize: 18, fontWeight: 700, fontFamily: "monospace", letterSpacing: "1px"}}>{countdown}</div>
-          <div style={{fontSize: 11, marginTop: 4, opacity: 0.8}}>{lang === "en" ? "Reset countdown" : "Réinitialisation du compte à rebours"}</div>
+        <div style={{padding: "8px 14px", fontSize: 11, color: "#fbbf24", background: "rgba(217, 119, 6, 0.2)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center", flexShrink: 0}}>
+          <div style={{fontWeight: 500}}>Available again at {countdown}</div>
         </div>
       ) : error ? (
         <div style={{padding: "10px 14px", fontSize: 12, color: "#fb923c", background: "rgba(251, 146, 60, 0.15)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center", flexShrink: 0}}>
