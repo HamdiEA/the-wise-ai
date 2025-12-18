@@ -61,48 +61,50 @@ export default function SimpleCopilotChat() {
     initToken();
   }, []);
 
-  // Countdown timer effect
+  // Countdown timer effect - triggers when limit is reached
   useEffect(() => {
-    if (!countdown || !tokenInfo?.resetAt) return;
+    if (!tokenInfo?.resetAt) return;
     
-    const updateCountdown = () => {
-      if (!tokenInfo?.resetAt) {
-        setCountdown(null);
-        return;
-      }
-      
-      const now = Math.floor(Date.now() / 1000);
-      const remaining = tokenInfo.resetAt - now;
-      
-      if (remaining <= 0) {
-        setCountdown(null);
-        localStorage.removeItem("limitReachedTime");
-        // Reset token automatically
-        getAuthToken().then(info => {
-          setTokenInfo(info);
-          localStorage.setItem("chatToken", info.token);
-          setError(lang === "en" 
-            ? "Message limit reset! You can send messages again." 
-            : "Limite de messages réinitialisée ! Vous pouvez renvoyer des messages.");
-        });
-        return;
-      }
-      
-      const hours = Math.floor(remaining / 3600);
-      const minutes = Math.floor((remaining % 3600) / 60);
-      const seconds = Math.floor(remaining % 60);
-      
-      setCountdown(`${hours}h ${minutes}m ${seconds}s`);
-    };
+    const now = Math.floor(Date.now() / 1000);
+    const remaining = tokenInfo.resetAt - now;
     
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-    return () => clearInterval(interval);
-  }, [countdown, tokenInfo, lang]);
-
-  function startCountdown() {
-    setCountdown("starting");
-  }
+    // If limit is reached and countdown not started, start it
+    if (reachedLimit && !countdown && remaining > 0) {
+      setCountdown("active");
+    }
+    
+    // If countdown is active, update it every second
+    if (countdown === "active" && remaining > 0) {
+      const updateCountdown = () => {
+        const now = Math.floor(Date.now() / 1000);
+        const remaining = tokenInfo.resetAt - now;
+        
+        if (remaining <= 0) {
+          setCountdown(null);
+          localStorage.removeItem("limitReachedTime");
+          // Reset token automatically
+          getAuthToken().then(info => {
+            setTokenInfo(info);
+            localStorage.setItem("chatToken", info.token);
+            setError(lang === "en" 
+              ? "Message limit reset! You can send messages again." 
+              : "Limite de messages réinitialisée ! Vous pouvez renvoyer des messages.");
+          });
+          return;
+        }
+        
+        const hours = Math.floor(remaining / 3600);
+        const minutes = Math.floor((remaining % 3600) / 60);
+        const seconds = Math.floor(remaining % 60);
+        
+        setCountdown(`${hours}h ${minutes}m ${seconds}s`);
+      };
+      
+      updateCountdown();
+      const interval = setInterval(updateCountdown, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [reachedLimit, tokenInfo?.resetAt, countdown, lang]);
 
   const reachedLimit = tokenInfo ? tokenInfo.messagesUsed >= tokenInfo.messagesLimit : false;
   const messagesRemaining = tokenInfo ? tokenInfo.messagesLimit - tokenInfo.messagesUsed : 5;
@@ -155,11 +157,7 @@ export default function SimpleCopilotChat() {
       setTokenInfo(result.tokenInfo);
       localStorage.setItem("chatToken", result.tokenInfo.token);
       
-      // If we just reached the limit, start countdown
-      if (result.tokenInfo.messagesUsed >= result.tokenInfo.messagesLimit && reachedLimit === false) {
-        startCountdown();
-      }
-      
+      // If we just reached the limit, the useEffect will trigger countdown automatically
       const assistantMsg: DeepSeekMessage = { 
         role: "assistant", 
         content: typeof result.reply === "string" ? result.reply : JSON.stringify(result.reply) 
@@ -187,6 +185,8 @@ export default function SimpleCopilotChat() {
             : "Session expirée. Veuillez actualiser la page.");
         }
       } else if (errorMsg.includes("limit")) {
+        // Limit reached - update tokenInfo to trigger countdown
+        setTokenInfo(prev => prev ? { ...prev, messagesUsed: prev.messagesLimit } : null);
         setError(lang === "en" 
           ? "You've reached your 5 message limit. Resets in 12 hours." 
           : "Limite de 5 messages atteinte. Réinitialisation dans 12h.");

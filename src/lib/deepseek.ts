@@ -70,9 +70,11 @@ export async function verifyAndIncrementToken(token: string): Promise<TokenInfo>
 
   if (!res.ok) {
     const data = await res.json();
-    if (data.limitReached) {
-      // Message limit reached, request fresh token
-      throw new Error('Message limit reached. Use getAuthToken(undefined, true) to refresh.');
+    // Check for message limit (status 429)
+    if (res.status === 429 || data.limitReached) {
+      const err = new Error('Message limit reached');
+      (err as any).limitReached = true;
+      throw err;
     }
     if (data.expired || data.resetRequired) {
       throw new Error(data.error);
