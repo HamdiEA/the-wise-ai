@@ -82,8 +82,8 @@ export default function SimpleCopilotChat() {
 
   // Countdown timer effect - triggers when limit is reached
   useEffect(() => {
-    // Only run if we have a valid resetAt time, limit is reached, and countdown is "active"
-    if (!tokenInfo?.resetAt || !reachedLimit || countdown !== "active") {
+    // Only run if we have a valid resetAt time and limit is reached
+    if (!tokenInfo?.resetAt || !reachedLimit) {
       return;
     }
     
@@ -119,7 +119,7 @@ export default function SimpleCopilotChat() {
     // Then update every second
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
-  }, [countdown, tokenInfo?.resetAt, reachedLimit, lang]);
+  }, [reachedLimit, tokenInfo?.resetAt, lang])
 
   // Persist messages to localStorage whenever they change
   useEffect(() => {
@@ -128,7 +128,10 @@ export default function SimpleCopilotChat() {
 
   // Always keep scroll at the bottom after new messages
   useEffect(() => {
-    messagesRef.current?.scrollTo({ top: messagesRef.current.scrollHeight });
+    const timer = setTimeout(() => {
+      messagesRef.current?.scrollTo({ top: messagesRef.current.scrollHeight, behavior: "smooth" });
+    }, 100);
+    return () => clearTimeout(timer);
   }, [messages]);
 
   // helper to build messages for API (prepend hidden system message)
@@ -264,7 +267,7 @@ export default function SimpleCopilotChat() {
       </div>
 
       {/* Messages Area */}
-      <div ref={messagesRef} style={{flex: 1, padding: "14px 14px 20px 14px", overflowY: "auto", overflowX: "hidden", display: "flex", flexDirection: "column", gap: 10, background: "rgba(0,0,0,0.15)", minHeight: 0, WebkitOverflowScrolling: "touch"}}>
+      <div ref={messagesRef} style={{flex: 1, padding: "14px 14px 20px 14px", overflowY: "auto", overflowX: "hidden", display: "flex", flexDirection: "column", gap: 10, background: "rgba(0,0,0,0.15)", minHeight: 0, WebkitOverflowScrolling: "touch", wordBreak: "break-word"}}>
         {messages.length === 0 && (
           <div style={{display: "flex", alignItems: "center", justifyContent: "center", height: "100%", flexDirection: "column", gap: 12}}>
             <div style={{fontSize: 40, opacity: 0.6}}>💬</div>
@@ -275,7 +278,7 @@ export default function SimpleCopilotChat() {
         )}
         
         {messages.map((m, i) => (
-          <div key={i} style={{display: "flex", flexDirection: m.role === "user" ? "row-reverse" : "row", alignItems: "flex-end", gap: 8, animation: "slideIn 0.3s ease-out"}}>
+          <div key={i} style={{display: "flex", flexDirection: m.role === "user" ? "row-reverse" : "row", alignItems: "flex-end", gap: 8, animation: "slideIn 0.3s ease-out", overflow: "hidden"}}>
             <div style={{
               maxWidth: "78%",
               padding: "10px 14px",
@@ -284,6 +287,7 @@ export default function SimpleCopilotChat() {
               lineHeight: 1.5,
               whiteSpace: "pre-wrap",
               wordBreak: "break-word",
+              overflowWrap: "break-word",
               background: m.role === "user" 
                 ? "linear-gradient(135deg, #d97706 0%, #b45309 100%)" 
                 : "rgba(0,0,0,0.5)",
