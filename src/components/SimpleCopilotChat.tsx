@@ -67,48 +67,46 @@ export default function SimpleCopilotChat() {
 
   // Countdown timer effect - triggers when limit is reached
   useEffect(() => {
-    if (!tokenInfo?.resetAt || !reachedLimit) return;
-    
-    const now = Math.floor(Date.now() / 1000);
-    const remaining = tokenInfo.resetAt - now;
-    
-    // If limit is reached and countdown not active, start it
-    if (!countdown || countdown === "starting") {
-      setCountdown("active");
+    if (!tokenInfo?.resetAt || !reachedLimit) {
+      if (countdown && !reachedLimit) {
+        setCountdown(null);
+      }
+      return;
     }
     
-    // If countdown is active, update it every second
-    if (countdown === "active" && remaining > 0) {
-      const updateCountdown = () => {
-        const now = Math.floor(Date.now() / 1000);
-        const remaining = tokenInfo.resetAt - now;
-        
-        if (remaining <= 0) {
-          setCountdown(null);
-          localStorage.removeItem("limitReachedTime");
-          // Reset token automatically
-          getAuthToken().then(info => {
-            setTokenInfo(info);
-            localStorage.setItem("chatToken", info.token);
-            setError(lang === "en" 
-              ? "Message limit reset! You can send messages again." 
-              : "Limite de messages réinitialisée ! Vous pouvez renvoyer des messages.");
-          });
-          return;
-        }
-        
-        const hours = Math.floor(remaining / 3600);
-        const minutes = Math.floor((remaining % 3600) / 60);
-        const seconds = Math.floor(remaining % 60);
-        
-        setCountdown(`${hours}h ${minutes}m ${seconds}s`);
-      };
+    // Set up countdown update function
+    const updateCountdown = () => {
+      const now = Math.floor(Date.now() / 1000);
+      const remaining = tokenInfo.resetAt - now;
       
-      updateCountdown();
-      const interval = setInterval(updateCountdown, 1000);
-      return () => clearInterval(interval);
-    }
-  }, [reachedLimit, tokenInfo?.resetAt, countdown, lang]);
+      if (remaining <= 0) {
+        setCountdown(null);
+        localStorage.removeItem("limitReachedTime");
+        // Reset token automatically
+        getAuthToken().then(info => {
+          setTokenInfo(info);
+          localStorage.setItem("chatToken", info.token);
+          setError(lang === "en" 
+            ? "Message limit reset! You can send messages again." 
+            : "Limite de messages réinitialisée ! Vous pouvez renvoyer des messages.");
+        });
+        return;
+      }
+      
+      const hours = Math.floor(remaining / 3600);
+      const minutes = Math.floor((remaining % 3600) / 60);
+      const seconds = Math.floor(remaining % 60);
+      
+      setCountdown(`${hours}h ${minutes}m ${seconds}s`);
+    };
+    
+    // Update immediately
+    updateCountdown();
+    
+    // Then update every second
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, [reachedLimit, tokenInfo?.resetAt, lang]);
 
   // Persist messages to localStorage whenever they change
   useEffect(() => {
