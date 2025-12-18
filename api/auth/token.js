@@ -40,8 +40,9 @@ module.exports = async function handler(req, res) {
                     const tokenAge = now - decoded.iat;
                     const resetInterval = 12 * 60 * 60; // 12 hours in seconds
 
-                    // If token is still within the 12-hour window AND messages not at limit, return it
-                    if (tokenAge < resetInterval && (decoded.messagesUsed || 0) < 5) {
+                    // If token is still within the 12-hour window, return it
+                    // (keep returning same token even if messages at limit - don't regenerate)
+                    if (tokenAge < resetInterval) {
                         return res.status(200).json({
                             token: existingToken,
                             messagesUsed: decoded.messagesUsed || 0,

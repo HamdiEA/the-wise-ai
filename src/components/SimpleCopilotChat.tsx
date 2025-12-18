@@ -90,7 +90,7 @@ export default function SimpleCopilotChat() {
       
       const hours = Math.floor(remaining / 3600);
       const minutes = Math.floor((remaining % 3600) / 60);
-      const seconds = remaining % 60;
+      const seconds = Math.floor(remaining % 60);
       
       setCountdown(`${hours}h ${minutes}m ${seconds}s`);
     };
