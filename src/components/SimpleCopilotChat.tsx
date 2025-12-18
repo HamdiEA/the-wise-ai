@@ -356,15 +356,15 @@ export default function SimpleCopilotChat() {
       </div>
 
       {/* Error or Footer */}
-      {error ? (
-        <div style={{padding: "10px 14px", fontSize: 12, color: "#fb923c", background: "rgba(251, 146, 60, 0.15)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center", flexShrink: 0}}>
-          {error}
-        </div>
-      ) : reachedLimit && countdown ? (
+      {reachedLimit && countdown && !error ? (
         <div style={{padding: "12px 14px", fontSize: 12, color: "#fbbf24", background: "rgba(217, 119, 6, 0.2)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center", flexShrink: 0}}>
           <div style={{fontWeight: 600, marginBottom: 4}}>{lang === "en" ? "📊 Message Limit Reached" : "📊 Limite de Messages Atteinte"}</div>
           <div style={{fontSize: 18, fontWeight: 700, fontFamily: "monospace", letterSpacing: "1px"}}>{countdown}</div>
           <div style={{fontSize: 11, marginTop: 4, opacity: 0.8}}>{lang === "en" ? "Reset countdown" : "Réinitialisation du compte à rebours"}</div>
+        </div>
+      ) : error ? (
+        <div style={{padding: "10px 14px", fontSize: 12, color: "#fb923c", background: "rgba(251, 146, 60, 0.15)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center", flexShrink: 0}}>
+          {error}
         </div>
       ) : tokenLoading ? (
         <div style={{padding: "8px 14px", fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", background: "rgba(0,0,0,0.2)", borderTop: "1px solid rgba(251, 146, 60, 0.1)", flexShrink: 0}}>
