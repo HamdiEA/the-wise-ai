@@ -67,10 +67,10 @@ const VideoCarousel = () => {
   }, [isPlaying]);
 
   return (
-    <div className="relative w-full h-full overflow-visible" style={{pointerEvents: "auto"}}>
+    <div className="relative w-full h-full overflow-hidden" style={{pointerEvents: "auto"}}>
       <div className="holiday-lights holiday-lights--inline" aria-hidden="true" />
       {/* Video slides */}
-      <div className="relative w-full h-full" style={{pointerEvents: "auto"}}>
+      <div className="relative w-full h-full overflow-hidden" style={{pointerEvents: "auto"}}>
         {videos.map((video, index) => (
           <div
             key={index}
@@ -82,7 +82,7 @@ const VideoCarousel = () => {
             <video
               ref={(el) => (videoRefs.current[index] = el)}
               src={video.src}
-              className="w-full h-full object-cover scale-110 md:scale-105"
+              className="w-full h-full object-cover"
               muted // Crucial for Vercel/Chrome autoplay
               loop
               playsInline // Crucial for mobile support
