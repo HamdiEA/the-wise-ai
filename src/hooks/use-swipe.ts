@@ -38,11 +38,11 @@ export const useSwipe = (handlers: SwipeHandlers, threshold = 50) => {
       if (isHorizontalSwipe) {
         if (Math.abs(diffX) > threshold) {
           if (diffX > 0) {
-            // Swipe left
-            handlers.onSwipeLeft?.();
-          } else {
-            // Swipe right
+            // Swipe left (finger moved left)
             handlers.onSwipeRight?.();
+          } else {
+            // Swipe right (finger moved right)
+            handlers.onSwipeLeft?.();
           }
         }
       } else {
