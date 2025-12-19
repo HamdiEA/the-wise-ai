@@ -18,7 +18,6 @@ const GlobalBackground = ({ children }: { children: React.ReactNode }) => {
       {/* Festive layers sit above the image */}
       <div className="snow-layer z-10" aria-hidden="true" />
       <div className="sparkle-layer z-10" aria-hidden="true" />
-      <div className="holiday-lights z-10" aria-hidden="true" />
       
       {/* Dark overlay for better readability */}
       <div className="fixed inset-0 bg-gradient-to-b from-black/35 via-black/55 to-black/35 z-20" />

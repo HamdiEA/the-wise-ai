@@ -173,9 +173,9 @@ const AppetizersMenu = () => {
         {/* Back button */}
         <div className="mb-8">
           <Link to="/menu">
-            <Button variant="outline" size="lg" className="flex items-center gap-3 bg-black/40 backdrop-blur-md border-white/20 text-white hover:bg-white/10 hover:text-white">
+            <Button variant="outline" size="lg" className="flex items-center gap-3 bg-black/40 backdrop-blur-md border-amber-400/50 text-white hover:bg-amber-600/80 hover:text-white">
               <ArrowLeft className="h-5 w-5" />
-              Back to Menu
+              Retour au menu
             </Button>
           </Link>
         </div>
