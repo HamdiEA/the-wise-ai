@@ -208,8 +208,8 @@ const AppetizersMenu = () => {
         )}
 
         <div className="grid gap-8">
-          <Card className="shadow-2xl border border-white/10 bg-black/40 backdrop-blur-md">
-            <CardHeader className="bg-black/60 text-white border-b border-white/10">
+          <Card className="shadow-2xl border border-amber-400/30 bg-black/40 backdrop-blur-md">
+            <CardHeader className="bg-black/60 text-white border-b border-amber-400/30">
               <CardTitle className="text-3xl font-bold text-center drop-shadow-lg">
                 {menuData.title}
               </CardTitle>
@@ -219,8 +219,8 @@ const AppetizersMenu = () => {
                 <div className="space-y-4 md:space-y-6">
                   {menuData.sections.map((section: any, sectionIndex: number) => (
                     <div key={sectionIndex} className="space-y-3 md:space-y-4">
-                      <h3 className="font-bold text-xl md:text-2xl text-white mt-4 md:mt-6 flex items-center gap-2 md:gap-3">
-                        <span className="h-1 w-8 md:w-12 bg-white/30 rounded"></span>
+                      <h3 className="font-bold text-xl md:text-2xl text-amber-400 mt-4 md:mt-6 flex items-center gap-2 md:gap-3">
+                        <span className="h-1 w-8 md:w-12 bg-amber-400 rounded"></span>
                         {section.subtitle}
                       </h3>
                       {section.items.map((item: any, itemIndex: number) => (
@@ -232,15 +232,15 @@ const AppetizersMenu = () => {
                           </div>
                           <div className="flex items-center gap-2 sm:gap-3 sm:ml-4 flex-shrink-0">
                             {item.price && (
-                              <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-sm md:text-lg px-2 md:px-3 py-0.5 md:py-1">
+                              <Badge variant="secondary" className="bg-amber-500/20 text-amber-300 border-amber-400/50 text-sm md:text-lg px-2 md:px-3 py-0.5 md:py-1">
                                 {item.price}
                               </Badge>
                             )}
-                            <div className="flex items-center gap-1 md:gap-2 bg-black/40 rounded-full p-1 md:p-1.5 border border-white/20">
+                            <div className="flex items-center gap-1 md:gap-2 bg-black/40 rounded-full p-1 md:p-1.5 border border-amber-400/30">
                               <Button
                                 size="icon"
                                 variant="ghost"
-                                className="h-7 w-7 md:h-8 md:w-8 rounded-full hover:bg-white/20 hover:text-white"
+                                className="h-7 w-7 md:h-8 md:w-8 rounded-full hover:bg-amber-600 hover:text-white"
                                 onClick={() => handleQuantityChange(item.name, item, -1)}
                               >
                                 <Minus className="h-3 w-3 md:h-4 md:w-4" />
@@ -251,7 +251,7 @@ const AppetizersMenu = () => {
                               <Button
                                 size="icon"
                                 variant="ghost"
-                                className="h-7 w-7 md:h-8 md:w-8 rounded-full hover:bg-white/20 hover:text-white"
+                                className="h-7 w-7 md:h-8 md:w-8 rounded-full hover:bg-amber-600 hover:text-white"
                                 onClick={() => handleQuantityChange(item.name, item, 1)}
                               >
                                 <Plus className="h-3 w-3 md:h-4 md:w-4" />
@@ -270,7 +270,7 @@ const AppetizersMenu = () => {
                     <img 
                       src={menuData.image} 
                       alt={menuData.title}
-                      className="max-w-md w-full h-auto object-contain rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border border-white/10"
+                      className="max-w-md w-full h-auto object-contain rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border border-amber-400/30"
                       style={{
                         filter: 'contrast(1.15) saturate(1.2) brightness(1.1)',
                       }}

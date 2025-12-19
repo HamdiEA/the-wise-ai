@@ -74,8 +74,8 @@ const MenuCategories = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {categories.map((category, index) => (
-            <Card key={index} className="shadow-2xl border border-white/10 hover:shadow-3xl transition-all duration-500 hover:scale-105 group bg-black/40 backdrop-blur-md">
-              <CardHeader className="bg-black/60 text-white border-b border-white/10">
+            <Card key={index} className="shadow-2xl border border-amber-400/30 hover:shadow-3xl transition-all duration-500 hover:scale-105 group bg-black/40 backdrop-blur-md">
+              <CardHeader className="bg-black/60 text-white border-b border-amber-400/30">
                 <CardTitle className="text-2xl font-bold text-center drop-shadow-lg">
                   {category.title}
                 </CardTitle>

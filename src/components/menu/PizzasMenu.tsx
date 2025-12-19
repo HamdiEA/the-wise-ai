@@ -366,8 +366,8 @@ const PizzasMenu = () => {
           </div>
         )}
 
-        <Card className="shadow-2xl border border-white/10 bg-black/40 backdrop-blur-md">
-          <CardHeader className="bg-black/60 text-white border-b border-white/10">
+        <Card className="shadow-2xl border border-amber-400/30 bg-black/40 backdrop-blur-md">
+          <CardHeader className="bg-black/60 text-white border-b border-amber-400/30">
             <CardTitle className="text-3xl font-bold text-center drop-shadow-lg">
               🍕 Pizzas
             </CardTitle>
@@ -376,7 +376,7 @@ const PizzasMenu = () => {
             <div className="grid lg:grid-cols-2 gap-8">
               <div className="space-y-4">
                 {pizzas.map((pizzaName: string, pizzaIndex: number) => (
-                  <div key={pizzaIndex} className="p-5 border border-white/10 last:border-b-0 hover:bg-white/5 backdrop-blur-sm transition-all duration-300 rounded-xl">
+                  <div key={pizzaIndex} className="p-5 border border-amber-400/20 last:border-b-0 hover:bg-amber-600/20 backdrop-blur-sm transition-all duration-300 rounded-xl">
                     <h4 className="font-semibold text-xl text-white mb-1 leading-relaxed">
                       {pizzaName}
                     </h4>
@@ -446,7 +446,7 @@ const PizzasMenu = () => {
                 <img 
                   src={pizza1Img} 
                   alt="Pizza 1"
-                  className="max-w-2xl w-full h-auto object-contain rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border border-white/10"
+                  className="max-w-2xl w-full h-auto object-contain rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border border-amber-400/30"
                   style={{
                     filter: 'contrast(1.15) saturate(1.2) brightness(1.1)',
                   }}
@@ -454,7 +454,7 @@ const PizzasMenu = () => {
                 <img 
                   src={pizza2Img} 
                   alt="Pizza 2"
-                  className="max-w-2xl w-full h-auto object-contain rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border border-white/10"
+                  className="max-w-2xl w-full h-auto object-contain rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border border-amber-400/30"
                   style={{
                     filter: 'contrast(1.15) saturate(1.2) brightness(1.1)',
                   }}
