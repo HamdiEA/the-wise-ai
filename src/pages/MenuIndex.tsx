@@ -4,9 +4,16 @@ import Footer from "@/components/Footer";
 import GlobalBackground from "@/components/GlobalBackground";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSwipe } from "@/hooks/use-swipe";
 
 const MenuIndex = () => {
+  const navigate = useNavigate();
+  
+  useSwipe({
+    onSwipeLeft: () => navigate("/"),
+  });
+
   return (
     <GlobalBackground>
       <Header />

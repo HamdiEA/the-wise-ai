@@ -4,9 +4,16 @@ import Footer from "@/components/Footer";
 import GlobalBackground from "@/components/GlobalBackground";
 import { Button } from "@/components/ui/button";
 import { Clock, MapPin, Phone, Bot, Facebook, Instagram, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSwipe } from "@/hooks/use-swipe";
 
 const Index = () => {
+  const navigate = useNavigate();
+  
+  useSwipe({
+    onSwipeRight: () => navigate("/menu"),
+  });
+
   return (
     <GlobalBackground>
       <div className="flex flex-col flex-1">
