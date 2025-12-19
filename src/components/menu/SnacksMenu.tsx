@@ -180,13 +180,13 @@ const SnacksMenu = () => {
   return (
     <section className="py-20 bg-black/20 backdrop-blur-sm relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-b from-amber-900/20 via-transparent to-amber-900/20 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20 pointer-events-none"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Back button */}
         <div className="mb-8">
           <Link to="/menu">
-            <Button variant="outline" size="lg" className="flex items-center gap-3 bg-black/40 backdrop-blur-md border-amber-400/50 text-white hover:bg-amber-600/80 hover:text-white">
+            <Button variant="outline" size="lg" className="flex items-center gap-3 bg-black/40 backdrop-blur-md border-white/20 text-white hover:bg-white/20 hover:text-white">
               <ArrowLeft className="h-5 w-5" />
               Back to Menu
             </Button>
@@ -220,8 +220,8 @@ const SnacksMenu = () => {
           </div>
         )}
 
-        <Card className="shadow-2xl border border-amber-400/30 bg-black/40 backdrop-blur-md">
-          <CardHeader className="bg-gradient-to-r from-amber-500 to-amber-600 text-white">
+        <Card className="shadow-2xl border border-white/10 bg-black/40 backdrop-blur-md">
+          <CardHeader className="bg-black/60 text-white border-b border-white/10">
             <CardTitle className="text-3xl font-bold text-center drop-shadow-lg">
               🧁 Snacks & Desserts
             </CardTitle>
@@ -231,12 +231,12 @@ const SnacksMenu = () => {
               <div className="space-y-3 md:space-y-4">
                 {menuCategories.map((category, catIndex) => (
                   <div key={catIndex} className="space-y-3 md:space-y-4">
-                    <h3 className="font-bold text-xl md:text-2xl text-amber-400 mt-4 md:mt-6 flex items-center gap-2 md:gap-3">
-                      <span className="h-1 w-8 md:w-12 bg-amber-400 rounded"></span>
+                    <h3 className="font-bold text-xl md:text-2xl text-white mt-4 md:mt-6 flex items-center gap-2 md:gap-3">
+                      <span className="h-1 w-8 md:w-12 bg-white/30 rounded"></span>
                       {category.subtitle}
                     </h3>
                     {category.items.map((item: any, itemIndex: number) => (
-                      <div key={itemIndex} className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 p-3 md:p-5 border border-amber-400/20 last:border-b-0 hover:bg-amber-600/20 backdrop-blur-sm transition-all duration-300 rounded-xl">
+                      <div key={itemIndex} className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 p-3 md:p-5 border border-white/10 last:border-b-0 hover:bg-white/5 backdrop-blur-sm transition-all duration-300 rounded-xl">
                         <div className="flex-1 min-w-0">
                           <h4 className="font-semibold text-lg md:text-xl text-white leading-relaxed">
                             {item.name}
@@ -244,15 +244,15 @@ const SnacksMenu = () => {
                         </div>
                         <div className="flex items-center gap-2 sm:gap-3 sm:ml-4 flex-shrink-0">
                           {item.price && (
-                            <Badge variant="secondary" className="bg-amber-500/20 text-amber-300 border-amber-400/50 text-sm md:text-lg px-2 md:px-3 py-0.5 md:py-1">
+                            <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-sm md:text-lg px-2 md:px-3 py-0.5 md:py-1">
                               {item.price}
                             </Badge>
                           )}
-                          <div className="flex items-center gap-1 md:gap-2 bg-black/40 rounded-full p-1 md:p-1.5 border border-amber-400/30">
+                          <div className="flex items-center gap-1 md:gap-2 bg-black/40 rounded-full p-1 md:p-1.5 border border-white/20">
                             <Button
                               size="icon"
                               variant="ghost"
-                              className="h-7 w-7 md:h-8 md:w-8 rounded-full bg-amber-500/20 text-amber-100 border border-amber-400/50 hover:bg-amber-500/40 hover:text-white"
+                              className="h-7 w-7 md:h-8 md:w-8 rounded-full bg-white/10 text-white border border-white/20 hover:bg-white/20 hover:text-white"
                               onClick={() => handleQuantityChange(item.name, item, -1)}
                             >
                               <Minus className="h-3 w-3 md:h-4 md:w-4" />
@@ -263,7 +263,7 @@ const SnacksMenu = () => {
                             <Button
                               size="icon"
                               variant="ghost"
-                              className="h-7 w-7 md:h-8 md:w-8 rounded-full bg-amber-500/20 text-amber-100 border border-amber-400/50 hover:bg-amber-500/40 hover:text-white"
+                              className="h-7 w-7 md:h-8 md:w-8 rounded-full bg-white/10 text-white border border-white/20 hover:bg-white/20 hover:text-white"
                               onClick={() => handleQuantityChange(item.name, item, 1)}
                             >
                               <Plus className="h-3 w-3 md:h-4 md:w-4" />
@@ -278,9 +278,9 @@ const SnacksMenu = () => {
               
               {/* Placeholder for image or additional content */}
               <div className="hidden lg:flex items-center justify-center">
-                <div className="text-center p-10 bg-black/40 border border-amber-400/30 rounded-2xl shadow-2xl backdrop-blur-md">
+                <div className="text-center p-10 bg-black/40 border border-white/10 rounded-2xl shadow-2xl backdrop-blur-md">
                   <div className="text-6xl mb-4">🧁</div>
-                  <h3 className="text-2xl font-semibold text-amber-300 mb-3">Desserts Maison</h3>
+                  <h3 className="text-2xl font-semibold text-white mb-3">Desserts Maison</h3>
                   <p className="text-gray-200 leading-relaxed">
                     Nos crêpes, gaufres et desserts sont préparés frais avec des ingrédients de qualité.
                   </p>

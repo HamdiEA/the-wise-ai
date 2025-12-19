@@ -321,13 +321,13 @@ const PizzasMenu = () => {
   return (
     <section className="py-20 bg-black/20 backdrop-blur-sm relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-b from-amber-900/20 via-transparent to-amber-900/20 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20 pointer-events-none"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Back button */}
         <div className="mb-8">
           <Link to="/menu">
-            <Button variant="outline" size="lg" className="flex items-center gap-3 bg-black/40 backdrop-blur-md border-amber-400/50 text-white hover:bg-amber-600/80 hover:text-white">
+            <Button variant="outline" size="lg" className="flex items-center gap-3 bg-black/40 backdrop-blur-md border-white/20 text-white hover:bg-white/20 hover:text-white">
               <ArrowLeft className="h-5 w-5" />
               Retour aux catégories
             </Button>
@@ -366,8 +366,8 @@ const PizzasMenu = () => {
           </div>
         )}
 
-        <Card className="shadow-2xl border border-amber-400/30 bg-black/40 backdrop-blur-md">
-          <CardHeader className="bg-gradient-to-r from-amber-500 to-amber-600 text-white">
+        <Card className="shadow-2xl border border-white/10 bg-black/40 backdrop-blur-md">
+          <CardHeader className="bg-black/60 text-white border-b border-white/10">
             <CardTitle className="text-3xl font-bold text-center drop-shadow-lg">
               🍕 Pizzas
             </CardTitle>
@@ -376,7 +376,7 @@ const PizzasMenu = () => {
             <div className="grid lg:grid-cols-2 gap-8">
               <div className="space-y-4">
                 {pizzas.map((pizzaName: string, pizzaIndex: number) => (
-                  <div key={pizzaIndex} className="p-5 border border-amber-400/20 last:border-b-0 hover:bg-amber-600/20 backdrop-blur-sm transition-all duration-300 rounded-xl">
+                  <div key={pizzaIndex} className="p-5 border border-white/10 last:border-b-0 hover:bg-white/5 backdrop-blur-sm transition-all duration-300 rounded-xl">
                     <h4 className="font-semibold text-xl text-white mb-1 leading-relaxed">
                       {pizzaName}
                     </h4>
@@ -389,7 +389,7 @@ const PizzasMenu = () => {
                           value={pizzaSizes[pizzaName] || ""}
                           onValueChange={(value) => setPizzaSizes(prev => ({ ...prev, [pizzaName]: value }))}
                         >
-                          <SelectTrigger className="w-[200px] bg-black/40 border-amber-400/40 text-white">
+                          <SelectTrigger className="w-[200px] bg-black/40 border-white/40 text-white">
                             <SelectValue placeholder="Sélectionnez la taille" />
                           </SelectTrigger>
                           <SelectContent>
@@ -427,7 +427,7 @@ const PizzasMenu = () => {
                               }));
                             }
                           }}
-                          className="rounded border-amber-300 bg-black/40 text-amber-200 focus:ring-amber-500"
+                          className="rounded border-white/30 bg-black/40 text-white focus:ring-white"
                         />
                         <label htmlFor={`cheese-crust-${pizzaIndex}`} className="text-sm text-gray-200">
                           Croûte fromage
@@ -446,7 +446,7 @@ const PizzasMenu = () => {
                 <img 
                   src={pizza1Img} 
                   alt="Pizza 1"
-                  className="max-w-2xl w-full h-auto object-contain rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border border-amber-400/30"
+                  className="max-w-2xl w-full h-auto object-contain rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border border-white/10"
                   style={{
                     filter: 'contrast(1.15) saturate(1.2) brightness(1.1)',
                   }}
@@ -454,7 +454,7 @@ const PizzasMenu = () => {
                 <img 
                   src={pizza2Img} 
                   alt="Pizza 2"
-                  className="max-w-2xl w-full h-auto object-contain rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border border-amber-400/30"
+                  className="max-w-2xl w-full h-auto object-contain rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border border-white/10"
                   style={{
                     filter: 'contrast(1.15) saturate(1.2) brightness(1.1)',
                   }}

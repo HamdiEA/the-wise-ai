@@ -60,7 +60,7 @@ const MenuCategories = () => {
   return (
     <section className="py-20 bg-black/20 backdrop-blur-sm relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-b from-amber-900/20 via-transparent to-amber-900/20 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20 pointer-events-none"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
@@ -74,8 +74,8 @@ const MenuCategories = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {categories.map((category, index) => (
-            <Card key={index} className="shadow-2xl border border-amber-400/30 hover:shadow-3xl transition-all duration-500 hover:scale-105 group bg-black/40 backdrop-blur-md">
-              <CardHeader className="bg-gradient-to-r from-amber-500 to-amber-600 text-white">
+            <Card key={index} className="shadow-2xl border border-white/10 hover:shadow-3xl transition-all duration-500 hover:scale-105 group bg-black/40 backdrop-blur-md">
+              <CardHeader className="bg-black/60 text-white border-b border-white/10">
                 <CardTitle className="text-2xl font-bold text-center drop-shadow-lg">
                   {category.title}
                 </CardTitle>
