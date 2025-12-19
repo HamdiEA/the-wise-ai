@@ -55,8 +55,8 @@ const DrinksMenu = () => {
         };
         
         toast({
-          title: "Added to cart",
-          description: `${item.name} added`,
+          title: "Ajouté au panier",
+          description: `${item.name} a été ajouté`,
         });
         
         return { 
@@ -268,15 +268,15 @@ const DrinksMenu = () => {
             >
               <ShoppingCart className="mr-3 h-6 w-6 flex-shrink-0" />
               <div className="flex flex-col items-start md:flex-row md:items-center gap-1 md:gap-2">
-                <span>Order ({totalItems})</span>
+                <span>Commander ({totalItems})</span>
                 {totalPrice > 0 && <span className="font-bold">{totalPrice.toFixed(2)}dt</span>}
               </div>
             </Button>
           </div>
         )}
 
-        <Card className="shadow-2xl border border-white/10 bg-black/40 backdrop-blur-md">
-          <CardHeader className="bg-black/60 text-white border-b border-white/10">
+        <Card className="shadow-2xl border border-amber-400/30 bg-black/40 backdrop-blur-md">
+          <CardHeader className="bg-black/60 text-white border-b border-amber-400/30">
             <CardTitle className="text-3xl font-bold text-center drop-shadow-lg">
               🥤 Boissons
             </CardTitle>
@@ -286,12 +286,12 @@ const DrinksMenu = () => {
               <div className="space-y-3 md:space-y-4">
                 {drinkCategories.map((category, catIndex) => (
                   <div key={catIndex} className="space-y-3 md:space-y-4">
-                    <h3 className="font-bold text-xl md:text-2xl text-white mt-4 md:mt-6 flex items-center gap-2 md:gap-3">
-                      <span className="h-1 w-8 md:w-12 bg-white/30 rounded"></span>
+                    <h3 className="font-bold text-xl md:text-2xl text-amber-400 mt-4 md:mt-6 flex items-center gap-2 md:gap-3">
+                      <span className="h-1 w-8 md:w-12 bg-amber-400 rounded"></span>
                       {category.subtitle}
                     </h3>
                     {category.items.map((item: any, itemIndex: number) => (
-                      <div key={itemIndex} className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 p-3 md:p-5 border border-white/10 last:border-b-0 hover:bg-white/5 backdrop-blur-sm transition-all duration-300 rounded-xl">
+                      <div key={itemIndex} className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 p-3 md:p-5 border border-amber-400/20 last:border-b-0 hover:bg-amber-600/20 backdrop-blur-sm transition-all duration-300 rounded-xl">
                         <div className="flex-1 min-w-0">
                           <h4 className="font-semibold text-lg md:text-xl text-white leading-relaxed">
                             {item.name}
@@ -299,15 +299,15 @@ const DrinksMenu = () => {
                         </div>
                         <div className="flex items-center gap-2 sm:gap-3 sm:ml-4 flex-shrink-0">
                           {item.price && (
-                            <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-sm md:text-lg px-2 md:px-3 py-0.5 md:py-1">
+                            <Badge variant="secondary" className="bg-amber-500/20 text-amber-300 border-amber-400/50 text-sm md:text-lg px-2 md:px-3 py-0.5 md:py-1">
                               {item.price}
                             </Badge>
                           )}
-                          <div className="flex items-center gap-1 md:gap-2 bg-black/40 rounded-full p-1 md:p-1.5 border border-white/20">
+                          <div className="flex items-center gap-1 md:gap-2 bg-black/40 rounded-full p-1 md:p-1.5 border border-amber-400/30">
                             <Button
                               size="icon"
                               variant="ghost"
-                              className="h-7 w-7 md:h-8 md:w-8 rounded-full bg-white/10 text-white border border-white/20 hover:bg-white/20 hover:text-white"
+                              className="h-7 w-7 md:h-8 md:w-8 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/50 hover:bg-amber-600 hover:text-white"
                               onClick={() => handleQuantityChange(item.name, item, -1)}
                             >
                               <Minus className="h-3 w-3 md:h-4 md:w-4" />
@@ -318,7 +318,7 @@ const DrinksMenu = () => {
                             <Button
                               size="icon"
                               variant="ghost"
-                              className="h-7 w-7 md:h-8 md:w-8 rounded-full bg-white/10 text-white border border-white/20 hover:bg-white/20 hover:text-white"
+                              className="h-7 w-7 md:h-8 md:w-8 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/50 hover:bg-amber-600 hover:text-white"
                               onClick={() => handleQuantityChange(item.name, item, 1)}
                             >
                               <Plus className="h-3 w-3 md:h-4 md:w-4" />
@@ -336,7 +336,7 @@ const DrinksMenu = () => {
                 <img 
                   src={drinkImg} 
                   alt="Boissons"
-                  className="max-w-md w-full h-auto object-contain rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border border-white/10"
+                  className="max-w-md w-full h-auto object-contain rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border border-amber-400/30"
                   style={{
                     filter: 'contrast(1.15) saturate(1.2) brightness(1.1)',
                   }}

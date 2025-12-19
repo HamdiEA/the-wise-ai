@@ -389,7 +389,7 @@ const PizzasMenu = () => {
                           value={pizzaSizes[pizzaName] || ""}
                           onValueChange={(value) => setPizzaSizes(prev => ({ ...prev, [pizzaName]: value }))}
                         >
-                          <SelectTrigger className="w-[200px] bg-black/40 border-white/40 text-white">
+                          <SelectTrigger className="w-[200px] bg-black/40 border-amber-400/40 text-white">
                             <SelectValue placeholder="Sélectionnez la taille" />
                           </SelectTrigger>
                           <SelectContent>
@@ -427,7 +427,7 @@ const PizzasMenu = () => {
                               }));
                             }
                           }}
-                          className="rounded border-white/30 bg-black/40 text-white focus:ring-white"
+                          className="rounded border-amber-400/30 bg-black/40 text-white focus:ring-amber-400"
                         />
                         <label htmlFor={`cheese-crust-${pizzaIndex}`} className="text-sm text-gray-200">
                           Croûte fromage

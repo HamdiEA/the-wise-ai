@@ -54,8 +54,8 @@ const SpecialsMenu = () => {
         };
         
         toast({
-          title: "Added to cart",
-          description: `${item.name} added`,
+          title: "Ajouté au panier",
+          description: `${item.name} a été ajouté`,
         });
         
         return { 
@@ -210,7 +210,7 @@ const SpecialsMenu = () => {
             >
               <ShoppingCart className="mr-3 h-6 w-6 flex-shrink-0" />
               <div className="flex flex-col items-start md:flex-row md:items-center gap-1 md:gap-2">
-                <span>Order ({totalItems})</span>
+                <span>Commander ({totalItems})</span>
                 {totalPrice > 0 && <span className="font-bold">{totalPrice.toFixed(2)}dt</span>}
               </div>
             </Button>
@@ -219,8 +219,8 @@ const SpecialsMenu = () => {
 
         <div className="grid gap-8">
           {menuSections.map((section, sectionIndex) => (
-            <Card key={sectionIndex} className="shadow-2xl border border-white/10 bg-black/40 backdrop-blur-md">
-              <CardHeader className="bg-black/60 text-white border-b border-white/10">
+            <Card key={sectionIndex} className="shadow-2xl border border-amber-400/30 bg-black/40 backdrop-blur-md">
+              <CardHeader className="bg-black/60 text-white border-b border-amber-400/30">
                 <CardTitle className="text-3xl font-bold text-center drop-shadow-lg">
                   {section.title}
                 </CardTitle>
@@ -232,7 +232,7 @@ const SpecialsMenu = () => {
                 <div className="grid lg:grid-cols-2 gap-8">
                   <div className="space-y-3 md:space-y-4">
                     {section.items.map((item: any, itemIndex: number) => (
-                      <div key={itemIndex} className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-0 p-3 md:p-5 border border-white/10 last:border-b-0 hover:bg-white/5 backdrop-blur-sm transition-all duration-300 rounded-xl">
+                      <div key={itemIndex} className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-0 p-3 md:p-5 border border-amber-400/20 last:border-b-0 hover:bg-amber-600/20 backdrop-blur-sm transition-all duration-300 rounded-xl">
                         <div className="flex-1 min-w-0">
                           <h4 className="font-semibold text-lg md:text-xl text-white leading-relaxed">
                             {item.name}
@@ -245,15 +245,15 @@ const SpecialsMenu = () => {
                         </div>
                         <div className="flex items-center gap-2 sm:gap-3 sm:ml-4 flex-shrink-0">
                           {item.price && (
-                            <Badge variant="secondary" className="bg-white/10 text-white border-white/20 text-sm md:text-lg px-2 md:px-3 py-0.5 md:py-1">
+                            <Badge variant="secondary" className="bg-amber-500/20 text-amber-300 border-amber-400/50 text-sm md:text-lg px-2 md:px-3 py-0.5 md:py-1">
                               {item.price}
                             </Badge>
                           )}
-                          <div className="flex items-center gap-1 md:gap-2 bg-black/40 rounded-full p-1 md:p-1.5 border border-white/20">
+                          <div className="flex items-center gap-1 md:gap-2 bg-black/40 rounded-full p-1 md:p-1.5 border border-amber-400/30">
                             <Button
                               size="icon"
                               variant="ghost"
-                              className="h-7 w-7 md:h-8 md:w-8 rounded-full bg-white/10 text-white border border-white/20 hover:bg-white/20 hover:text-white"
+                              className="h-7 w-7 md:h-8 md:w-8 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/50 hover:bg-amber-600 hover:text-white"
                               onClick={() => handleQuantityChange(item.name, item, -1)}
                             >
                               <Minus className="h-3 w-3 md:h-4 md:w-4" />
@@ -264,7 +264,7 @@ const SpecialsMenu = () => {
                             <Button
                               size="icon"
                               variant="ghost"
-                              className="h-7 w-7 md:h-8 md:w-8 rounded-full bg-white/10 text-white border border-white/20 hover:bg-white/20 hover:text-white"
+                              className="h-7 w-7 md:h-8 md:w-8 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/50 hover:bg-amber-600 hover:text-white"
                               onClick={() => handleQuantityChange(item.name, item, 1)}
                             >
                               <Plus className="h-3 w-3 md:h-4 md:w-4" />
@@ -277,7 +277,7 @@ const SpecialsMenu = () => {
                   
                   {/* Placeholder for image or additional content */}
                   <div className="hidden lg:flex items-center justify-center">
-                    <div className="text-center p-10 bg-black/40 border border-white/10 rounded-2xl shadow-2xl backdrop-blur-md">
+                    <div className="text-center p-10 bg-black/40 border border-amber-400/30 rounded-2xl shadow-2xl backdrop-blur-md">
                       <div className="text-6xl mb-4">{sectionIndex === 0 ? "🍗" : sectionIndex === 1 ? "🥗" : sectionIndex === 2 ? "⭐" : "👶"}</div>
                       <h3 className="text-2xl font-semibold text-white mb-3">Spécialités Maison</h3>
                       <p className="text-gray-200 leading-relaxed">
