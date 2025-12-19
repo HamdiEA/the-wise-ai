@@ -8,8 +8,9 @@ const GlobalBackground = ({ children }: { children: React.ReactNode }) => {
         className="fixed inset-0 w-full h-full bg-cover bg-center bg-no-repeat -z-10"
         style={{
           backgroundImage: `url(${backgroundImg})`,
-          filter: "blur(3px) brightness(0.7)",
-          transform: "scale(1.1)",
+          filter: "blur(2px) brightness(0.7)",
+          transform: "scale(1.05) translate3d(0, 0, 0)",
+          willChange: "transform",
         }}
       />
 

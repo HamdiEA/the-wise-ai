@@ -86,6 +86,8 @@ const VideoCarousel = () => {
               muted // Crucial for Vercel/Chrome autoplay
               loop
               playsInline // Crucial for mobile support
+              preload={index === 0 ? "auto" : "none"}
+              loading="lazy"
               onEnded={() => {
                 if (isPlaying) {
                   nextSlide();
