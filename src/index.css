@@ -69,6 +69,8 @@ All colors MUST be HSL.
         @apply bg-background text-foreground;
         margin: 0;
         padding: 0;
+        /* Force a neutral fallback to avoid the blue tint when assets are loading */
+        background-color: #000;
         /* Hide body scrolling so we only keep a single scrollbar on #root */
         overflow: hidden;
     }
@@ -76,6 +78,8 @@ All colors MUST be HSL.
         min-height: 100vh;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+        /* Ensure the root has its own dark fallback so swipes don't show blue */
+        background-color: #000;
     }
 }
 
