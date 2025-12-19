@@ -54,8 +54,8 @@ const PastaMenu = () => {
         };
         
         toast({
-          title: "Added to cart",
-          description: `${item.name} added`,
+          title: "Ajouté au panier",
+          description: `${item.name} a été ajouté`,
         });
         
         return { 
@@ -148,12 +148,11 @@ const PastaMenu = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-black/20 backdrop-blur-sm relative overflow-hidden w-full">
+    <section className="py-20 bg-black/20 backdrop-blur-sm relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20 pointer-events-none"></div>
       
-      <div className="px-4 relative z-10">
-        <div className="container mx-auto">
+      <div className="container mx-auto px-4 relative z-10">
         {/* Back button */}
         <div className="mb-8">
           <Link to="/menu">
@@ -184,7 +183,7 @@ const PastaMenu = () => {
             >
               <ShoppingCart className="mr-3 h-6 w-6 flex-shrink-0" />
               <div className="flex flex-col items-start md:flex-row md:items-center gap-1 md:gap-2">
-                <span>Order ({totalItems})</span>
+                <span>Commander ({totalItems})</span>
                 {totalPrice > 0 && <span className="font-bold">{totalPrice.toFixed(2)}dt</span>}
               </div>
             </Button>
@@ -215,7 +214,7 @@ const PastaMenu = () => {
                         <Button
                           size="icon"
                           variant="ghost"
-                          className="h-7 w-7 md:h-8 md:w-8 rounded-full bg-white/10 text-white border border-white/20 hover:bg-white/20 hover:text-white"
+                          className="h-7 w-7 md:h-8 md:w-8 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/50 hover:bg-amber-600 hover:text-white"
                           onClick={() => handleQuantityChange(item.name, item, -1)}
                         >
                           <Minus className="h-3 w-3 md:h-4 md:w-4" />
@@ -226,7 +225,7 @@ const PastaMenu = () => {
                         <Button
                           size="icon"
                           variant="ghost"
-                          className="h-7 w-7 md:h-8 md:w-8 rounded-full bg-white/10 text-white border border-white/20 hover:bg-white/20 hover:text-white"
+                          className="h-7 w-7 md:h-8 md:w-8 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/50 hover:bg-amber-600 hover:text-white"
                           onClick={() => handleQuantityChange(item.name, item, 1)}
                         >
                           <Plus className="h-3 w-3 md:h-4 md:w-4" />
@@ -260,7 +259,6 @@ const PastaMenu = () => {
           />
         )}
       </div>
-    </div>
     </section>
   );
 };

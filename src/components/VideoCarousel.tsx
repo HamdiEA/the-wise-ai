@@ -68,6 +68,7 @@ const VideoCarousel = () => {
 
   return (
     <div className="relative w-full h-full overflow-hidden" style={{pointerEvents: "auto"}}>
+      {/* Decorative holiday lights removed for clean edges */}
       {/* Video slides */}
       <div className="relative w-full h-full overflow-hidden" style={{pointerEvents: "auto"}}>
         {videos.map((video, index) => (

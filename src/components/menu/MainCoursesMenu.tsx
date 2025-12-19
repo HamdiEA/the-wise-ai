@@ -55,8 +55,8 @@ const MainCoursesMenu = () => {
         };
         
         toast({
-          title: "Added to cart",
-          description: `${item.name} added`,
+          title: "Ajouté au panier",
+          description: `${item.name} a été ajouté`,
         });
         
         return { 
@@ -189,12 +189,11 @@ const MainCoursesMenu = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-black/20 backdrop-blur-sm relative overflow-hidden w-full">
+    <section className="py-20 bg-black/20 backdrop-blur-sm relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20 pointer-events-none"></div>
       
-      <div className="px-4 relative z-10">
-        <div className="container mx-auto">
+      <div className="container mx-auto px-4 relative z-10">
         {/* Back button */}
         <div className="mb-8">
           <Link to="/menu">
@@ -225,7 +224,7 @@ const MainCoursesMenu = () => {
             >
               <ShoppingCart className="mr-3 h-6 w-6 flex-shrink-0" />
               <div className="flex flex-col items-start md:flex-row md:items-center gap-1 md:gap-2">
-                <span>Order ({totalItems})</span>
+                <span>Commander ({totalItems})</span>
                 {totalPrice > 0 && <span className="font-bold">{totalPrice.toFixed(2)}dt</span>}
               </div>
             </Button>
@@ -368,8 +367,6 @@ const MainCoursesMenu = () => {
           totalPrice={totalPrice}
         />
       )}
-        </div>
-      </div>
     </section>
   );
 };
