@@ -304,6 +304,8 @@ export default function SimpleCopilotChat() {
           gap: 10,
           background: "rgba(0,0,0,0.15)",
           minHeight: 0,
+          maxHeight: "100%",
+          height: "100%",
           WebkitOverflowScrolling: "touch",
           wordBreak: "break-word",
         }}
@@ -318,7 +320,7 @@ export default function SimpleCopilotChat() {
           )}
           
           {messages.map((m, i) => (
-            <div key={i} style={{display: "flex", flexDirection: m.role === "user" ? "row-reverse" : "row", alignItems: "flex-end", gap: 8, animation: "slideIn 0.3s ease-out", overflow: "hidden"}}>
+            <div key={i} style={{display: "flex", flexDirection: m.role === "user" ? "row-reverse" : "row", alignItems: "flex-end", gap: 8, animation: "slideIn 0.3s ease-out"}}>
               <div style={{
                 maxWidth: "78%",
                 padding: "10px 14px",
