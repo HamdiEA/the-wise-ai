@@ -148,11 +148,12 @@ const PastaMenu = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-black/20 backdrop-blur-sm relative overflow-hidden">
+    <section className="py-20 bg-black/20 backdrop-blur-sm relative overflow-hidden w-full">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20 pointer-events-none"></div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="px-4 relative z-10">
+        <div className="container mx-auto">
         {/* Back button */}
         <div className="mb-8">
           <Link to="/menu">
@@ -258,6 +259,7 @@ const PastaMenu = () => {
             totalPrice={totalPrice}
           />
         )}
+        </div>
       </div>
     </section>
   );
