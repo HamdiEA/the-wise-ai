@@ -8,8 +8,9 @@ const GlobalBackground = ({ children }: { children: React.ReactNode }) => {
         className="fixed inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0"
         style={{
           backgroundImage: `url(${backgroundImg})`,
-          filter: "blur(2px) brightness(0.7)",
-          transform: "scale(1.05) translate3d(0, 0, 0)",
+          // Keep minimal processing so the photo stays bright and visible
+          filter: "blur(1px) brightness(0.9)",
+          transform: "scale(1.02) translate3d(0, 0, 0)",
           willChange: "transform",
         }}
       />
@@ -20,7 +21,7 @@ const GlobalBackground = ({ children }: { children: React.ReactNode }) => {
       <div className="holiday-lights z-10" aria-hidden="true" />
       
       {/* Dark overlay for better readability */}
-      <div className="fixed inset-0 bg-gradient-to-b from-amber-900/20 via-black/30 to-amber-900/20 z-20" />
+      <div className="fixed inset-0 bg-gradient-to-b from-amber-900/12 via-black/18 to-amber-900/12 z-20" />
       
       {/* Content - grows to fill available space */}
       <div className="relative z-30 flex flex-col flex-1 w-full">
