@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import GlobalBackground from "@/components/GlobalBackground";
 import { useSmoothSwipe } from "@/hooks/use-smooth-swipe";
 
 interface MenuLayoutProps {
@@ -12,17 +11,15 @@ const MenuLayout = ({ children }: MenuLayoutProps) => {
   const { getSwipeStyle } = useSmoothSwipe({ prevPage: "/menu" });
 
   return (
-    <GlobalBackground>
-      <div className="flex flex-col flex-1" style={getSwipeStyle()}>
-        <Header />
-        <div className="flex-1 flex flex-col pt-20">
-          <div className="flex-1">
-            {children}
-          </div>
-          <Footer />
+    <div className="flex flex-col min-h-screen" style={getSwipeStyle()}>
+      <Header />
+      <div className="flex-1 flex flex-col pt-20">
+        <div className="flex-1">
+          {children}
         </div>
+        <Footer />
       </div>
-    </GlobalBackground>
+    </div>
   );
 };
 

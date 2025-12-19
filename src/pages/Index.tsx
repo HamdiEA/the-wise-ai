@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import HeroSectionWithVideo from "@/components/HeroSectionWithVideo";
 import Footer from "@/components/Footer";
-import GlobalBackground from "@/components/GlobalBackground";
 import { Button } from "@/components/ui/button";
 import { Clock, MapPin, Phone, Bot, Facebook, Instagram, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -13,15 +12,14 @@ const Index = () => {
   });
 
   return (
-    <GlobalBackground>
-      <div className="flex flex-col flex-1" style={getSwipeStyle()}>
-        <Header />
-        <div className="flex-1">
-          <HeroSectionWithVideo />
+    <div className="flex flex-col min-h-screen" style={getSwipeStyle()}>
+      <Header />
+      <div className="flex-1">
+        <HeroSectionWithVideo />
 
-          {/* Infos pratiques & chatbot */}
-          <section className="py-16 px-4">
-            <div className="container mx-auto max-w-6xl grid lg:grid-cols-2 gap-10 bg-black/40 backdrop-blur-lg border border-amber-400/30 rounded-3xl shadow-2xl p-8">
+        {/* Infos pratiques & chatbot */}
+        <section className="py-16 px-4">
+          <div className="container mx-auto max-w-6xl grid lg:grid-cols-2 gap-10 bg-black/40 backdrop-blur-lg border border-amber-400/30 rounded-3xl shadow-2xl p-8">
             <div className="space-y-6">
               <div className="flex items-center gap-3">
                 <Button asChild variant="outline" className="border-amber-400/60 text-white bg-black/40 hover:bg-amber-600/30">
@@ -96,11 +94,10 @@ const Index = () => {
             </div>
           </div>
         </section>
-        </div>
-
-        <Footer />
       </div>
-    </GlobalBackground>
+
+      <Footer />
+    </div>
   );
 };
 

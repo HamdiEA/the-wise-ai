@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import MenuCategories from "@/components/MenuCategories";
 import Footer from "@/components/Footer";
-import GlobalBackground from "@/components/GlobalBackground";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -13,8 +12,7 @@ const MenuIndex = () => {
   });
 
   return (
-    <GlobalBackground>
-      <div style={getSwipeStyle()}>
+    <div className="min-h-screen" style={getSwipeStyle()}>
       <Header />
       <div className="pt-24 pb-12 container mx-auto px-4">
         <div className="mb-6">
@@ -29,8 +27,7 @@ const MenuIndex = () => {
         <MenuCategories />
       </div>
       <Footer />
-      </div>
-    </GlobalBackground>
+    </div>
   );
 };
 
