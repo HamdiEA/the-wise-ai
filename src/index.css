@@ -146,20 +146,22 @@ html {
     background: radial-gradient(circle, rgba(251, 191, 36, 0.55) 0%, rgba(251, 191, 36, 0.25) 35%, rgba(251, 191, 36, 0.0) 70%);
     filter: blur(1.5px);
     mix-blend-mode: screen;
-    animation-name: amberPulse;
+    animation-name: amberFloat;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
 
-@keyframes amberPulse {
+@keyframes amberFloat {
     0% {
-        transform: scale(0.92);
+        transform: translate(calc(var(--dx, 4px) * -1), calc(var(--dy, 4px) * -1)) scale(0.94);
         box-shadow: 0 0 8px rgba(251, 191, 36, 0.25);
+        opacity: 0.85;
     }
     100% {
-        transform: scale(1.08);
+        transform: translate(var(--dx, 4px), var(--dy, 4px)) scale(1.06);
         box-shadow: 0 0 22px rgba(251, 191, 36, 0.35);
+        opacity: 1;
     }
 }
 

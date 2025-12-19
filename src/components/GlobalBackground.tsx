@@ -45,6 +45,12 @@ const GlobalBackground = ({ children }: { children: React.ReactNode }) => {
               width: `${l.size}px`,
               height: `${l.size}px`,
               opacity: l.opacity,
+              // gentle drift amplitude (px)
+              // smaller bubbles drift less; larger drift slightly more
+              // CSS variables used by amberFloat keyframes
+              // @ts-ignore CSS custom props
+              ['--dx' as any]: `${(Math.min(l.size, 36) / 36) * (3 + Math.random() * 7)}px`,
+              ['--dy' as any]: `${(Math.min(l.size, 36) / 36) * (3 + Math.random() * 7)}px`,
               animationDuration: `${l.duration}s`,
               animationDelay: `${l.delay}s`,
             }}
