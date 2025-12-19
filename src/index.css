@@ -12,7 +12,7 @@ All colors MUST be HSL.
     #root {
         width: 100vw;
         max-width: 100%;
-        height: auto;
+        height: 100%;
         margin: 0;
         padding: 0;
         overflow-x: hidden;
@@ -69,6 +69,13 @@ All colors MUST be HSL.
         @apply bg-background text-foreground;
         margin: 0;
         padding: 0;
+        /* Hide body scrolling so we only keep a single scrollbar on #root */
+        overflow: hidden;
+    }
+    #root {
+        min-height: 100vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 }
 

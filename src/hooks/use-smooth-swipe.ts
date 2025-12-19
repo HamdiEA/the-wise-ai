@@ -49,28 +49,31 @@ export const useSmoothSwipe = ({ nextPage, prevPage, threshold = 100 }: SmoothSw
     
     // Determine if swipe was significant enough
     if (Math.abs(diff) > threshold) {
+      // Keep a small nudge animation so we do not slide the whole page off-screen
+      // and expose the underlying Vercel background while routing.
+      const nudge = 80;
+
       if (diff > 0 && prevPage) {
-        // Swipe right - go to previous page
-        setSwipeOffset(window.innerWidth);
+        setSwipeOffset(nudge);
         setTimeout(() => {
           navigate(prevPage);
           setSwipeOffset(0);
-        }, 300);
-      } else if (diff < 0 && nextPage) {
-        // Swipe left - go to next page
-        setSwipeOffset(-window.innerWidth);
+        }, 120);
+        return;
+      }
+
+      if (diff < 0 && nextPage) {
+        setSwipeOffset(-nudge);
         setTimeout(() => {
           navigate(nextPage);
           setSwipeOffset(0);
-        }, 300);
-      } else {
-        // Snap back
-        setSwipeOffset(0);
+        }, 120);
+        return;
       }
-    } else {
-      // Snap back
-      setSwipeOffset(0);
     }
+
+    // Snap back when no navigation happens
+    setSwipeOffset(0);
     
     touchStartX.current = 0;
     currentX.current = 0;
