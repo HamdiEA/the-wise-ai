@@ -473,8 +473,8 @@ const PizzasMenu = () => {
             totalPrice={totalPrice}
           />
         )}
-        </div>
       </div>
+    </div>
     </section>
   );
 };

@@ -355,8 +355,8 @@ const DrinksMenu = () => {
             totalPrice={totalPrice}
           />
         )}
-        </div>
       </div>
+    </div>
     </section>
   );
 };

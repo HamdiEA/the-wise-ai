@@ -299,8 +299,8 @@ const SnacksMenu = () => {
             totalPrice={totalPrice}
           />
         )}
-        </div>
       </div>
+    </div>
     </section>
   );
 };
