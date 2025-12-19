@@ -4,18 +4,17 @@ import Footer from "@/components/Footer";
 import GlobalBackground from "@/components/GlobalBackground";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
-import { useSwipe } from "@/hooks/use-swipe";
+import { Link } from "react-router-dom";
+import { useSmoothSwipe } from "@/hooks/use-smooth-swipe";
 
 const MenuIndex = () => {
-  const navigate = useNavigate();
-  
-  useSwipe({
-    onSwipeLeft: () => navigate("/"),
+  const { getSwipeStyle } = useSmoothSwipe({
+    prevPage: "/",
   });
 
   return (
     <GlobalBackground>
+      <div style={getSwipeStyle()}>
       <Header />
       <div className="pt-24 pb-12 container mx-auto px-4">
         <div className="mb-6">
@@ -30,6 +29,7 @@ const MenuIndex = () => {
         <MenuCategories />
       </div>
       <Footer />
+      </div>
     </GlobalBackground>
   );
 };

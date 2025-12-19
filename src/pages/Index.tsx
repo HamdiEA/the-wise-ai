@@ -4,19 +4,17 @@ import Footer from "@/components/Footer";
 import GlobalBackground from "@/components/GlobalBackground";
 import { Button } from "@/components/ui/button";
 import { Clock, MapPin, Phone, Bot, Facebook, Instagram, ArrowRight } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
-import { useSwipe } from "@/hooks/use-swipe";
+import { Link } from "react-router-dom";
+import { useSmoothSwipe } from "@/hooks/use-smooth-swipe";
 
 const Index = () => {
-  const navigate = useNavigate();
-  
-  useSwipe({
-    onSwipeRight: () => navigate("/menu"),
+  const { getSwipeStyle } = useSmoothSwipe({
+    nextPage: "/menu",
   });
 
   return (
     <GlobalBackground>
-      <div className="flex flex-col flex-1">
+      <div className="flex flex-col flex-1" style={getSwipeStyle()}>
         <Header />
         <div className="flex-1">
           <HeroSectionWithVideo />
