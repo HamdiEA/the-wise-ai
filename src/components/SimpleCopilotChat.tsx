@@ -2,14 +2,20 @@ import React, { useState, useRef, useEffect } from "react";
 import { askDeepSeek, DeepSeekMessage, getAuthToken, TokenInfo } from "../lib/deepseek";
 import logo from "@/assets/wise-logo.png";
 
-const EN_SYSTEM = `You are Wiser AI — a helpful and warm restaurant assistant. Answer concisely (1-3 short sentences) unless asked for more. 
+const EN_SYSTEM = `You are Wiser AI — a helpful and warm restaurant assistant. Answer concisely (1-3 short sentences) unless asked for more.
 
 You have access to:
 - Complete menu with all dishes, prices, ingredients and allergens
 - Restaurant hours: All locations open Mon-Sun 12:00 PM - 12:00 AM
 - Three locations: Bardo Tunis (phone: 52 555 414), Teboulba (phone: 93 560 560), Ksar Hellal Monastir (phone: 52 555 400)
 
-Use this information to: recommend dishes based on preferences, explain ingredients/allergens, suggest pairings, and offer alternatives. Never invent menu items or prices. For reservations or special requests, direct customers to call the restaurant.`;
+Rules:
+- Respect dietary constraints strictly (e.g., no cheese/dairy/egg/pork/seafood/gluten). Only suggest items that comply; if nothing fits, say so and propose a safe alternative like salads or sides.
+- When a budget is given (e.g., "50 TND"), keep the total at or under that amount and state the approximate total using menu prices. Prefer combos that fit the budget rather than exceeding it.
+- Never invent menu items, ingredients, or prices. Reference real menu items only.
+- For reservations or special requests, direct customers to call the restaurant.
+
+Use this to recommend dishes, explain ingredients/allergens, suggest pairings, and offer compliant alternatives.`;
 
 const FR_SYSTEM = `Vous êtes Wiser AI — un assistant chaleureux et utile pour le restaurant. Répondez de manière concise (1-3 courtes phrases) sauf demande contraire.
 
@@ -18,7 +24,13 @@ Vous avez accès à:
 - Horaires du restaurant: Tous les emplacements ouverts Lun-Dim 12h00 - 00h00
 - Trois emplacements: Bardo Tunis (tél: 52 555 414), Teboulba (tél: 93 560 560), Ksar Hellal Monastir (tél: 52 555 400)
 
-Utilisez cette information pour: recommander des plats selon les préférences, expliquer les ingrédients/allergènes, proposer des accords, et offrir des alternatives. N'inventez jamais des plats ou des prix. Pour les réservations ou demandes spéciales, dirigez les clients à appeler le restaurant.`;
+Règles:
+- Respectez strictement les contraintes alimentaires (ex: sans fromage/lait/oeuf/porc/fruits de mer/gluten). Ne proposez que des plats conformes; s'il n'y en a pas, dites-le et suggérez une option sûre comme une salade ou un accompagnement.
+- Lorsqu'un budget est donné (ex: "50 TND"), gardez le total à ou en dessous de ce montant et annoncez le total approximatif avec les prix du menu. Préférez des combinaisons qui respectent le budget.
+- N'inventez jamais de plats, ingrédients ou prix. Référencez uniquement le menu réel.
+- Pour les réservations ou demandes spéciales, invitez le client à appeler le restaurant.
+
+Servez-vous de cela pour recommander des plats, expliquer les ingrédients/allergènes, proposer des accords et des alternatives conformes.`;
 
 export default function SimpleCopilotChat() {
   const [lang, setLang] = useState<"en" | "fr">("en");
@@ -234,8 +246,22 @@ export default function SimpleCopilotChat() {
   }
 
   return (
-    <div className="chat-root" style={{width: "100%", height: "100%", maxHeight: "100vh", fontFamily: "'Inter', -apple-system, 'Segoe UI', sans-serif", background: "transparent", overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "none", borderRadius: 0, position: "relative"}}>
-      
+    <div
+      className="chat-root"
+      style={{
+        width: "100%",
+        height: "100%",
+        maxHeight: "100%",
+        fontFamily: "'Inter', -apple-system, 'Segoe UI', sans-serif",
+        background: "transparent",
+        overflow: "hidden",
+        display: "grid",
+        gridTemplateRows: "auto 1fr auto auto",
+        boxShadow: "none",
+        borderRadius: 0,
+        position: "relative",
+      }}
+    >
       {/* Header */}
       <div style={{padding: "14px 16px", borderBottom: "1px solid rgba(251, 146, 60, 0.2)", background: "rgba(0,0,0,0.3)", display: "flex", alignItems: "center", justifyContent: "space-between", flexShrink: 0}}>
         <div style={{display: "flex", gap: 12, alignItems: "center", flex: 1}}>
@@ -266,11 +292,22 @@ export default function SimpleCopilotChat() {
         </div>
       </div>
 
-      {/* Scrollable Content Area (Messages + Input) - Instagram Style */}
-      <div style={{flex: 1, display: "flex", flexDirection: "column", minHeight: 0, overflow: "hidden"}}>
-        
-        {/* Messages Area - Scrollable */}
-        <div ref={messagesRef} style={{flex: 1, padding: "14px 14px 20px 14px", overflowY: "auto", overflowX: "hidden", display: "flex", flexDirection: "column", gap: 10, background: "rgba(0,0,0,0.15)", minHeight: 0, maxHeight: "100%", WebkitOverflowScrolling: "touch", wordBreak: "break-word"}}>
+      {/* Messages Area - scrolls independently */}
+      <div
+        ref={messagesRef}
+        style={{
+          padding: "14px 14px 20px 14px",
+          overflowY: "auto",
+          overflowX: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          gap: 10,
+          background: "rgba(0,0,0,0.15)",
+          minHeight: 0,
+          WebkitOverflowScrolling: "touch",
+          wordBreak: "break-word",
+        }}
+      >
           {messages.length === 0 && (
             <div style={{display: "flex", alignItems: "center", justifyContent: "center", height: "100%", flexDirection: "column", gap: 12}}>
               <div style={{fontSize: 40, opacity: 0.6}}>💬</div>
@@ -315,57 +352,55 @@ export default function SimpleCopilotChat() {
               </div>
             </div>
           )}
-        </div>
+      </div>
 
-        {/* Error/Countdown/Status Footer - Inside scrollable area */}
-        <div style={{flexShrink: 0, display: "flex", flexDirection: "column"}}>
-          {reachedLimit && countdown ? (
-            <div style={{padding: "10px 14px", fontSize: 12, color: "#fbbf24", background: "rgba(217, 119, 6, 0.2)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center"}}>
-              <div style={{fontWeight: 500}}>Available in {countdown}</div>
-            </div>
-          ) : error ? (
-            <div style={{padding: "10px 14px", fontSize: 12, color: "#fb923c", background: "rgba(251, 146, 60, 0.15)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center"}}>
-              {error}
-            </div>
-          ) : tokenLoading ? (
-            <div style={{padding: "10px 14px", fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", background: "rgba(0,0,0,0.2)", borderTop: "1px solid rgba(251, 146, 60, 0.1)"}}>
-              {lang === "en" ? "Initializing..." : "Initialisation..."}
-            </div>
-          ) : (
-            <div style={{padding: "10px 14px", fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", background: "rgba(0,0,0,0.2)", borderTop: "1px solid rgba(251, 146, 60, 0.1)", display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-              <span>
-                {lang === "en" ? "The Wise Menu" : "Menu The Wise"} {`· ${messagesRemaining}`} {lang === "en" ? "messages left (12h reset)" : "messages restantes (réinit 12h)"}
-              </span>
-              <button
-                onClick={() => {
-                  setMessages([]);
-                  localStorage.removeItem("chatMessages");
-                }}
-                style={{
-                  padding: "4px 8px",
-                  fontSize: 9,
-                  background: "rgba(251, 146, 60, 0.2)",
-                  border: "1px solid rgba(251, 146, 60, 0.3)",
-                  borderRadius: 4,
-                  color: "rgba(251, 146, 60, 0.8)",
-                  cursor: "pointer",
-                  transition: "all 0.2s"
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "rgba(251, 146, 60, 0.3)";
-                  e.currentTarget.style.color = "rgba(251, 146, 60, 1)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "rgba(251, 146, 60, 0.2)";
-                  e.currentTarget.style.color = "rgba(251, 146, 60, 0.8)";
-                }}
-              >
-                {lang === "en" ? "Clear" : "Effacer"}
-              </button>
-            </div>
-          )}
-        </div>
-
+      {/* Error/Countdown/Status Footer - always visible */}
+      <div style={{display: "flex", flexDirection: "column", flexShrink: 0}}>
+        {reachedLimit && countdown ? (
+          <div style={{padding: "10px 14px", fontSize: 12, color: "#fbbf24", background: "rgba(217, 119, 6, 0.2)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center"}}>
+            <div style={{fontWeight: 500}}>Available in {countdown}</div>
+          </div>
+        ) : error ? (
+          <div style={{padding: "10px 14px", fontSize: 12, color: "#fb923c", background: "rgba(251, 146, 60, 0.15)", border: "1px solid rgba(251, 146, 60, 0.3)", borderRadius: 0, textAlign: "center"}}>
+            {error}
+          </div>
+        ) : tokenLoading ? (
+          <div style={{padding: "10px 14px", fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", background: "rgba(0,0,0,0.2)", borderTop: "1px solid rgba(251, 146, 60, 0.1)"}}>
+            {lang === "en" ? "Initializing..." : "Initialisation..."}
+          </div>
+        ) : (
+          <div style={{padding: "10px 14px", fontSize: 10, color: "rgba(255,255,255,0.3)", textAlign: "center", background: "rgba(0,0,0,0.2)", borderTop: "1px solid rgba(251, 146, 60, 0.1)", display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+            <span>
+              {lang === "en" ? "The Wise Menu" : "Menu The Wise"} {`· ${messagesRemaining}`} {lang === "en" ? "messages left (12h reset)" : "messages restantes (réinit 12h)"}
+            </span>
+            <button
+              onClick={() => {
+                setMessages([]);
+                localStorage.removeItem("chatMessages");
+              }}
+              style={{
+                padding: "4px 8px",
+                fontSize: 9,
+                background: "rgba(251, 146, 60, 0.2)",
+                border: "1px solid rgba(251, 146, 60, 0.3)",
+                borderRadius: 4,
+                color: "rgba(251, 146, 60, 0.8)",
+                cursor: "pointer",
+                transition: "all 0.2s"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "rgba(251, 146, 60, 0.3)";
+                e.currentTarget.style.color = "rgba(251, 146, 60, 1)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "rgba(251, 146, 60, 0.2)";
+                e.currentTarget.style.color = "rgba(251, 146, 60, 0.8)";
+              }}
+            >
+              {lang === "en" ? "Clear" : "Effacer"}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Input Area - Fixed at bottom */}

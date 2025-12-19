@@ -219,32 +219,64 @@ export default function FloatingChat() {
 
       {/* Modal overlay */}
       {open && (
-        <div style={{
-          position: "fixed",
-          inset: 0,
-          background: "rgba(0, 0, 0, 0.5)",
-          zIndex: 9998,
-          display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "flex-end",
-          padding: "20px",
-        }} onClick={() => setOpen(false)}>
-          <div onClick={(e) => e.stopPropagation()} className="floating-chat-panel" style={{
-            width: "100%",
-            maxWidth: "420px",
-            borderRadius: 16,
-            boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
-            background: "rgba(0, 0, 0, 0.7)",
-            overflow: "hidden",
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0, 0, 0, 0.45)",
+            zIndex: 9998,
             display: "flex",
-            flexDirection: "column",
-            maxHeight: "90vh",
-          }}>
-            <div style={{padding: "14px 16px", borderBottom: "1px solid rgba(251, 146, 60, 0.2)", display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(0,0,0,0.5)"}}>
-              <strong style={{color: "#fbbf24", fontSize: "14px"}}>Wiser AI — Assistant</strong>
-              <button onClick={() => setOpen(false)} style={{border: "none", background: "transparent", cursor: "pointer", color: "#fff", fontSize: "20px", padding: "0 8px"}}>✕</button>
+            alignItems: "flex-end",
+            justifyContent: "flex-end",
+            padding: "20px",
+          }}
+          onClick={() => setOpen(false)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="floating-chat-panel"
+            style={{
+              width: "100%",
+              maxWidth: "460px",
+              height: "min(80vh, 720px)",
+              minHeight: "480px",
+              borderRadius: 18,
+              boxShadow: "0 28px 80px rgba(0,0,0,0.55)",
+              background: "rgba(0, 0, 0, 0.78)",
+              overflow: "hidden",
+              display: "flex",
+              flexDirection: "column",
+              backdropFilter: "blur(10px)",
+              border: "1px solid rgba(251, 146, 60, 0.18)",
+            }}
+          >
+            <div
+              style={{
+                padding: "14px 16px",
+                borderBottom: "1px solid rgba(251, 146, 60, 0.2)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                background: "rgba(0,0,0,0.55)",
+                flexShrink: 0,
+              }}
+            >
+              <strong style={{ color: "#fbbf24", fontSize: "14px" }}>Wiser AI — Assistant</strong>
+              <button
+                onClick={() => setOpen(false)}
+                style={{
+                  border: "none",
+                  background: "transparent",
+                  cursor: "pointer",
+                  color: "#fff",
+                  fontSize: "20px",
+                  padding: "0 8px",
+                }}
+              >
+                ✕
+              </button>
             </div>
-            <div style={{flex: 1, minHeight: 0, overflow: "hidden"}}>
+            <div style={{ flex: 1, minHeight: 0, overflow: "hidden" }}>
               <SimpleCopilotChat />
             </div>
           </div>
@@ -257,6 +289,7 @@ export default function FloatingChat() {
             width: 100%;
             height: 92vh;
             max-height: 92vh;
+            min-height: 420px;
             border-radius: 12px;
           }
         }
