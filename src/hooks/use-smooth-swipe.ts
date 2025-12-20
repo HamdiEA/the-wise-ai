@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 interface SmoothSwipeOptions {
   nextPage?: string;
   prevPage?: string;
-  threshold?: number;
+  threshold?: number; // pixels needed to trigger navigation
 }
 
-export const useSmoothSwipe = ({ nextPage, prevPage, threshold = 100 }: SmoothSwipeOptions) => {
+// Make swipe easier to trigger (similar to Instagram). Default threshold lowered to 60px.
+export const useSmoothSwipe = ({ nextPage, prevPage, threshold = 60 }: SmoothSwipeOptions) => {
   const navigate = useNavigate();
   const [swipeOffset, setSwipeOffset] = useState(0);
   const [isSwiping, setIsSwiping] = useState(false);
