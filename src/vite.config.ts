@@ -24,9 +24,6 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    minify: "esbuild",
-    rollupOptions: {
-      external: ["terser"],
-    },
+    minify: false,
   },
 }));
