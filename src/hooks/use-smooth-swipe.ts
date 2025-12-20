@@ -12,10 +12,15 @@ export const useSmoothSwipe = ({ nextPage, prevPage, threshold = 100 }: SmoothSw
   const [swipeOffset, setSwipeOffset] = useState(0);
   const [isSwiping, setIsSwiping] = useState(false);
   const touchStartX = useRef<number>(0);
+  const touchStartY = useRef<number>(0);
   const currentX = useRef<number>(0);
+  const currentY = useRef<number>(0);
+  const hasHorizontalIntent = useRef<boolean>(false);
   const animationFrameRef = useRef<number | null>(null);
 
   const handleTouchStart = useCallback((e: TouchEvent) => {
+    if (e.touches.length !== 1) return;
+
     // Cancel any pending animation frame
     if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
@@ -23,49 +28,68 @@ export const useSmoothSwipe = ({ nextPage, prevPage, threshold = 100 }: SmoothSw
     }
     
     touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
     currentX.current = e.touches[0].clientX;
-    setIsSwiping(true);
+    currentY.current = e.touches[0].clientY;
+    hasHorizontalIntent.current = false;
+    setIsSwiping(false);
   }, []);
 
   const handleTouchMove = useCallback((e: TouchEvent) => {
-    if (!isSwiping || !touchStartX.current) return;
-    
+    if (!touchStartX.current) return;
+
     currentX.current = e.touches[0].clientX;
-    const diff = currentX.current - touchStartX.current;
-    
+    currentY.current = e.touches[0].clientY;
+
+    const diffX = currentX.current - touchStartX.current;
+    const diffY = currentY.current - touchStartY.current;
+
+    // Establish horizontal intent before applying transforms
+    if (!hasHorizontalIntent.current) {
+      const minMove = 12; // deadzone
+      if (Math.abs(diffX) < minMove && Math.abs(diffY) < minMove) return;
+
+      // Require horizontal dominance to avoid vertical scroll jitter
+      if (Math.abs(diffX) > Math.abs(diffY) * 1.25) {
+        hasHorizontalIntent.current = true;
+        setIsSwiping(true);
+      } else {
+        // Vertical scroll: do nothing
+        return;
+      }
+    }
+
     // Apply resistance at edges
     const resistance = 0.5;
-    let offset = diff;
-    
-    // Only allow swipe in directions where pages exist
-    if (diff > 0 && !prevPage) {
-      offset = diff * resistance * 0.3; // Extra resistance when no prev page
-    } else if (diff < 0 && !nextPage) {
-      offset = diff * resistance * 0.3; // Extra resistance when no next page
+    let offset = diffX;
+
+    if (diffX > 0 && !prevPage) {
+      offset = diffX * resistance * 0.3;
+    } else if (diffX < 0 && !nextPage) {
+      offset = diffX * resistance * 0.3;
     } else {
-      offset = diff * resistance;
+      offset = diffX * resistance;
     }
-    
-    // Use requestAnimationFrame for smoother touch tracking
+
     if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
     }
-    
+
     animationFrameRef.current = requestAnimationFrame(() => {
       setSwipeOffset(offset);
       animationFrameRef.current = null;
     });
-  }, [isSwiping, nextPage, prevPage]);
+  }, [nextPage, prevPage]);
 
   const handleTouchEnd = useCallback(() => {
     const diff = currentX.current - touchStartX.current;
-    
+
+    // Only react if we ever established horizontal intent
+    const shouldHandle = hasHorizontalIntent.current;
+    hasHorizontalIntent.current = false;
     setIsSwiping(false);
-    
-    // Determine if swipe was significant enough
-    if (Math.abs(diff) > threshold) {
-      // Keep a small nudge animation so we do not slide the whole page off-screen
-      // and expose the underlying Vercel background while routing.
+
+    if (shouldHandle && Math.abs(diff) > threshold) {
       const nudge = 80;
 
       if (diff > 0 && prevPage) {
@@ -73,7 +97,7 @@ export const useSmoothSwipe = ({ nextPage, prevPage, threshold = 100 }: SmoothSw
         const timeoutId = setTimeout(() => {
           navigate(prevPage);
           setSwipeOffset(0);
-        }, 100);
+        }, 120);
         return () => clearTimeout(timeoutId);
       }
 
@@ -82,12 +106,11 @@ export const useSmoothSwipe = ({ nextPage, prevPage, threshold = 100 }: SmoothSw
         const timeoutId = setTimeout(() => {
           navigate(nextPage);
           setSwipeOffset(0);
-        }, 100);
+        }, 120);
         return () => clearTimeout(timeoutId);
       }
     }
 
-    // Snap back when no navigation happens - use RAF for smooth snap
     if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
     }
@@ -98,7 +121,9 @@ export const useSmoothSwipe = ({ nextPage, prevPage, threshold = 100 }: SmoothSw
     });
     
     touchStartX.current = 0;
+    touchStartY.current = 0;
     currentX.current = 0;
+    currentY.current = 0;
   }, [navigate, nextPage, prevPage, threshold]);
 
   useEffect(() => {
