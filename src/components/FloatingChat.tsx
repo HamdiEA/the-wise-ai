@@ -175,12 +175,15 @@ export default function FloatingChat() {
 
       {/* AI Chat Bubble - Hidden when chatbot is open */}
       {!open && (
-        <div style={{
-          position: "fixed",
-          right: 20,
-          bottom: 24,
-          zIndex: 9999,
-        }}>
+        <div 
+          className="floating-chat-button"
+          style={{
+            position: "fixed",
+            right: 20,
+            bottom: 24,
+            zIndex: 9999,
+            isolation: "isolate",
+          }}>
           <button
             aria-label="Open assistant"
             onClick={() => setOpen(true)}

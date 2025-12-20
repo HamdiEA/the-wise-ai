@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Plus, Minus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import OrderDialog from "./OrderDialog";
 import {
   Select,
@@ -794,8 +795,17 @@ const MenuSection = () => {
         )}
 
         <div className="grid gap-8">
-          {menuCategories.map((category, index) => (
-            <Card key={index} className="shadow-lg border-2 border-gray-200">
+          {menuCategories.map((category, index) => {
+            // Create a scroll reveal hook for each card
+            const cardReveal = useScrollReveal({ threshold: 0.1, delay: index * 50 });
+            
+            return (
+              <div
+                key={index}
+                ref={cardReveal.ref}
+                className={`scroll-reveal ${cardReveal.isVisible ? 'revealed' : ''}`}
+              >
+                <Card className="shadow-lg border-2 border-gray-200">
               <CardHeader className="bg-gradient-to-r from-red-600 to-red-700 text-white">
                 <CardTitle className="text-2xl font-bold text-center">
                   {category.title}
@@ -1004,7 +1014,9 @@ const MenuSection = () => {
                 )}
               </CardContent>
             </Card>
-          ))}
+          </div>
+          );
+        })}
         </div>
       </div>
 

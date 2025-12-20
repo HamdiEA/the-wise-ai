@@ -118,11 +118,13 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
   if (!showDetails) {
     return (
       <div
+        className="order-card-bubble"
         style={{
           position: "fixed",
           right: 20,
           bottom: 100,
           zIndex: 9997,
+          isolation: "isolate",
         }}
       >
         <button
@@ -167,11 +169,13 @@ const OrderCard = ({ orderItems, totalPrice, onClose, isChatOpen }: OrderCardPro
   // Expanded card view
   return (
     <div
+      className="order-card-expanded"
       style={{
         position: "fixed",
         right: 20,
         bottom: 100,
         zIndex: 9997,
+        isolation: "isolate",
         width: "100%",
         maxWidth: 380,
         maxHeight: "85vh",

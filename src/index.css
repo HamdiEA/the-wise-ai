@@ -140,13 +140,52 @@ html {
             opacity: 0.9;
             transform: scale(0.98);
         }
-        /* Optimize scroll performance on mobile */
-        * {
+        /* Optimize scroll performance on mobile - exclude fixed elements */
+        section:not([style*="fixed"]),
+        article:not([style*="fixed"]),
+        .card:not([style*="fixed"]) {
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             -webkit-transform: translateZ(0);
             transform: translateZ(0);
         }
+    }
+    /* Scroll reveal animations */
+    .scroll-reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .scroll-reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .scroll-reveal-scale {
+        opacity: 0;
+        transform: scale(0.9);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+    .scroll-reveal-scale.revealed {
+        opacity: 1;
+        transform: scale(1);
+    }
+    .scroll-reveal-left {
+        opacity: 0;
+        transform: translateX(-40px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .scroll-reveal-left.revealed {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    .scroll-reveal-right {
+        opacity: 0;
+        transform: translateX(40px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .scroll-reveal-right.revealed {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 

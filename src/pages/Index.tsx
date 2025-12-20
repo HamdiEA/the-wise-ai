@@ -5,12 +5,21 @@ import { Button } from "@/components/ui/button";
 import { Clock, MapPin, Phone, Bot, Facebook, Instagram, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSmoothSwipe } from "@/hooks/use-smooth-swipe";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { useMemo } from "react";
 
 const Index = () => {
   const { getSwipeStyle } = useSmoothSwipe({
     nextPage: "/menu",
   });
+
+  const infoSection = useScrollReveal({ threshold: 0.2 });
+  const locationCards = [
+    useScrollReveal({ delay: 100 }),
+    useScrollReveal({ delay: 200 }),
+    useScrollReveal({ delay: 300 }),
+  ];
+  const chatSection = useScrollReveal({ threshold: 0.2, delay: 100 });
 
   // Memoize static location data to prevent re-renders
   const locations = useMemo(() => [
@@ -28,7 +37,10 @@ const Index = () => {
         {/* Infos pratiques & chatbot */}
         <section className="py-16 px-4">
           <div className="container mx-auto max-w-6xl grid lg:grid-cols-2 gap-10 bg-black/40 backdrop-blur-lg border border-amber-400/30 rounded-3xl shadow-2xl p-8">
-            <div className="space-y-6">
+            <div 
+              ref={infoSection.ref}
+              className={`space-y-6 scroll-reveal-left ${infoSection.isVisible ? 'revealed' : ''}`}
+            >
               <div className="flex items-center gap-3">
                 <Button asChild variant="outline" className="border-amber-400/60 text-white bg-black/40 hover:bg-amber-600/30">
                   <Link to="/menu">
@@ -44,7 +56,11 @@ const Index = () => {
               </p>
               <div className="space-y-4">
                 {locations.map((loc, idx) => (
-                  <div key={idx} className="rounded-2xl border border-amber-400/30 bg-black/30 p-4 flex flex-col gap-2">
+                  <div 
+                    key={idx}
+                    ref={locationCards[idx].ref}
+                    className={`rounded-2xl border border-amber-400/30 bg-black/30 p-4 flex flex-col gap-2 scroll-reveal-scale ${locationCards[idx].isVisible ? 'revealed' : ''}`}
+                  >
                     <div className="flex items-center gap-2 text-amber-200 font-semibold">
                       <MapPin className="h-4 w-4" />
                       {loc.city}
@@ -75,7 +91,10 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="space-y-6">
+            <div 
+              ref={chatSection.ref}
+              className={`space-y-6 scroll-reveal-right ${chatSection.isVisible ? 'revealed' : ''}`}
+            >
               <div className="flex items-center gap-3">
                 <Bot className="h-6 w-6 text-amber-300" />
                 <h2 className="text-3xl font-bold text-white drop-shadow-lg">Assistant The Wise</h2>
