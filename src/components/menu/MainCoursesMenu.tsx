@@ -14,13 +14,18 @@ interface OrderItem {
   quantity: number;
 }
 
+interface MenuItem {
+  name: string;
+  price: string;
+}
+
 const MainCoursesMenu = () => {
   const [orderItems, setOrderItems] = useState<Record<string, OrderItem>>({});
   const [showOrderDialog, setShowOrderDialog] = useState(false);
   const { toast } = useToast();
   const categoryName = "🥩 Plats Principaux & Fruits de Mer";
 
-  const handleQuantityChange = (itemKey: string, item: any, delta: number) => {
+  const handleQuantityChange = (itemKey: string, item: MenuItem, delta: number) => {
     setOrderItems(prev => {
       const existing = prev[itemKey];
       if (existing) {
@@ -31,10 +36,10 @@ const MainCoursesMenu = () => {
             window.dispatchEvent(new CustomEvent("orderItemsRemoved", { detail: { names: [itemKey] } }));
           } catch {}
           setTimeout(() => {
-            const newTotal = Object.values(rest).reduce((sum, i) => sum + (i.price * i.quantity), 0);
+            const newTotal = Object.values(rest).reduce((sum: number, i: OrderItem) => sum + (i.price * i.quantity), 0);
             window.dispatchEvent(new CustomEvent("orderUpdated", {
               detail: {
-                items: Object.entries(rest).map(([key, item]) => ({
+                items: Object.entries(rest).map(([key, item]: [string, OrderItem]) => ({
                   name: key,
                   quantity: item.quantity,
                   price: `${item.price}dt`,
@@ -72,8 +77,8 @@ const MainCoursesMenu = () => {
     setShowOrderDialog(true);
   };
 
-  const totalItems = Object.values(orderItems).reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = Object.values(orderItems).reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const totalItems: number = (Object.values(orderItems) as OrderItem[]).reduce((sum: number, item: OrderItem) => sum + item.quantity, 0);
+  const totalPrice: number = (Object.values(orderItems) as OrderItem[]).reduce((sum: number, item: OrderItem) => sum + (item.price * item.quantity), 0);
 
   const menuData = {
     sections: [
@@ -130,7 +135,7 @@ const MainCoursesMenu = () => {
   };
 
   const getOrderList = () => {
-    return Object.entries(orderItems).map(([key, item]) => ({
+    return Object.entries(orderItems).map(([key, item]: [string, OrderItem]) => ({
       name: key,
       quantity: item.quantity,
       price: `${item.price}dt`,
@@ -141,7 +146,7 @@ const MainCoursesMenu = () => {
   // Emit order updates to FloatingChat
   React.useEffect(() => {
     if (Object.keys(orderItems).length > 0) {
-      const totalPrice = Object.values(orderItems).reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      const totalPrice = (Object.values(orderItems) as OrderItem[]).reduce((sum: number, item: OrderItem) => sum + (item.price * item.quantity), 0);
       window.dispatchEvent(new CustomEvent("orderUpdated", {
         detail: {
           items: getOrderList(),
