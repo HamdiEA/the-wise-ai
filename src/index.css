@@ -86,11 +86,29 @@ All colors MUST be HSL.
         background-color: #000;
         /* Reserve space for scrollbar to prevent layout shift/gap */
         scrollbar-gutter: stable;
+        /* Prevent content from shifting during load */
+        contain: layout style paint;
     }
 }
 
 html {
     scroll-behavior: smooth;
+}
+
+
+/* Prevent layout shifts during image loading */
+
+img {
+    content-visibility: auto;
+    height: auto;
+}
+
+
+/* Prevent flash of unstyled content */
+
+.min-h-screen {
+    min-height: 100vh;
+    min-height: 100dvh;
 }
 
 @layer utilities {

@@ -39,8 +39,10 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
   const transitionStyle = useMemo(
     () => ({
       opacity: isTransitioning ? 0 : 1,
-      transition: "opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
+      transition: "opacity 0.2s ease-in-out",
       willChange: isTransitioning ? "opacity" : "auto",
+      minHeight: "100vh",
+      contain: "layout style",
     }),
     [isTransitioning]
   );
