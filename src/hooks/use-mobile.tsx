@@ -6,19 +6,12 @@ export function useIsMobile() {
   const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined);
 
   React.useEffect(() => {
-    // Check if device supports touch and has smaller viewport
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
-    
     const onChange = () => {
       setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
     };
-    
-    // Use addEventListener with proper passive flag
     mql.addEventListener("change", onChange);
-    
-    // Set initial value
     setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-    
     return () => mql.removeEventListener("change", onChange);
   }, []);
 

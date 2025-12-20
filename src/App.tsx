@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Index from "./pages/Index";
 import MenuIndex from "./pages/MenuIndex";
 import MenuAppetizers from "./pages/MenuAppetizers";
@@ -16,6 +16,32 @@ import PageTransition from "./components/PageTransition";
 import GlobalBackground from "./components/GlobalBackground";
 
 const App: React.FC = () => {
+  // Optimize performance for mobile
+  useEffect(() => {
+    // Prevent pinch zoom on desktop-like devices
+    const preventZoom = (e: TouchEvent) => {
+      if (e.touches.length > 1) {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener("touchmove", preventZoom, { passive: false });
+
+    // Disable double-tap zoom on iOS (optional, can affect accessibility)
+    // let lastTouchEnd = 0;
+    // document.addEventListener('touchend', (e) => {
+    //   const now = Date.now();
+    //   if (now - lastTouchEnd <= 300) {
+    //     e.preventDefault();
+    //   }
+    //   lastTouchEnd = now;
+    // }, false);
+
+    return () => {
+      document.removeEventListener("touchmove", preventZoom);
+    };
+  }, []);
+
   return (
     <div>
       <BrowserRouter>

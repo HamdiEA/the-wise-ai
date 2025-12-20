@@ -3,10 +3,7 @@ import backgroundImg from "@/assets/aa.jpg";
 
 const GlobalBackground = ({ children }: { children: React.ReactNode }) => {
   const lights = useMemo(() => {
-    // Detect if mobile
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-    // Reduce light count on mobile for better performance
-    const count = isMobile ? 8 : 24;
+    const count = typeof window !== "undefined" && window.innerWidth < 768 ? 12 : 24;
     return Array.from({ length: count }).map(() => {
       const size = 12 + Math.random() * 36; // 12px to 48px
       return {
@@ -19,7 +16,6 @@ const GlobalBackground = ({ children }: { children: React.ReactNode }) => {
       };
     });
   }, []);
-
   return (
     <div className="flex flex-col min-h-screen relative">
       {/* Background image (kept behind content but above body) */}
@@ -31,8 +27,6 @@ const GlobalBackground = ({ children }: { children: React.ReactNode }) => {
           filter: "blur(1.5px) brightness(0.82)",
           transform: "scale(1.02) translate3d(0, 0, 0)",
           willChange: "transform",
-          backfaceVisibility: "hidden",
-          perspective: 1000,
         }}
       />
 
@@ -59,8 +53,6 @@ const GlobalBackground = ({ children }: { children: React.ReactNode }) => {
               ['--dy' as any]: `${(Math.min(l.size, 36) / 36) * (3 + Math.random() * 7)}px`,
               animationDuration: `${l.duration}s`,
               animationDelay: `${l.delay}s`,
-              willChange: "transform, opacity",
-              backfaceVisibility: "hidden",
             }}
           />
         ))}

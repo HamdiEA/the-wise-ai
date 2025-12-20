@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
 interface PageTransitionProps {
@@ -10,56 +10,46 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
   const [displayChildren, setDisplayChildren] = useState(children);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeKey, setActiveKey] = useState(location.pathname);
-  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
 
   useEffect(() => {
-    // Clear any pending scroll timeout
-    if (scrollTimeoutRef.current) {
-      clearTimeout(scrollTimeoutRef.current);
-    }
-
-    // Immediately swap to the new children to prevent visual flashing
-    setDisplayChildren(children);
-    setActiveKey(location.pathname);
-    setIsTransitioning(true);
-
-    // Fast transition - optimized for mobile
-    const transitionTimer = setTimeout(() => {
-      setIsTransitioning(false);
-    }, 200);
-
-    // Scroll to top after transition starts (non-blocking)
-    scrollTimeoutRef.current = setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "auto" });
-    }, 100);
-
-    return () => {
-      clearTimeout(transitionTimer);
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
+    // Use requestAnimationFrame to batch DOM updates
+    const scrollPromise = new Promise<void>((resolve) => {
+      // Scroll to top at next animation frame for smooth scroll
+      if (location.pathname !== activeKey) {
+        window.scrollTo({ top: 0, behavior: "auto" });
       }
-    };
-  }, [location.pathname, children]);
+      resolve();
+    });
+
+    scrollPromise.then(() => {
+      // Update all state changes together to reduce re-renders
+      setDisplayChildren(children);
+      setActiveKey(location.pathname);
+      setIsTransitioning(true);
+
+      // Use requestAnimationFrame to schedule the transition end
+      const frameId = requestAnimationFrame(() => {
+        setIsTransitioning(false);
+      });
+
+      return () => cancelAnimationFrame(frameId);
+    });
+  }, [location.pathname, children, activeKey]);
+
+  const transitionStyle = useMemo(
+    () => ({
+      opacity: isTransitioning ? 0 : 1,
+      transition: "opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
+      willChange: isTransitioning ? "opacity" : "auto",
+    }),
+    [isTransitioning]
+  );
 
   return (
-    <div
-      key={activeKey}
-      style={{
-        opacity: isTransitioning ? 0 : 1,
-        transition: "opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
-        willChange: "opacity",
-        backfaceVisibility: "hidden",
-      }}
-    >
+    <div key={activeKey} style={transitionStyle}>
       <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(0); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeOut {
-          from { opacity: 1; transform: translateY(0); }
-          to { opacity: 0; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
       `}</style>
       {displayChildren}
     </div>

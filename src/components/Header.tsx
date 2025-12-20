@@ -18,25 +18,25 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/80 via-black/60 to-black/40 backdrop-blur-xl shadow-2xl border-b border-amber-400/20 transition-all duration-300">
-      <div className="container mx-auto px-3 sm:px-4 py-2.5 sm:py-4">
+      <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
+          <div className="flex items-center space-x-3">
             <div className="relative">
               <img 
                 src={logo} 
                 alt="The Wise Restaurant" 
-                className="h-10 sm:h-12 md:h-14 w-auto rounded-lg shadow-lg ring-2 ring-amber-400/30 hover:ring-amber-400/60 transition-all duration-300" 
+                className="h-12 md:h-14 w-auto rounded-lg shadow-lg ring-2 ring-amber-400/30 hover:ring-amber-400/60 transition-all duration-300" 
               />
               <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-amber-400/20 to-restaurant-red/20 blur-xl -z-10"></div>
             </div>
           </div>
 
           {/* Navigation */}
-          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
+          <nav className="hidden md:flex items-center space-x-8">
             <Link 
               to="/menu" 
-              className="text-sm lg:text-base text-white font-medium hover:text-amber-400 transition-all duration-300 hover:scale-105 relative group"
+              className="text-white font-medium hover:text-amber-400 transition-all duration-300 hover:scale-105 relative group"
             >
               Menu
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"></span>
@@ -47,9 +47,9 @@ const Header = () => {
               <DropdownMenuTrigger asChild>
                 <Button 
                   variant="ghost" 
-                  className="flex items-center space-x-2 text-sm lg:text-base text-white hover:bg-amber-600/20 hover:text-amber-400 transition-all duration-300 rounded-full h-9 px-3"
+                  className="flex items-center space-x-2 text-white hover:bg-amber-600/20 hover:text-amber-400 transition-all duration-300 rounded-full"
                 >
-                  <Phone className="h-4 w-4 flex-shrink-0" />
+                  <Phone className="h-4 w-4" />
                   <span className="font-medium">Contact</span>
                 </Button>
               </DropdownMenuTrigger>
@@ -57,10 +57,10 @@ const Header = () => {
                 {locations.map((location, index) => (
                   <DropdownMenuItem 
                     key={index} 
-                    className="flex flex-col items-start p-3 sm:p-4 hover:bg-amber-600/80 hover:text-white cursor-pointer transition-all duration-300 text-white rounded-lg m-1"
+                    className="flex flex-col items-start p-4 hover:bg-amber-600/80 hover:text-white cursor-pointer transition-all duration-300 text-white rounded-lg m-1"
                   >
-                    <div className="font-semibold text-sm text-amber-400">{location.name}</div>
-                    <div className="text-xs sm:text-sm opacity-90">📞 {location.phone}</div>
+                    <div className="font-semibold text-amber-400">{location.name}</div>
+                    <div className="text-sm opacity-90">📞 {location.phone}</div>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -71,20 +71,20 @@ const Header = () => {
               <DropdownMenuTrigger asChild>
                 <Button 
                   variant="ghost" 
-                  className="flex items-center space-x-2 text-sm lg:text-base text-white hover:bg-amber-600/20 hover:text-amber-400 transition-all duration-300 rounded-full h-9 px-3"
+                  className="flex items-center space-x-2 text-white hover:bg-amber-600/20 hover:text-amber-400 transition-all duration-300 rounded-full"
                 >
-                  <MapPin className="h-4 w-4 flex-shrink-0" />
+                  <MapPin className="h-4 w-4" />
                   <span className="font-medium">Address</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-80 sm:w-96 bg-black/90 backdrop-blur-xl border border-amber-400/30">
+              <DropdownMenuContent align="end" className="w-96 bg-black/90 backdrop-blur-xl border border-amber-400/30">
                 {locations.map((location, index) => (
                   <DropdownMenuItem 
                     key={index} 
-                    className="flex flex-col items-start p-3 sm:p-4 hover:bg-amber-600/80 hover:text-white cursor-pointer transition-all duration-300 text-white rounded-lg m-1"
+                    className="flex flex-col items-start p-4 hover:bg-amber-600/80 hover:text-white cursor-pointer transition-all duration-300 text-white rounded-lg m-1"
                   >
-                    <div className="font-semibold text-sm text-amber-400">{location.name}</div>
-                    <div className="text-xs sm:text-sm opacity-90 leading-relaxed">{location.address}</div>
+                    <div className="font-semibold text-amber-400">{location.name}</div>
+                    <div className="text-sm opacity-90 leading-relaxed">{location.address}</div>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -93,32 +93,32 @@ const Header = () => {
           </nav>
 
           {/* Mobile Menu */}
-          <div className="md:hidden flex-shrink-0">
+          <div className="md:hidden">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  className="text-white hover:bg-amber-600/20 hover:text-amber-400 rounded-full h-9 w-9 p-0"
+                  className="text-white hover:bg-amber-600/20 hover:text-amber-400 rounded-full"
                 >
-                  <Menu className="h-5 w-5" />
+                  <Menu className="h-6 w-6" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-72 sm:w-80 bg-black/90 backdrop-blur-xl border border-amber-400/30">
-                <DropdownMenuItem asChild className="p-3 sm:p-4">
-                  <Link to="/menu" className="w-full text-white text-sm sm:text-base font-medium hover:text-amber-400 transition-colors">Menu</Link>
+              <DropdownMenuContent align="end" className="w-80 bg-black/90 backdrop-blur-xl border border-amber-400/30">
+                <DropdownMenuItem asChild className="p-4">
+                  <Link to="/menu" className="w-full text-white font-medium hover:text-amber-400 transition-colors">Menu</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem className="font-semibold text-amber-400 p-3 sm:p-4 text-sm">
+                <DropdownMenuItem className="font-semibold text-amber-400 p-4">
                   Contact & Address
                 </DropdownMenuItem>
                 {locations.map((location, index) => (
                   <DropdownMenuItem 
                     key={index} 
-                    className="flex flex-col items-start p-3 sm:p-4 ml-2 sm:ml-4 hover:bg-amber-600/80 hover:text-white cursor-pointer transition-all duration-300 text-white rounded-lg m-1"
+                    className="flex flex-col items-start p-4 ml-4 hover:bg-amber-600/80 hover:text-white cursor-pointer transition-all duration-300 text-white rounded-lg m-1"
                   >
-                    <div className="font-medium text-xs sm:text-sm text-amber-400">{location.name}</div>
+                    <div className="font-medium text-amber-400">{location.name}</div>
                     <div className="text-xs opacity-90">📞 {location.phone}</div>
-                    <div className="text-xs opacity-90 leading-tight">{location.address}</div>
+                    <div className="text-xs opacity-90 leading-relaxed">{location.address}</div>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>

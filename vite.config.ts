@@ -24,8 +24,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Optimize for faster builds and better mobile performance
-    target: "esnext",
+    // Optimize bundle size
     minify: "terser",
     terserOptions: {
       compress: {
@@ -33,25 +32,22 @@ export default defineConfig(({ mode }) => ({
         drop_debugger: true,
       },
     },
-    // Split chunks for better caching on mobile
+    // Chunk strategy for better caching
     rollupOptions: {
       output: {
         manualChunks: {
-          'vendor': ['react', 'react-dom', 'react-router-dom'],
+          "react-vendor": ["react", "react-dom", "react-router-dom"],
+          "ui-vendor": ["lucide-react"],
         },
       },
     },
-    chunkSizeWarningLimit: 1000,
-    reportCompressedSize: false,
+    // Enable CSS code splitting
+    cssCodeSplit: true,
+    // Optimize CSS
+    cssMinify: "lightningcss",
   },
-  // Optimize CSS
-  css: {
-    postcss: {
-      plugins: [],
-    },
-  },
-  // Performance optimizations
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', 'lucide-react'],
+    // Pre-bundle these dependencies
+    include: ["react", "react-dom", "react-router-dom", "lucide-react"],
   },
 }));

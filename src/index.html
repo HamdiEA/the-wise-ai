@@ -4,7 +4,16 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="/wise-logo.jpg" type="image/jpg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Mobile viewport optimization -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no, maximum-scale=1.0" />
+    <!-- Disable tap highlight on mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="The Wise" />
+    <!-- Optimize for mobile -->
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <meta name="theme-color" content="#000000" />
+
     <title>The Wise Restaurant - Choose Your Food Wisely | Bardo, Teboulba, Ksar Hellal</title>
     <meta name="description" content="Experience exceptional cuisine at The Wise Restaurant across three locations in Tunisia. Fresh pasta, gourmet burgers, artisanal pizza, and more. Choose Your Food Wisely." />
     <meta name="author" content="The Wise Restaurant" />
@@ -19,6 +28,19 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@hamdi_ea" />
     <meta name="twitter:image" content="/wise-logo.jpg" />
+
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Disable unnecessary features for better performance -->
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-text-size-adjust: 100%;
+        }
+    </style>
 </head>
 
 <body>
