@@ -120,18 +120,12 @@ export const useSmoothSwipe = ({ nextPage, prevPage, threshold = 100 }: SmoothSw
     swipeOffset,
     isSwiping,
     getSwipeStyle: () => {
-      // As the user swipes, subtly fade the page to hint the transition.
-      const maxOffset = 140;
-      const progress = Math.min(Math.abs(swipeOffset) / maxOffset, 1);
-      const opacity = 1 - progress * 0.15; // Only a slight fade (max 15%)
-
       return {
         transform: `translateX(${swipeOffset}px)`,
-        opacity,
         transition: isSwiping
           ? 'none'
-          : 'transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease-out',
-        willChange: 'transform, opacity',
+          : 'transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+        willChange: 'transform',
       };
     },
   };
