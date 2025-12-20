@@ -24,6 +24,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
+    minify: false,
     // Chunk strategy for better caching
     rollupOptions: {
       output: {
