@@ -122,11 +122,10 @@ html {
         max-width: 100%;
         height: auto;
     }
-    /* Force GPU rendering for smooth scroll */
+    /* Avoid forcing new layers to prevent line-by-line repainting */
     section,
     article,
     .card {
-        transform: translateZ(0);
         backface-visibility: hidden;
     }
     /* Scroll reveal animations disabled globally */
