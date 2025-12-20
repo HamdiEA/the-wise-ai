@@ -7,47 +7,13 @@ interface UseScrollRevealOptions {
 }
 
 export function useScrollReveal(options: UseScrollRevealOptions = {}) {
-  const {
-    threshold = 0.1,
-    rootMargin = '0px 0px -50px 0px',
-    delay = 0,
-  } = options;
-
   const ref = useRef<HTMLDivElement>(null);
-  // On mobile (and during SSR), show content immediately to avoid pop-in
-  const isMobile = typeof window !== 'undefined' ? window.innerWidth <= 768 : true;
-  const [isVisible, setIsVisible] = useState(isMobile);
+  // Always visible: disable all reveal/observer behavior
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // Skip intersection observer on mobile - everything is visible
-    if (isMobile) {
-      setIsVisible(true);
-      return;
-    }
-
-    const element = ref.current;
-    if (!element) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            setIsVisible(true);
-          }, delay);
-          observer.unobserve(element);
-        }
-      },
-      { threshold, rootMargin }
-    );
-
-    observer.observe(element);
-
-    return () => {
-      if (element) {
-        observer.unobserve(element);
-      }
-    };
-  }, [threshold, rootMargin, delay, isMobile]);
+    setIsVisible(true);
+  }, []);
 
   return { ref, isVisible };
 }

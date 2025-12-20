@@ -129,87 +129,47 @@ html {
         transform: translateZ(0);
         backface-visibility: hidden;
     }
-    /* Mobile performance optimizations */
-    @media (max-width: 768px) {
-        .card-hover-effect,
-        .glow-on-hover {
-            @apply transition-none;
-        }
-        .card-hover-effect:active,
-        .glow-on-hover:active {
-            opacity: 0.9;
-            transform: scale(0.98);
-        }
-        /* Optimize scroll performance on mobile - exclude fixed elements */
-        section:not([style*="fixed"]),
-        article:not([style*="fixed"]),
-        .card:not([style*="fixed"]) {
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-        }
-    }
-    /* Scroll reveal animations */
-    .scroll-reveal {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    .scroll-reveal.revealed {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    .scroll-reveal-scale {
-        opacity: 0;
-        transform: scale(0.9);
-        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    }
-    .scroll-reveal-scale.revealed {
-        opacity: 1;
-        transform: scale(1);
-    }
-    .scroll-reveal-left {
-        opacity: 0;
-        transform: translateX(-40px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    .scroll-reveal-left.revealed {
-        opacity: 1;
-        transform: translateX(0);
-    }
-    .scroll-reveal-right {
-        opacity: 0;
-        transform: translateX(40px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
+    /* Scroll reveal animations disabled globally */
+    .scroll-reveal,
+    .scroll-reveal-scale,
+    .scroll-reveal-left,
+    .scroll-reveal-right,
+    .scroll-reveal.revealed,
+    .scroll-reveal-scale.revealed,
+    .scroll-reveal-left.revealed,
     .scroll-reveal-right.revealed {
         opacity: 1;
-        transform: translateX(0);
+        transform: none;
+        transition: none;
     }
-    /* Disable scroll reveal animations on mobile */
-    @media (max-width: 768px) {
-        .scroll-reveal,
-        .scroll-reveal-scale,
-        .scroll-reveal-left,
-        .scroll-reveal-right {
-            opacity: 1;
-            transform: none;
-            transition: none;
-        }
-        .scroll-reveal.revealed,
-        .scroll-reveal-scale.revealed,
-        .scroll-reveal-left.revealed,
-        .scroll-reveal-right.revealed {
-            opacity: 1;
-            transform: none;
-        }
+    transform: translateX(0);
+}
+
+
+/* Disable scroll reveal animations on mobile */
+
+@media (max-width: 768px) {
+    .scroll-reveal,
+    .scroll-reveal-scale,
+    .scroll-reveal-left,
+    .scroll-reveal-right {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    .scroll-reveal.revealed,
+    .scroll-reveal-scale.revealed,
+    .scroll-reveal-left.revealed,
+    .scroll-reveal-right.revealed {
+        opacity: 1;
+        transform: none;
     }
 }
 
 
-/* Festive overlays */
+}
 
+/* Festive overlays */
 .snow-layer {
     position: fixed;
     inset: 0;
@@ -222,7 +182,6 @@ html {
     will-change: background-position;
     mask-image: linear-gradient( to bottom, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 140px, rgba(0, 0, 0, 0.4) 200px, rgba(0, 0, 0, 1) 260px, rgba(0, 0, 0, 1) 100%);
 }
-
 .sparkle-layer {
     position: fixed;
     inset: 0;
@@ -237,14 +196,13 @@ html {
     mask-image: linear-gradient( to bottom, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 140px, rgba(0, 0, 0, 0.4) 200px, rgba(0, 0, 0, 1) 260px, rgba(0, 0, 0, 1) 100%);
 }
 
-
 /* Watery Christmas bubbles (liquid decoration) */
-
 .amber-light {
     position: absolute;
     border-radius: 9999px;
     pointer-events: none;
     /* Liquid watery gradient with gold/amber tones */
+    
     background: radial-gradient( circle at 35% 35%, rgba(255, 215, 100, 0.65) 0%, rgba(251, 191, 36, 0.5) 20%, rgba(251, 191, 36, 0.28) 45%, rgba(251, 191, 36, 0.12) 65%, rgba(251, 191, 36, 0.0) 85%);
     filter: blur(2.5px);
     mix-blend-mode: screen;
@@ -253,54 +211,56 @@ html {
     animation-iteration-count: infinite;
     will-change: transform, opacity;
     /* Subtle inner reflection for liquid effect */
+    
     box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.15);
 }
-
 @keyframes wateryFloat {
     0% {
         transform: translate(calc(var(--dx, 4px) * -1), calc(var(--dy, 4px) * -1.2)) scale(0.92) rotate(0deg);
         opacity: 0.75;
         border-radius: 48% 52% 51% 49% / 52% 48% 52% 48%;
     }
+    
     25% {
         border-radius: 52% 48% 49% 51% / 48% 52% 48% 52%;
     }
+    
     50% {
         transform: translate(var(--dx, 4px), var(--dy, 4px)) scale(1.08) rotate(2deg);
         opacity: 0.95;
         border-radius: 49% 51% 52% 48% / 51% 49% 51% 49%;
     }
+    
     75% {
         border-radius: 51% 49% 48% 52% / 49% 51% 49% 51%;
     }
+    
     100% {
         transform: translate(calc(var(--dx, 4px) * -1), calc(var(--dy, 4px) * -1.2)) scale(0.92) rotate(0deg);
         opacity: 0.75;
         border-radius: 48% 52% 51% 49% / 52% 48% 52% 48%;
     }
 }
-
 @keyframes snowfall {
     0% {
         background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
     }
+    
     100% {
         background-position: 0px 600px, 0px 700px, 0px 650px, 0px 720px, 0px 680px;
     }
 }
-
 @keyframes twinkle {
     0% {
         opacity: 0.3;
     }
+    
     100% {
         opacity: 0.8;
     }
 }
 
-
 /* Footer snow cap */
-
 .footer-snow {
     position: absolute;
     top: -24px;
@@ -315,7 +275,6 @@ html {
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.92) 65%, rgba(0, 0, 0, 0) 100%);
     filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
 }
-
 .footer-snow-fall {
     position: absolute;
     top: -120px;
@@ -330,33 +289,32 @@ html {
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.85) 70%, rgba(0, 0, 0, 0) 100%);
     filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.35));
 }
-
 @keyframes footerSnowFall {
     0% {
         background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
         opacity: 0.9;
     }
+    
     100% {
         background-position: 0 260px, 0 260px, 0 260px, 0 260px, 0 260px, 0 260px;
         opacity: 0.96;
     }
 }
-
 @keyframes footerSnowDrift {
     0% {
         transform: translateX(0);
     }
+    
     50% {
         transform: translateX(8px);
     }
+    
     100% {
         transform: translateX(0);
     }
 }
 
-
 /* Holiday garland lights */
-
 .holiday-lights {
     position: fixed;
     top: 88px;
@@ -373,7 +331,6 @@ html {
     will-change: transform;
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 35%, rgba(0, 0, 0, 1) 100%);
 }
-
 .holiday-lights--inline {
     position: absolute;
     top: 0;
@@ -385,7 +342,6 @@ html {
     animation: lights-sway 3.4s ease-in-out infinite alternate;
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.9) 70%, rgba(0, 0, 0, 0) 100%);
 }
-
 .holiday-lights--inline::before,
 .holiday-lights--inline::after {
     content: "";
@@ -399,24 +355,25 @@ html {
     background-size: 320px 120px;
     filter: drop-shadow(0 8px 16px rgba(255, 186, 90, 0.35));
 }
-
 @media (max-width: 768px) {
     .holiday-lights--inline {
         height: 90px;
     }
+    
     .holiday-lights--inline::before,
     .holiday-lights--inline::after {
         background-size: 220px 90px;
     }
+    
     .holiday-lights {
         top: 96px;
     }
 }
-
 @keyframes lights-sway {
     0% {
         transform: rotate(-1deg) translate3d(0, 0, 0);
     }
+    
     100% {
         transform: rotate(1deg) translate3d(0, 0, 0);
     }
