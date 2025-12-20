@@ -187,6 +187,24 @@ html {
         opacity: 1;
         transform: translateX(0);
     }
+    /* Disable scroll reveal animations on mobile */
+    @media (max-width: 768px) {
+        .scroll-reveal,
+        .scroll-reveal-scale,
+        .scroll-reveal-left,
+        .scroll-reveal-right {
+            opacity: 1;
+            transform: none;
+            transition: none;
+        }
+        .scroll-reveal.revealed,
+        .scroll-reveal-scale.revealed,
+        .scroll-reveal-left.revealed,
+        .scroll-reveal-right.revealed {
+            opacity: 1;
+            transform: none;
+        }
+    }
 }
 
 

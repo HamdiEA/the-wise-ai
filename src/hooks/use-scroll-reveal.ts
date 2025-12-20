@@ -14,9 +14,17 @@ export function useScrollReveal(options: UseScrollRevealOptions = {}) {
   } = options;
 
   const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  // On mobile, always show content immediately
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+  const [isVisible, setIsVisible] = useState(isMobile);
 
   useEffect(() => {
+    // Skip intersection observer on mobile - everything is visible
+    if (isMobile) {
+      setIsVisible(true);
+      return;
+    }
+
     const element = ref.current;
     if (!element) return;
 
@@ -39,7 +47,7 @@ export function useScrollReveal(options: UseScrollRevealOptions = {}) {
         observer.unobserve(element);
       }
     };
-  }, [threshold, rootMargin, delay]);
+  }, [threshold, rootMargin, delay, isMobile]);
 
   return { ref, isVisible };
 }
