@@ -23,22 +23,4 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  build: {
-    minify: false,
-    // Chunk strategy for better caching
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          "react-vendor": ["react", "react-dom", "react-router-dom"],
-          "ui-vendor": ["lucide-react"],
-        },
-      },
-    },
-    // Enable CSS code splitting
-    cssCodeSplit: true,
-  },
-  optimizeDeps: {
-    // Pre-bundle these dependencies
-    include: ["react", "react-dom", "react-router-dom", "lucide-react"],
-  },
 }));
