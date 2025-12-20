@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
 interface PageTransitionProps {
@@ -10,21 +10,35 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
   const [displayChildren, setDisplayChildren] = useState(children);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeKey, setActiveKey] = useState(location.pathname);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
-    // Scroll to top smoothly on page change
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Clear any pending scroll timeout
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
 
-    // Immediately swap to the new children to avoid black flashes, then fade in
+    // Immediately swap to the new children to prevent visual flashing
     setDisplayChildren(children);
     setActiveKey(location.pathname);
     setIsTransitioning(true);
 
-    const timer = setTimeout(() => {
+    // Fast transition - optimized for mobile
+    const transitionTimer = setTimeout(() => {
       setIsTransitioning(false);
-    }, 280);
+    }, 200);
 
-    return () => clearTimeout(timer);
+    // Scroll to top after transition starts (non-blocking)
+    scrollTimeoutRef.current = setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }, 100);
+
+    return () => {
+      clearTimeout(transitionTimer);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
   }, [location.pathname, children]);
 
   return (
@@ -32,14 +46,20 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
       key={activeKey}
       style={{
         opacity: isTransitioning ? 0 : 1,
-        transition: "opacity 0.28s ease-in-out",
+        transition: "opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
         willChange: "opacity",
+        backfaceVisibility: "hidden",
       }}
     >
       <style>{`
-        /* Keep keyframes in case other parts reuse them */
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(0); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeOut {
+          from { opacity: 1; transform: translateY(0); }
+          to { opacity: 0; transform: translateY(0); }
+        }
       `}</style>
       {displayChildren}
     </div>

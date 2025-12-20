@@ -73,10 +73,14 @@ All colors MUST be HSL.
         background-color: #000;
         /* Hide body scrolling so we only keep a single scrollbar on #root */
         overflow: hidden;
+        /* Optimize for mobile scrolling */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
     #root {
         min-height: 100vh;
         overflow-y: auto;
+        /* GPU-accelerated smooth scrolling for mobile */
         -webkit-overflow-scrolling: touch;
         /* Ensure the root has its own dark fallback so swipes don't show blue */
         background-color: #000;
@@ -310,6 +314,25 @@ html {
     }
     .holiday-lights {
         top: 96px;
+    }
+    /* Mobile performance optimizations */
+    html {
+        scroll-behavior: auto;
+    }
+    /* Reduce animation on mobile to improve performance */
+    .snow-layer {
+        animation: snowfall 22s linear infinite;
+    }
+    .amber-light {
+        animation-duration: calc(var(--duration, 6s) * 1.2);
+    }
+    /* Optimize for touch devices */
+    button,
+    a,
+    input,
+    textarea,
+    select {
+        -webkit-tap-highlight-color: transparent;
     }
 }
 
