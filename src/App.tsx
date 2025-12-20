@@ -27,38 +27,6 @@ const App: React.FC = () => {
 
     document.addEventListener("touchmove", preventZoom, { passive: false });
 
-    // Optimize scroll performance on mobile
-    const isMobile = window.innerWidth <= 768;
-    if (isMobile) {
-      // Force GPU acceleration
-      document.body.style.transform = 'translateZ(0)';
-      document.body.style.webkitTransform = 'translateZ(0)';
-      
-      // Prevent elastic scrolling at edges
-      let scrollPos = 0;
-      const preventBounce = (e: TouchEvent) => {
-        const target = e.target as HTMLElement;
-        if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return;
-        
-        const currentScrollPos = window.pageYOffset || document.documentElement.scrollTop;
-        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-        
-        // At the top or bottom, prevent default to avoid bounce
-        if ((currentScrollPos <= 0 && scrollPos <= 0) || 
-            (currentScrollPos >= maxScroll && scrollPos >= maxScroll)) {
-          e.preventDefault();
-        }
-        scrollPos = currentScrollPos;
-      };
-      
-      document.addEventListener('touchmove', preventBounce, { passive: false });
-      
-      return () => {
-        document.removeEventListener("touchmove", preventZoom);
-        document.removeEventListener('touchmove', preventBounce);
-      };
-    }
-
     return () => {
       document.removeEventListener("touchmove", preventZoom);
     };

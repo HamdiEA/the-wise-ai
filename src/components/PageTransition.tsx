@@ -47,9 +47,6 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
         ? "opacity 0.15s ease-out" 
         : "opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
       willChange: isTransitioning ? "opacity" : "auto",
-      // Ensure content is ready before display
-      minHeight: "100vh",
-      contain: "layout style paint",
     }),
     [isTransitioning]
   );
