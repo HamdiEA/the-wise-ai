@@ -24,6 +24,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    minify: false,
+    // Force esbuild minifier to avoid optional terser dependency in CI
+    minify: "esbuild",
   },
 }));

@@ -9,6 +9,10 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Force esbuild minifier so Vercel doesn't try to use terser
+    minify: "esbuild",
+  },
   server: {
     port: 8080,
   },
