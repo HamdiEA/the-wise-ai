@@ -122,11 +122,21 @@ html {
         max-width: 100%;
         height: auto;
     }
-    /* Avoid forcing new layers to prevent line-by-line repainting */
+    /* Avoid extra compositing that can cause repaint artifacts */
     section,
     article,
     .card {
-        backface-visibility: hidden;
+        backface-visibility: unset;
+    }
+    /* Disable festive overlays on mobile to reduce repaint cost */
+    @media (max-width: 768px) {
+        .snow-layer,
+        .sparkle-layer,
+        .amber-light,
+        .amber-light-2,
+        .amber-light-3 {
+            display: none;
+        }
     }
     /* Scroll reveal animations disabled globally */
     .scroll-reveal,
