@@ -24,14 +24,6 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Optimize bundle size
-    minify: "terser",
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },
     // Chunk strategy for better caching
     rollupOptions: {
       output: {
