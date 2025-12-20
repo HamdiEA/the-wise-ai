@@ -43,8 +43,6 @@ export default defineConfig(({ mode }) => ({
     },
     // Enable CSS code splitting
     cssCodeSplit: true,
-    // Optimize CSS
-    cssMinify: "lightningcss",
   },
   optimizeDeps: {
     // Pre-bundle these dependencies
