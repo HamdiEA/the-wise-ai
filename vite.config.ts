@@ -12,6 +12,14 @@ export default defineConfig({
   build: {
     // Force esbuild minifier so Vercel doesn't try to use terser
     minify: "esbuild",
+    // Avoid multiple JS chunks; ship a single bundle to prevent on-scroll chunk loads
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+    // Keep CSS in a single file as well
+    cssCodeSplit: false,
   },
   server: {
     port: 8080,
