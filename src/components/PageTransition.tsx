@@ -10,7 +10,7 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
   const [displayChildren, setDisplayChildren] = useState(children);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeKey, setActiveKey] = useState(location.pathname);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
+  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
 
   useEffect(() => {
     // Clear any pending scroll timeout

@@ -98,7 +98,7 @@ export const useSmoothSwipe = ({ nextPage, prevPage, threshold = 80, minVelocity
 
   useEffect(() => {
     document.addEventListener('touchstart', handleTouchStart, { passive: true });
-    document.addEventListener('touchmove', handleTouchMove, { passive: true, cancelable: false });
+    document.addEventListener('touchmove', handleTouchMove, { passive: true });
     document.addEventListener('touchend', handleTouchEnd, { passive: true });
 
     return () => {
