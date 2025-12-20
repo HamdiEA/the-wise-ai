@@ -65,6 +65,8 @@ const HeroSectionWithVideo = memo(() => {
       </div>
     </section>
   );
-};
+});
+
+HeroSectionWithVideo.displayName = 'HeroSectionWithVideo';
 
 export default HeroSectionWithVideo;
