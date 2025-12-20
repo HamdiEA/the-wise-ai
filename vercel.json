@@ -3,7 +3,8 @@
     "buildCommand": "npm run build",
     "outputDirectory": "dist",
     "env": {
-        "NODE_ENV": "production"
+        "NODE_ENV": "production",
+        "SKIP_BUILD_CACHE": "true"
     },
     "functions": {
         "api/**/*.js": {
