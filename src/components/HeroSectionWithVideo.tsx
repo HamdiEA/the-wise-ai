@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import VideoCarousel from "./VideoCarousel";
+import { memo } from "react";
 
-const HeroSectionWithVideo = () => {
+const HeroSectionWithVideo = memo(() => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Vidéo en fond */}

@@ -12,11 +12,14 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
   const [activeKey, setActiveKey] = useState(location.pathname);
 
   useEffect(() => {
+    // Detect if mobile to adjust scroll behavior
+    const isMobile = window.innerWidth <= 768;
+    
     // Use requestAnimationFrame to batch DOM updates
     const scrollPromise = new Promise<void>((resolve) => {
-      // Scroll to top at next animation frame for smooth scroll
+      // Scroll to top instantly on mobile for better performance
       if (location.pathname !== activeKey) {
-        window.scrollTo({ top: 0, behavior: "auto" });
+        window.scrollTo({ top: 0, behavior: isMobile ? "auto" : "smooth" });
       }
       resolve();
     });
@@ -39,20 +42,20 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
   const transitionStyle = useMemo(
     () => ({
       opacity: isTransitioning ? 0 : 1,
-      transition: "opacity 0.2s ease-in-out",
+      // Shorter transition on mobile for snappier feel
+      transition: window.innerWidth <= 768 
+        ? "opacity 0.15s ease-out" 
+        : "opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
       willChange: isTransitioning ? "opacity" : "auto",
+      // Ensure content is ready before display
       minHeight: "100vh",
-      contain: "layout style",
+      contain: "layout style paint",
     }),
     [isTransitioning]
   );
 
   return (
     <div key={activeKey} style={transitionStyle}>
-      <style>{`
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
-      `}</style>
       {displayChildren}
     </div>
   );

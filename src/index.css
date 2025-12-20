@@ -86,29 +86,18 @@ All colors MUST be HSL.
         background-color: #000;
         /* Reserve space for scrollbar to prevent layout shift/gap */
         scrollbar-gutter: stable;
-        /* Prevent content from shifting during load */
+        /* Optimize rendering during scroll */
         contain: layout style paint;
+        content-visibility: auto;
     }
 }
 
 html {
-    scroll-behavior: smooth;
-}
-
-
-/* Prevent layout shifts during image loading */
-
-img {
-    content-visibility: auto;
-    height: auto;
-}
-
-
-/* Prevent flash of unstyled content */
-
-.min-h-screen {
-    min-height: 100vh;
-    min-height: 100dvh;
+    scroll-behavior: auto;
+    /* Re-enable smooth scroll for desktop only */
+    @media (min-width: 769px) {
+        scroll-behavior: smooth;
+    }
 }
 
 @layer utilities {
@@ -129,6 +118,20 @@ img {
     .glow-on-hover:hover {
         box-shadow: 0 0 20px hsl(0 75% 50% / 0.4);
     }
+    /* Prevent layout shifts - images and media */
+    img,
+    video {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+    /* Force GPU rendering for smooth scroll */
+    section,
+    article,
+    .card {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
     /* Mobile performance optimizations */
     @media (max-width: 768px) {
         .card-hover-effect,
@@ -139,6 +142,13 @@ img {
         .glow-on-hover:active {
             opacity: 0.9;
             transform: scale(0.98);
+        }
+        /* Optimize scroll performance on mobile */
+        * {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
     }
 }

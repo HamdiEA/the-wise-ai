@@ -5,11 +5,19 @@ import { Button } from "@/components/ui/button";
 import { Clock, MapPin, Phone, Bot, Facebook, Instagram, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSmoothSwipe } from "@/hooks/use-smooth-swipe";
+import { useMemo } from "react";
 
 const Index = () => {
   const { getSwipeStyle } = useSmoothSwipe({
     nextPage: "/menu",
   });
+
+  // Memoize static location data to prevent re-renders
+  const locations = useMemo(() => [
+    { city: "Bardo Tunis", phone: "52 555 414", address: "AV HABIB BOURGUIBA (RUE DES ORANGES) 2000, BARDO TUNIS" },
+    { city: "Teboulba", phone: "93 560 560", address: "RUE HABIB BOURGUIBA - TEBOULBA" },
+    { city: "Ksar Hellal Monastir", phone: "52 555 400", address: "AV HAJ ALI SOUA KSAR HELLAL - MONASTIR" },
+  ], []);
 
   return (
     <div className="flex flex-col min-h-screen" style={getSwipeStyle()}>
@@ -35,11 +43,7 @@ const Index = () => {
                 Visitez-nous dans nos 3 emplacements. Commandez ou réservez par téléphone.
               </p>
               <div className="space-y-4">
-                {[
-                  { city: "Bardo Tunis", phone: "52 555 414", address: "AV HABIB BOURGUIBA (RUE DES ORANGES) 2000, BARDO TUNIS" },
-                  { city: "Teboulba", phone: "93 560 560", address: "RUE HABIB BOURGUIBA - TEBOULBA" },
-                  { city: "Ksar Hellal Monastir", phone: "52 555 400", address: "AV HAJ ALI SOUA KSAR HELLAL - MONASTIR" },
-                ].map((loc, idx) => (
+                {locations.map((loc, idx) => (
                   <div key={idx} className="rounded-2xl border border-amber-400/30 bg-black/30 p-4 flex flex-col gap-2">
                     <div className="flex items-center gap-2 text-amber-200 font-semibold">
                       <MapPin className="h-4 w-4" />

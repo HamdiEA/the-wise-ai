@@ -1,12 +1,13 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useSmoothSwipe } from "@/hooks/use-smooth-swipe";
+import { memo } from "react";
 
 interface MenuLayoutProps {
   children: React.ReactNode;
 }
 
-const MenuLayout = ({ children }: MenuLayoutProps) => {
+const MenuLayout = memo(({ children }: MenuLayoutProps) => {
   // Enable swipe-left to return to the main menu list
   const { getSwipeStyle } = useSmoothSwipe({ prevPage: "/menu" });
 
@@ -21,6 +22,8 @@ const MenuLayout = ({ children }: MenuLayoutProps) => {
       </div>
     </div>
   );
-};
+});
+
+MenuLayout.displayName = 'MenuLayout';
 
 export default MenuLayout;
