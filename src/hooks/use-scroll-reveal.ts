@@ -14,8 +14,8 @@ export function useScrollReveal(options: UseScrollRevealOptions = {}) {
   } = options;
 
   const ref = useRef<HTMLDivElement>(null);
-  // On mobile, always show content immediately
-  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+  // On mobile (and during SSR), show content immediately to avoid pop-in
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth <= 768 : true;
   const [isVisible, setIsVisible] = useState(isMobile);
 
   useEffect(() => {
