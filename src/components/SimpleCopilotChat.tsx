@@ -138,7 +138,10 @@ export default function SimpleCopilotChat({ lang: langProp, setLang: setLangProp
   const isRTL = lang === "ar";
 
   return (
-    <div className="wise-conversation" dir={isRTL ? "rtl" : "ltr"}>
+    <div
+      className={`wise-conversation ${controlled ? "wise-conversation--embedded" : ""}`}
+      dir={isRTL ? "rtl" : "ltr"}
+    >
       {!controlled && (
         <header className="wise-conversation__topbar">
           <div className="wise-conversation__identity">

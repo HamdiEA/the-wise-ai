@@ -9,16 +9,16 @@ const t = {
   },
   hero: {
     tagline: {
-      fr: 'Choisissez Votre Nourriture Sagement',
+      fr: "Cuisine d'exception en Tunisie",
       en: 'Choose Your Food Wisely',
       ar: 'اختر طعامك بحكمة',
     },
     subtitle: {
-      fr: 'Une expérience culinaire raffinée au cœur de la Tunisie. Cuisine méditerranéenne, pizzas artisanales et saveurs authentiques.',
+      fr: "Choisissez votre plat avec sagesse - cuisine d'exception dans nos 3 adresses en Tunisie.",
       en: 'A refined culinary experience in the heart of Tunisia. Mediterranean cuisine, artisan pizzas and authentic flavors.',
       ar: 'تجربة طهي راقية في قلب تونس. مطبخ متوسطي، بيتزا حرفية ونكهات أصيلة.',
     },
-    cta: { fr: 'Découvrir le menu', en: 'Explore the menu', ar: 'استكشف القائمة' },
+    cta: { fr: 'Voir le menu', en: 'Explore the menu', ar: 'استكشف القائمة' },
     ctaSecondary: { fr: 'Nous contacter', en: 'Contact us', ar: 'اتصل بنا' },
     scrollHint: { fr: 'Défiler', en: 'Scroll', ar: 'مرر' },
     stats: {

@@ -1113,6 +1113,10 @@
     font-family: 'Josefin Sans', sans-serif;
 }
 
+.wise-conversation--embedded {
+    grid-template-rows: 1fr auto auto;
+}
+
 .wise-conversation__topbar {
     display: flex;
     align-items: center;

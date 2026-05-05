@@ -71,7 +71,7 @@ const Index = () => {
       <div className="flex-1">
         <HeroSection />
 
-        <section className="relative overflow-hidden px-4 py-24">
+        <section id="locations" className="relative overflow-hidden px-4 py-24">
           <div
             className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent pointer-events-none"
             aria-hidden="true"
