@@ -24,6 +24,28 @@ export default function FloatingChat() {
   const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+    const root = document.getElementById("root");
+
+    if (open) {
+      html.classList.add("wise-chat-open");
+      body.classList.add("wise-chat-open");
+      root?.classList.add("wise-chat-open");
+    } else {
+      html.classList.remove("wise-chat-open");
+      body.classList.remove("wise-chat-open");
+      root?.classList.remove("wise-chat-open");
+    }
+
+    return () => {
+      html.classList.remove("wise-chat-open");
+      body.classList.remove("wise-chat-open");
+      root?.classList.remove("wise-chat-open");
+    };
+  }, [open]);
+
   // Initialize from localStorage on mount
   useEffect(() => {
     const savedOrder = localStorage.getItem("completeOrder");

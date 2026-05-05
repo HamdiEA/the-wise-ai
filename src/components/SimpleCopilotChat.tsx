@@ -33,9 +33,10 @@ export default function SimpleCopilotChat({ lang: langProp, setLang: setLangProp
   const messagesRef = useRef<HTMLDivElement | null>(null);
 
   const reachedLimit = rateInfo.remaining <= 0;
+  const compactRateText = `${Math.max(0, rateInfo.remaining)}/${Math.max(1, rateInfo.limit)}`;
   const statusText = reachedLimit && countdown
     ? `${tr(t.ai.availableIn, lang)} ${countdown}`
-    : error || `${rateInfo.remaining} ${tr(t.ai.remaining, lang)} ${tr(t.ai.reset, lang)}`;
+    : error || compactRateText;
 
   useEffect(() => {
     if (!reachedLimit) {
