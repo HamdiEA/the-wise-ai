@@ -109,7 +109,6 @@
     #root.wise-chat-open {
         overflow: hidden !important;
         overscroll-behavior: none;
-        touch-action: none;
     }
     h1,
     h2,
@@ -863,7 +862,7 @@
     -webkit-backdrop-filter: blur(8px);
     overscroll-behavior: none;
     overflow: hidden;
-    touch-action: none;
+    touch-action: pan-y;
     animation: wise-overlay-in 0.3s var(--transition-smooth) both;
 }
 
@@ -1547,15 +1546,15 @@
         backdrop-filter: blur(6px);
         -webkit-backdrop-filter: blur(6px);
         overscroll-behavior: none;
-        touch-action: none;
+        touch-action: pan-y;
     }
     .wise-chat-panel {
         position: relative;
         inset: auto;
         width: 100%;
         max-width: 26rem;
-        height: min(78dvh, 38rem);
-        min-height: 26rem;
+        height: min(38rem, calc(100dvh - max(0.75rem, env(safe-area-inset-top)) - max(0.75rem, env(safe-area-inset-bottom))));
+        min-height: 0;
         max-height: calc(100dvh - max(0.75rem, env(safe-area-inset-top)) - max(0.75rem, env(safe-area-inset-bottom)));
         border-radius: 1.25rem;
     }
