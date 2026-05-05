@@ -193,9 +193,9 @@ const t = {
     },
     limitReached: { fr: "Limite atteinte. Patientez.", en: "Limit reached. Please wait.", ar: "تم الوصول للحد. انتظر." },
     noKey: {
-      fr: "Clé API OpenRouter manquante. Ajoutez VITE_OPENROUTER_API_KEY dans .env.local",
-      en: "OpenRouter API key missing. Add VITE_OPENROUTER_API_KEY to .env.local",
-      ar: "مفتاح API مفقود. أضف VITE_OPENROUTER_API_KEY في .env.local",
+      fr: "Configuration serveur manquante. Ajoutez OPENROUTER_API_KEY et JWT_SECRET dans les variables d'environnement.",
+      en: "Missing server configuration. Add OPENROUTER_API_KEY and JWT_SECRET in environment variables.",
+      ar: "Missing server configuration. Add OPENROUTER_API_KEY and JWT_SECRET in environment variables.",
     },
   },
 };
@@ -209,3 +209,4 @@ export function trArr(key: { fr: string[]; en: string[]; ar: string[] }, lang: L
 }
 
 export default t;
+

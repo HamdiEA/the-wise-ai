@@ -1,6 +1,6 @@
-﻿import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Sparkles, Trash2 } from "lucide-react";
-import { askWiserAI, getRateInfo, Message, API_KEY } from "@/lib/openrouter";
+import { askWiserAI, getRateInfo, Message, syncRateInfo } from "@/lib/openrouter";
 import t, { tr, trArr } from "@/data/translations";
 import type { Lang } from "@/context/LanguageContext";
 
@@ -33,17 +33,30 @@ export default function SimpleCopilotChat({ lang: langProp, setLang: setLangProp
   const messagesRef = useRef<HTMLDivElement | null>(null);
 
   const reachedLimit = rateInfo.remaining <= 0;
+  const statusText = reachedLimit && countdown
+    ? `${tr(t.ai.availableIn, lang)} ${countdown}`
+    : error || `${rateInfo.remaining} ${tr(t.ai.remaining, lang)} ${tr(t.ai.reset, lang)}`;
 
   useEffect(() => {
-    if (!reachedLimit) { setCountdown(null); return; }
+    if (!reachedLimit) {
+      setCountdown(null);
+      return;
+    }
+
     const update = () => {
       const diff = Math.max(0, rateInfo.resetAt - Date.now());
-      if (diff === 0) { setRateInfo(getRateInfo()); setCountdown(null); return; }
+      if (diff === 0) {
+        syncRateInfo(true).then(setRateInfo);
+        setCountdown(null);
+        return;
+      }
+
       const h = Math.floor(diff / 3_600_000);
       const m = Math.floor((diff % 3_600_000) / 60_000);
       const s = Math.floor((diff % 60_000) / 1000);
       setCountdown(`${h}h ${m}m ${s}s`);
     };
+
     update();
     const id = setInterval(update, 1000);
     return () => clearInterval(id);
@@ -65,6 +78,10 @@ export default function SimpleCopilotChat({ lang: langProp, setLang: setLangProp
     }
   }, [messages, storageKey]);
 
+  useEffect(() => {
+    syncRateInfo().then(setRateInfo);
+  }, []);
+
   const trim = (msgs: Message[]) => msgs.slice(-MAX_MESSAGES);
 
   const clearChat = () => {
@@ -76,6 +93,7 @@ export default function SimpleCopilotChat({ lang: langProp, setLang: setLangProp
 
   const send = async () => {
     if (!input.trim() || loading || reachedLimit) return;
+
     setLoading(true);
     setError(null);
 
@@ -86,16 +104,18 @@ export default function SimpleCopilotChat({ lang: langProp, setLang: setLangProp
 
     try {
       const reply = await askWiserAI(
-        next.filter(m => m.role !== "system") as Message[],
+        next.filter((m) => m.role !== "system") as Message[],
         lang
       );
-      setMessages(prev => trim([...prev, { role: "assistant", content: reply }]));
+      setMessages((prev) => trim([...prev, { role: "assistant", content: reply }]));
       setRateInfo(getRateInfo());
-    } catch (err: any) {
-      if (err?.code === 'no_key') {
+    } catch (err: unknown) {
+      const knownError = err as { code?: string };
+
+      if (knownError?.code === 'no_key') {
         setError(tr(t.ai.noKey, lang));
-      } else if (err?.code === 'limit_reached') {
-        setRateInfo(getRateInfo());
+      } else if (knownError?.code === 'limit_reached') {
+        syncRateInfo().then(setRateInfo);
         setError(tr(t.ai.limitReached, lang));
       } else {
         setError(tr(t.ai.errorSend, lang));
@@ -107,14 +127,17 @@ export default function SimpleCopilotChat({ lang: langProp, setLang: setLangProp
   };
 
   const onKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") { e.preventDefault(); send(); }
+    if (e.key === "Enter") {
+      e.preventDefault();
+      send();
+    }
   };
 
   const starters = trArr(t.ai.starters, lang);
-  const isRTL = lang === 'ar';
+  const isRTL = lang === "ar";
 
   return (
-    <div className="wise-conversation" dir={isRTL ? 'rtl' : 'ltr'}>
+    <div className="wise-conversation" dir={isRTL ? "rtl" : "ltr"}>
       {!controlled && (
         <header className="wise-conversation__topbar">
           <div className="wise-conversation__identity">
@@ -142,12 +165,6 @@ export default function SimpleCopilotChat({ lang: langProp, setLang: setLangProp
             <p className="wise-empty-chat__eyebrow">{tr(t.ai.howHelp, lang)}</p>
             <h3>{tr(t.ai.askMenu, lang)}</h3>
             <p>{tr(t.ai.askMenuDesc, lang)}</p>
-
-            {!API_KEY && (
-              <p style={{ color: 'hsl(var(--destructive))', fontSize: '0.75rem', marginTop: '0.5rem', maxWidth: '20rem', textAlign: 'center' }}>
-                {tr(t.ai.noKey, lang)}
-              </p>
-            )}
 
             <div className="wise-starter-grid">
               {starters.map((s) => (
@@ -182,13 +199,12 @@ export default function SimpleCopilotChat({ lang: langProp, setLang: setLangProp
             <Trash2 size={13} />
           </button>
         )}
-        {reachedLimit && countdown ? (
-          <span>{tr(t.ai.availableIn, lang)} {countdown}</span>
-        ) : error ? (
-          <span style={{ color: 'hsl(var(--destructive))' }}>{error}</span>
-        ) : (
-          <span>{rateInfo.remaining} {tr(t.ai.remaining, lang)} {tr(t.ai.reset, lang)}</span>
-        )}
+        <span
+          className={`wise-conversation__status-line ${error ? "wise-conversation__status-line--error" : ""}`}
+          title={statusText}
+        >
+          {statusText}
+        </span>
       </div>
 
       <div className="wise-conversation__composer">
@@ -198,7 +214,7 @@ export default function SimpleCopilotChat({ lang: langProp, setLang: setLangProp
           onKeyDown={onKey}
           placeholder={tr(t.ai.placeholder, lang)}
           disabled={reachedLimit}
-          dir={isRTL ? 'rtl' : 'ltr'}
+          dir={isRTL ? "rtl" : "ltr"}
           style={isRTL ? { fontFamily: "'Noto Naskh Arabic', serif" } : {}}
         />
         <button onClick={send} disabled={loading || reachedLimit} aria-label="Send">
@@ -208,4 +224,3 @@ export default function SimpleCopilotChat({ lang: langProp, setLang: setLangProp
     </div>
   );
 }
-

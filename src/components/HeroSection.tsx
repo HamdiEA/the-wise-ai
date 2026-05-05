@@ -8,7 +8,7 @@ const HeroSection = () => {
   const { lang } = useLanguage();
 
   return (
-    <section className="relative h-screen min-h-[600px] flex flex-col items-center justify-center overflow-hidden">
+    <section className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden md:min-h-[600px]">
       <div className="hero-video-wrap" aria-hidden="true">
         <VideoCarousel />
         <div className="hero-overlay" />

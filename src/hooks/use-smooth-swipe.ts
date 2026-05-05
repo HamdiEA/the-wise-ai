@@ -12,12 +12,24 @@ export const useSmoothSwipe = ({ nextPage, prevPage, threshold = 60 }: SmoothSwi
   const navigate = useNavigate();
   const [swipeOffset, setSwipeOffset] = useState(0);
   const [isSwiping, setIsSwiping] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
   const touchStartX = useRef<number>(0);
   const touchStartY = useRef<number>(0);
   const currentX = useRef<number>(0);
   const currentY = useRef<number>(0);
   const hasHorizontalIntent = useRef<boolean>(false);
   const animationFrameRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 768px)");
+    const syncViewport = () => setIsMobileViewport(media.matches);
+    syncViewport();
+    media.addEventListener("change", syncViewport);
+
+    return () => {
+      media.removeEventListener("change", syncViewport);
+    };
+  }, []);
 
   const handleTouchStart = useCallback((e: TouchEvent) => {
     if (e.touches.length !== 1) return;
@@ -72,6 +84,8 @@ export const useSmoothSwipe = ({ nextPage, prevPage, threshold = 60 }: SmoothSwi
       offset = diffX * resistance;
     }
 
+    if (isMobileViewport) return;
+
     if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
     }
@@ -80,7 +94,7 @@ export const useSmoothSwipe = ({ nextPage, prevPage, threshold = 60 }: SmoothSwi
       setSwipeOffset(offset);
       animationFrameRef.current = null;
     });
-  }, [nextPage, prevPage]);
+  }, [isMobileViewport, nextPage, prevPage]);
 
   const handleTouchEnd = useCallback(() => {
     const diff = currentX.current - touchStartX.current;
@@ -146,6 +160,14 @@ export const useSmoothSwipe = ({ nextPage, prevPage, threshold = 60 }: SmoothSwi
     swipeOffset,
     isSwiping,
     getSwipeStyle: () => {
+      if (isMobileViewport) {
+        return {
+          transform: 'none',
+          transition: 'none',
+          willChange: 'auto',
+        };
+      }
+
       return {
         transform: `translateX(${swipeOffset}px)`,
         transition: isSwiping
