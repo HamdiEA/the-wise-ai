@@ -747,22 +747,29 @@
     position: absolute;
     bottom: 2.5rem;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
+    width: max-content;
+    text-align: center;
     color: hsl(var(--foreground) / 0.45);
     font-size: 0.6rem;
-    letter-spacing: 0.35em;
+    line-height: 1;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
+    white-space: nowrap;
+    pointer-events: none;
     animation: luxe-fade-up 1.4s var(--transition-smooth) 1.8s both;
 }
 
 .hero-scroll-indicator::after {
     content: "";
     width: 1px;
-    height: 36px;
+    height: 34px;
+    margin-inline: auto;
     background: linear-gradient(to bottom, hsl(var(--primary) / 0.5), transparent);
     animation: scroll-pulse 2.2s ease-in-out infinite;
 }
@@ -1353,14 +1360,15 @@
 }
 
 .wise-conversation__status {
-    min-height: 1.3rem;
+    min-height: 1.05rem;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.35rem;
-    padding: 0.22rem 0.7rem;
+    gap: 0;
+    padding: 0.08rem 0.55rem;
     color: hsl(var(--muted-foreground));
-    font-size: 0.62rem;
+    font-size: 0.56rem;
     border-top: 1px solid hsl(var(--primary) / 0.08);
     background: hsl(var(--background) / 0.22);
     line-height: 1;
@@ -1373,11 +1381,13 @@
 
 .wise-conversation__status-line {
     display: block;
-    max-width: 100%;
+    width: 100%;
+    padding-inline: 1.5rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: center;
+    line-height: 1.2;
 }
 
 .wise-conversation__status-line--error {
@@ -1385,16 +1395,26 @@
 }
 
 .wise-clear-icon-btn {
-    display: flex;
+    position: absolute;
+    inset-inline-start: 0.45rem;
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
     align-items: center;
-    padding: 0.15rem 0.35rem;
+    justify-content: center;
+    padding: 0.1rem 0.28rem;
     border: 1px solid hsl(var(--primary) / 0.25);
-    border-radius: 6px;
+    border-radius: 5px;
     background: hsl(var(--primary) / 0.07);
     color: hsl(var(--muted-foreground));
     cursor: pointer;
     transition: all 0.25s;
     flex-shrink: 0;
+}
+
+.wise-clear-icon-btn svg {
+    width: 11px;
+    height: 11px;
 }
 
 .wise-clear-icon-btn:hover {
@@ -1539,12 +1559,20 @@
         height: 0;
     }
     .wise-conversation__status {
-        min-height: 1.05rem;
-        padding: 0.14rem 0.55rem;
-        font-size: 0.56rem;
+        min-height: 0.95rem;
+        padding: 0.05rem 0.45rem;
+        font-size: 0.53rem;
     }
     .wise-conversation__status-line {
-        max-width: calc(100% - 1.6rem);
+        padding-inline: 1.28rem;
+    }
+    .wise-clear-icon-btn {
+        inset-inline-start: 0.35rem;
+        padding: 0.07rem 0.22rem;
+    }
+    .wise-clear-icon-btn svg {
+        width: 10px;
+        height: 10px;
     }
     /* Panel header compact on mobile */
     .wise-chat-panel__header {

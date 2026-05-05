@@ -193,9 +193,9 @@ const t = {
     },
     limitReached: { fr: "Limite atteinte. Patientez.", en: "Limit reached. Please wait.", ar: "تم الوصول للحد. انتظر." },
     noKey: {
-      fr: "Configuration serveur manquante. Ajoutez OPENROUTER_API_KEY et JWT_SECRET dans les variables d'environnement.",
-      en: "Missing server configuration. Add OPENROUTER_API_KEY and JWT_SECRET in environment variables.",
-      ar: "Missing server configuration. Add OPENROUTER_API_KEY and JWT_SECRET in environment variables.",
+      fr: "Config serveur manquante: OPENROUTER_API_KEY + JWT_SECRET.",
+      en: "Server config missing: OPENROUTER_API_KEY + JWT_SECRET.",
+      ar: "Server config missing: OPENROUTER_API_KEY + JWT_SECRET.",
     },
   },
 };
