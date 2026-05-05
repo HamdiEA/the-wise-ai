@@ -109,6 +109,7 @@
     #root.wise-chat-open {
         overflow: hidden !important;
         overscroll-behavior: none;
+        touch-action: none;
     }
     h1,
     h2,
@@ -860,7 +861,9 @@
     background: radial-gradient(circle at 78% 78%, hsl(var(--primary) / 0.1), transparent 36%), hsl(var(--background) / 0.7);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    overscroll-behavior: contain;
+    overscroll-behavior: none;
+    overflow: hidden;
+    touch-action: none;
     animation: wise-overlay-in 0.3s var(--transition-smooth) both;
 }
 
@@ -975,6 +978,7 @@
 .wise-chat-panel__body {
     flex: 1;
     min-height: 0;
+    min-width: 0;
     overflow: hidden;
 }
 
@@ -1100,6 +1104,7 @@
 
 .wise-conversation {
     height: 100%;
+    min-width: 0;
     min-height: 0;
     display: grid;
     grid-template-rows: auto 1fr auto auto;
@@ -1372,15 +1377,15 @@
 }
 
 .wise-conversation__status {
-    min-height: 0.88rem;
+    min-height: 0.62rem;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0;
-    padding: 0.02rem 0.5rem;
+    padding: 0 0.38rem;
     color: hsl(var(--muted-foreground));
-    font-size: 0.52rem;
+    font-size: 0.44rem;
     border-top: 1px solid hsl(var(--primary) / 0.08);
     background: hsl(var(--background) / 0.22);
     line-height: 1;
@@ -1394,12 +1399,12 @@
 .wise-conversation__status-line {
     display: block;
     width: 100%;
-    padding-inline: 1.35rem;
+    padding-inline: 1.02rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: center;
-    line-height: 1.05;
+    line-height: 1;
 }
 
 .wise-conversation__status-line--error {
@@ -1414,7 +1419,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.06rem 0.24rem;
+    padding: 0.03rem 0.16rem;
     border: 1px solid hsl(var(--primary) / 0.25);
     border-radius: 5px;
     background: hsl(var(--primary) / 0.07);
@@ -1425,8 +1430,8 @@
 }
 
 .wise-clear-icon-btn svg {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
 }
 
 .wise-clear-icon-btn:hover {
@@ -1537,7 +1542,8 @@
         padding: 0.75rem 0.75rem max(0.75rem, env(safe-area-inset-bottom));
         backdrop-filter: blur(6px);
         -webkit-backdrop-filter: blur(6px);
-        overscroll-behavior: contain;
+        overscroll-behavior: none;
+        touch-action: none;
     }
     .wise-chat-panel {
         position: relative;
@@ -1572,20 +1578,20 @@
         height: 0;
     }
     .wise-conversation__status {
-        min-height: 0.78rem;
-        padding: 0.01rem 0.4rem;
-        font-size: 0.48rem;
+        min-height: 0.54rem;
+        padding: 0 0.26rem;
+        font-size: 0.41rem;
     }
     .wise-conversation__status-line {
-        padding-inline: 1.08rem;
+        padding-inline: 0.88rem;
     }
     .wise-clear-icon-btn {
-        inset-inline-start: 0.28rem;
-        padding: 0.05rem 0.18rem;
+        inset-inline-start: 0.2rem;
+        padding: 0.02rem 0.14rem;
     }
     .wise-clear-icon-btn svg {
-        width: 9px;
-        height: 9px;
+        width: 7px;
+        height: 7px;
     }
     /* Panel header compact on mobile */
     .wise-chat-panel__header {
