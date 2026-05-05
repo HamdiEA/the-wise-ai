@@ -976,7 +976,13 @@
     flex: 1;
     display: flex;
     min-height: 0;
+    min-width: 0;
     overflow: hidden;
+}
+
+.wise-chat-panel__body>* {
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 
@@ -1101,7 +1107,9 @@
 
 .wise-conversation {
     height: 100%;
+    width: 100%;
     min-height: 0;
+    min-width: 0;
     display: grid;
     grid-template-rows: auto 1fr auto auto;
     overflow: hidden;
