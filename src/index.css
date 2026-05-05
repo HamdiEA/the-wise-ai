@@ -799,9 +799,6 @@
     right: 1.25rem;
     bottom: 1.5rem;
     z-index: 9999;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
 }
 
 .wise-chat-launcher {
@@ -852,16 +849,14 @@
 
 /* ─── Wiser AI Panel ──────────────────────────────────────────── */
 
-.wise-chat-backdrop {
+.wise-chat-overlay {
     position: fixed;
     inset: 0;
-    z-index: 9997;
-    border: 0;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    cursor: default;
+    z-index: 9998;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 1.25rem;
     background: radial-gradient(circle at 78% 78%, hsl(var(--primary) / 0.1), transparent 36%), hsl(var(--background) / 0.7);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -881,13 +876,6 @@
     touch-action: pan-y;
     box-shadow: 0 2.5rem 6rem hsl(0 0% 0% / 0.55), var(--shadow-elegant);
     animation: wise-panel-in 0.42s var(--transition-smooth) both;
-}
-
-.wise-chat-panel--floating {
-    position: fixed;
-    right: 1.25rem;
-    bottom: 6rem;
-    z-index: 9998;
 }
 
 .wise-chat-panel__header {
@@ -986,15 +974,8 @@
 
 .wise-chat-panel__body {
     flex: 1;
-    display: flex;
     min-height: 0;
-    min-width: 0;
     overflow: hidden;
-}
-
-.wise-chat-panel__body>* {
-    flex: 1 1 auto;
-    min-width: 0;
 }
 
 
@@ -1119,9 +1100,7 @@
 
 .wise-conversation {
     height: 100%;
-    width: 100%;
     min-height: 0;
-    min-width: 0;
     display: grid;
     grid-template-rows: auto 1fr auto auto;
     overflow: hidden;
@@ -1552,18 +1531,19 @@
         width: 3.35rem;
         height: 3.35rem;
     }
-    .wise-chat-backdrop {
-        background: hsl(var(--background) / 0.56);
+    .wise-chat-overlay {
+        justify-content: center;
+        align-items: flex-end;
+        padding: 0.75rem 0.75rem max(0.75rem, env(safe-area-inset-bottom));
         backdrop-filter: blur(6px);
         -webkit-backdrop-filter: blur(6px);
         overscroll-behavior: contain;
     }
-    .wise-chat-panel--floating {
-        right: 0.75rem;
-        left: 0.75rem;
-        width: auto;
-        max-width: none;
-        bottom: calc(5.15rem + env(safe-area-inset-bottom));
+    .wise-chat-panel {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        max-width: 26rem;
         height: min(78dvh, 38rem);
         min-height: 26rem;
         max-height: calc(100dvh - max(0.75rem, env(safe-area-inset-top)) - max(0.75rem, env(safe-area-inset-bottom)));
