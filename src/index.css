@@ -882,6 +882,8 @@
 
 .wise-chat-panel__header {
     flex: none;
+    position: relative;
+    z-index: 2;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -976,9 +978,16 @@
 
 .wise-chat-panel__body {
     flex: 1;
+    display: flex;
     min-height: 0;
     min-width: 0;
     overflow: hidden;
+}
+
+.wise-chat-panel__body>* {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 0;
 }
 
 
@@ -1105,18 +1114,15 @@
     height: 100%;
     min-width: 0;
     min-height: 0;
-    display: grid;
-    grid-template-rows: auto 1fr auto auto;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     background: transparent;
     font-family: 'Josefin Sans', sans-serif;
 }
 
-.wise-conversation--embedded {
-    grid-template-rows: 1fr auto auto;
-}
-
 .wise-conversation__topbar {
+    flex: none;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1234,6 +1240,7 @@
 }
 
 .wise-conversation__messages {
+    flex: 1 1 auto;
     min-height: 0;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -1380,6 +1387,7 @@
 }
 
 .wise-conversation__status {
+    flex: none;
     min-height: 0.62rem;
     position: relative;
     display: flex;
@@ -1443,6 +1451,7 @@
 }
 
 .wise-conversation__composer {
+    flex: none;
     display: flex;
     gap: 0.5rem;
     padding: 0.82rem;
@@ -1574,11 +1583,6 @@
     /* Give the conversation body safe-area padding at bottom */
     .wise-conversation__composer {
         padding-bottom: max(0.82rem, env(safe-area-inset-bottom));
-    }
-    /* Ensure messages fill and scroll properly */
-    .wise-conversation__messages {
-        flex: 1;
-        height: 0;
     }
     .wise-conversation__status {
         min-height: 0.54rem;
