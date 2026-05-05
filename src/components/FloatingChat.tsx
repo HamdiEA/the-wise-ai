@@ -148,20 +148,27 @@ export default function FloatingChat() {
         isChatOpen={open}
       />
 
-      {!open && (
-        <div className="wise-chat-launcher-wrap">
-          <button className="wise-chat-launcher" aria-label="Open assistant" onClick={() => setOpen(true)}>
-            <span className="wise-chat-launcher__pulse" aria-hidden="true" />
-            <MessageCircle size={22} strokeWidth={1.8} />
-          </button>
-        </div>
-      )}
+      <div className={`wise-chat-launcher-wrap ${open ? "is-open" : ""}`}>
+        <button
+          className="wise-chat-launcher"
+          aria-label={open ? "Close assistant" : "Open assistant"}
+          onClick={() => setOpen((prev) => !prev)}
+        >
+          {!open && <span className="wise-chat-launcher__pulse" aria-hidden="true" />}
+          {open ? <X size={22} strokeWidth={1.9} /> : <MessageCircle size={22} strokeWidth={1.8} />}
+        </button>
+      </div>
 
       {open && (
-        <div className="wise-chat-overlay" onClick={() => setOpen(false)}>
+        <>
+          <button
+            type="button"
+            className="wise-chat-backdrop"
+            aria-label="Close assistant backdrop"
+            onClick={() => setOpen(false)}
+          />
           <section
-            className="wise-chat-panel glass"
-            onClick={(e) => e.stopPropagation()}
+            className="wise-chat-panel wise-chat-panel--floating glass"
             aria-label="Wiser AI assistant"
           >
             <div className="wise-chat-panel__header">
@@ -190,7 +197,7 @@ export default function FloatingChat() {
               <SimpleCopilotChat lang={lang} setLang={setLang} />
             </div>
           </section>
-        </div>
+        </>
       )}
     </>
   );
