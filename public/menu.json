@@ -1,0 +1,2009 @@
+{
+  "restaurant_info": {
+    "name_fr": "The Wise Restaurant",
+    "name_en": "The Wise Restaurant",
+    "description_fr": "Restaurant proposant une cuisine variée avec des spécialités méditerranéennes, des pizzas, des pâtes, des burgers et plus encore.",
+    "description_en": "Restaurant offering varied cuisine with Mediterranean specialties, pizzas, pastas, burgers and more.",
+    "availability_fr": "Le menu est actuellement disponible. Vous pouvez consulter notre sélection complète de plats ci-dessous.",
+    "availability_en": "The menu is currently available. You can consult our complete selection of dishes below."
+  },
+  "menu": [
+    {
+      "name_fr": "Menu Information",
+      "name_en": "Menu Information",
+      "items": [
+        {
+          "name_fr": "Menu Information Pizza Flavors",
+          "name_en": "Menu Information Pizza Flavors",
+          "description_fr": "Notre menu de pizzas comprend : Margherita, Thon, 4 Saisons, Végétarien, Reine, Orientale, Pepperoni, Suprême Poulet, 4 Fromages, Regina, Poulet Grillé, Mexicain, Kentucky, Norvégien, Fruits de Mer, Newton, Einstein, Barlow, Millikan, Ampere, Gauss, John Locke, Pesto, Poulet Épicé, Carnot, Mariotte, Kepler, Van der waals, Tesla, et The Wise. Nous n'offrons pas de pizzas BBQ Chicken ou Hawaïenne.",
+          "description_en": "Our pizza menu includes: Margherita, Tuna, 4 Seasons, Vegetarian, Queen, Oriental, Pepperoni, Chicken Supreme, 4 Cheese, Regina, Chicken Grilli, Mexican, Kentucky, Norwegian, Sea Food, Newton, Einstein, Barlow, Millikan, Ampere, Gauss, John Locke, Pesto, Chicken Spicy, Carnot, Mariotte, Kepler, Van der waals, Tesla, and The Wise. We do not offer BBQ Chicken or Hawaiian pizzas.",
+          "type_fr": "Information",
+          "type_en": "Information",
+          "price": ""
+        }
+      ]
+    },
+    {
+      "name_fr": "Menu Enfants",
+      "name_en": "Children's Menu",
+      "description_fr": "Nous proposons un menu spécial pour les enfants avec des portions adaptées et des accompagnements qui plaisent aux plus jeunes.",
+      "description_en": "We offer a special menu for children with portions suitable for young ones and accompaniments that please the youngest.",
+      "items": [
+        {
+          "name_fr": "Menu Enfants Chapletta",
+          "name_en": "Children's Menu Chapletta",
+          "description_fr": "Mini Pizza ou Frites + Soda",
+          "description_en": "Mini Pizza or Fries + Soda",
+          "type_fr": "Menu Enfant",
+          "type_en": "Children's Menu",
+          "price": "13.8dt",
+          "details_fr": "Un menu complet pour enfants comprenant une mini pizza ou une portion de frites accompagnée d'un soda.",
+          "details_en": "A complete children's menu including a mini pizza or a portion of fries accompanied by a soda."
+        },
+        {
+          "name_fr": "Menu Enfants Calico",
+          "name_en": "Children's Menu Calico",
+          "description_fr": "Nuggets + Frites + Soda",
+          "description_en": "Nuggets + Fries + Soda",
+          "type_fr": "Menu Enfant",
+          "type_en": "Children's Menu",
+          "price": "13.8dt",
+          "details_fr": "Un menu complet pour enfants comprenant des nuggets de poulet et une portion de frites accompagnées d'un soda.",
+          "details_en": "A complete children's menu including chicken nuggets and a portion of fries accompanied by a soda."
+        }
+      ]
+    },
+    {
+      "name_fr": "Entrées",
+      "name_en": "Appetizers",
+      "items": [
+        {
+          "name_fr": "Entrées César",
+          "name_en": "Appetizers Caesar",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Salade",
+          "type_en": "Salad",
+          "price": "17dt"
+        },
+        {
+          "name_fr": "Entrées Italienne",
+          "name_en": "Appetizers Italian",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Salade",
+          "type_en": "Salad",
+          "price": "19dt"
+        },
+        {
+          "name_fr": "Entrées Fruits de Mer",
+          "name_en": "Appetizers Seafood",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Salade",
+          "type_en": "Salad",
+          "price": "27dt"
+        },
+        {
+          "name_fr": "Entrées The Wise",
+          "name_en": "Appetizers The Wise",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Salade",
+          "type_en": "Salad",
+          "price": "24dt"
+        },
+        {
+          "name_fr": "Entrées Omelette Thon-Fromage",
+          "name_en": "Appetizers Tuna-Cheese Omelette",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Omelette",
+          "type_en": "Omelette",
+          "price": "13dt"
+        },
+        {
+          "name_fr": "Entrées Omelette Jambon-Fromage",
+          "name_en": "Appetizers Ham-Cheese Omelette",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Omelette",
+          "type_en": "Omelette",
+          "price": "18dt"
+        },
+        {
+          "name_fr": "Entrées Moule Mariné",
+          "name_en": "Appetizers Marinated Mussels",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Fruits de Mer",
+          "type_en": "Seafood",
+          "price": "24dt"
+        },
+        {
+          "name_fr": "Entrées Calamars Dorés",
+          "name_en": "Appetizers Golden Calamari",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Fruits de Mer",
+          "type_en": "Seafood",
+          "price": "21dt"
+        },
+        {
+          "name_fr": "Entrées Calamars à l'Ail",
+          "name_en": "Appetizers Garlic Calamari",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Fruits de Mer",
+          "type_en": "Seafood",
+          "price": "25dt"
+        },
+        {
+          "name_fr": "Entrées Calamars à la Crème",
+          "name_en": "Appetizers Creamy Calamari",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Fruits de Mer",
+          "type_en": "Seafood",
+          "price": "27dt"
+        },
+        {
+          "name_fr": "Entrées Crevettes Sautées",
+          "name_en": "Appetizers Sautéed Shrimp",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Fruits de Mer",
+          "type_en": "Seafood",
+          "price": "27dt"
+        },
+        {
+          "name_fr": "Entrées Crevettes Panées",
+          "name_en": "Appetizers Breaded Shrimp",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Fruits de Mer",
+          "type_en": "Seafood",
+          "price": "25dt"
+        }
+      ]
+    },
+    {
+      "name_fr": "Plats Principaux",
+      "name_en": "Main Courses",
+      "items": [
+        {
+          "name_fr": "Plats Principaux Escalope Grillé",
+          "name_en": "Main Courses Grilled Cutlet",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Volaille",
+          "type_en": "Poultry",
+          "price": "20dt"
+        },
+        {
+          "name_fr": "Plats Principaux Escalope Panée",
+          "name_en": "Main Courses Breaded Cutlet",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Volaille",
+          "type_en": "Poultry",
+          "price": "21dt"
+        },
+        {
+          "name_fr": "Plats Principaux Cordon Bleu",
+          "name_en": "Main Courses Cordon Bleu",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Volaille",
+          "type_en": "Poultry",
+          "price": "23dt"
+        },
+        {
+          "name_fr": "Plats Principaux French Chicken",
+          "name_en": "Main Courses French Chicken",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Volaille",
+          "type_en": "Poultry",
+          "price": "26dt"
+        },
+        {
+          "name_fr": "Plats Principaux Suprême de Poulet à l'Italien",
+          "name_en": "Main Courses Italian Chicken Supreme",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Volaille",
+          "type_en": "Poultry",
+          "price": "26dt"
+        },
+        {
+          "name_fr": "Plats Principaux Chich Taouk",
+          "name_en": "Main Courses Shish Tawook",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Volaille",
+          "type_en": "Poultry",
+          "price": "22dt"
+        },
+        {
+          "name_fr": "Plats Principaux Escalope Sauce Champignons",
+          "name_en": "Main Courses Mushroom Sauce Cutlet",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Volaille",
+          "type_en": "Poultry",
+          "price": "27dt"
+        },
+        {
+          "name_fr": "Plats Principaux Grillade Mixte",
+          "name_en": "Main Courses Mixed Grill",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Viande",
+          "type_en": "Meat",
+          "price": "33dt"
+        },
+        {
+          "name_fr": "Plats Principaux Émincé de Bœuf à la Crème",
+          "name_en": "Main Courses Beef Strips with Cream",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Viande",
+          "type_en": "Meat",
+          "price": "33dt"
+        },
+        {
+          "name_fr": "Plats Principaux Filet de Bœuf",
+          "name_en": "Main Courses Beef Fillet",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Viande",
+          "type_en": "Meat",
+          "price": "42dt"
+        },
+        {
+          "name_fr": "Plats Principaux Kabeb Viande",
+          "name_en": "Main Courses Meat Kebab",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Viande",
+          "type_en": "Meat",
+          "price": "28dt"
+        },
+        {
+          "name_fr": "Plats Principaux Steak Haché Fondant",
+          "name_en": "Main Courses Melting Minced Steak",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Viande",
+          "type_en": "Meat",
+          "price": "31dt"
+        },
+        {
+          "name_fr": "Plats Principaux Côte à l'Os",
+          "name_en": "Main Courses Rib on the Bone",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Viande",
+          "type_en": "Meat",
+          "price": "35dt"
+        },
+        {
+          "name_fr": "Plats Principaux Sauce Poivre",
+          "name_en": "Main Courses Pepper Sauce",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "5dt"
+        },
+        {
+          "name_fr": "Plats Principaux Sauce Champignons",
+          "name_en": "Main Courses Mushroom Sauce",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "6dt"
+        },
+        {
+          "name_fr": "Plats Principaux Sauce Roquefort",
+          "name_en": "Main Courses Roquefort Sauce",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "7dt"
+        }
+      ]
+    },
+    {
+      "name_fr": "Fruits de Mer",
+      "name_en": "Seafood",
+      "items": [
+        {
+          "name_fr": "Fruits de Mer Poisson Grillé",
+          "name_en": "Seafood Grilled Fish",
+          "description_fr": "Loup ou Bourride",
+          "description_en": "Sea Bass or Grouper",
+          "type_fr": "Poisson",
+          "type_en": "Fish",
+          "price": "25dt"
+        },
+        {
+          "name_fr": "Fruits de Mer Loup",
+          "name_en": "Seafood Sea Bass",
+          "description_fr": "Garniture du chef",
+          "description_en": "Chef's Garnish",
+          "type_fr": "Poisson",
+          "type_en": "Fish",
+          "price": "29dt"
+        },
+        {
+          "name_fr": "Fruits de Mer Loup à l'Ail",
+          "name_en": "Seafood Garlic Sea Bass",
+          "description_fr": "Garniture du chef",
+          "description_en": "Chef's Garnish",
+          "type_fr": "Poisson",
+          "type_en": "Fish",
+          "price": "35dt"
+        },
+        {
+          "name_fr": "Fruits de Mer Fruits de Mer",
+          "name_en": "Seafood Seafood",
+          "description_fr": "Garniture du chef",
+          "description_en": "Chef's Garnish",
+          "type_fr": "Fruits de Mer",
+          "type_en": "Seafood",
+          "price": "37dt"
+        },
+        {
+          "name_fr": "Fruits de Mer Oja Fruits de Mer",
+          "name_en": "Seafood Oja Seafood",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Fruits de Mer",
+          "type_en": "Seafood",
+          "price": "43dt"
+        },
+        {
+          "name_fr": "Fruits de Mer Délice The Wise",
+          "name_en": "Seafood The Wise Delight",
+          "description_fr": "Fruits de Mer / Filet de Poisson / Garniture du chef",
+          "description_en": "Seafood / Fish Fillet / Chef's Garnish",
+          "type_fr": "Fruits de Mer",
+          "type_en": "Seafood",
+          "price": "48dt"
+        },
+        {
+          "name_fr": "Fruits de Mer Gratin Fruits de Mer",
+          "name_en": "Seafood Seafood Gratin",
+          "description_fr": "Garniture du chef",
+          "description_en": "Chef's Garnish",
+          "type_fr": "Fruits de Mer",
+          "type_en": "Seafood",
+          "price": "59dt"
+        }
+      ]
+    },
+    {
+      "name_fr": "Pasta",
+      "name_en": "Pasta",
+      "description_fr": "Spaghetti, Pennes, Tagliatelles",
+      "description_en": "Spaghetti, Penne, Tagliatelle",
+      "items": [
+        {
+          "name_fr": "Pasta Fruits de Mer (Sauce Rouge)",
+          "name_en": "Pasta Seafood (Red Sauce)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Spaghetti, Pennes, Tagliatelles",
+          "type_en": "Spaghetti, Penne, Tagliatelle",
+          "price": "36dt"
+        },
+        {
+          "name_fr": "Pasta Lasposa (Fruits de Mer, Sauce Blanche)",
+          "name_en": "Pasta Lasposa (Seafood, White Sauce)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Spaghetti, Pennes, Tagliatelles",
+          "type_en": "Spaghetti, Penne, Tagliatelle",
+          "price": "39dt"
+        },
+        {
+          "name_fr": "Pasta Pink (Viande Fumé, Sauce Pink, Oignon, Gruyère)",
+          "name_en": "Pasta Pink (Smoked Meat, Pink Sauce, Onion, Gruyere)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Spaghetti, Pennes, Tagliatelles",
+          "type_en": "Spaghetti, Penne, Tagliatelle",
+          "price": "31dt"
+        },
+        {
+          "name_fr": "Pasta Carbonara (Jambon, Champignons, Jaune d'œuf, Sauce Blanche)",
+          "name_en": "Pasta Carbonara (Ham, Mushrooms, Egg Yolk, White Sauce)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Spaghetti, Pennes, Tagliatelles",
+          "type_en": "Spaghetti, Penne, Tagliatelle",
+          "price": "22dt"
+        },
+        {
+          "name_fr": "Pasta Bolognaise (Viande hachée, Sauce tomate)",
+          "name_en": "Pasta Bolognese (Minced Meat, Tomato Sauce)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Spaghetti, Pennes, Tagliatelles",
+          "type_en": "Spaghetti, Penne, Tagliatelle",
+          "price": "25dt"
+        },
+        {
+          "name_fr": "Pasta Putanesca (Thon, Olive, Câpre, Piments de Cayenne)",
+          "name_en": "Pasta Puttanesca (Tuna, Olive, Caper, Cayenne Pepper)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Spaghetti, Pennes, Tagliatelles",
+          "type_en": "Spaghetti, Penne, Tagliatelle",
+          "price": "23dt"
+        },
+        {
+          "name_fr": "Pasta Spinaci (Chevrettes, Champignons, Epinard, Tomates Cerises)",
+          "name_en": "Pasta Spinaci (Shrimp, Mushrooms, Spinach, Cherry Tomatoes)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Spaghetti, Pennes, Tagliatelles",
+          "type_en": "Spaghetti, Penne, Tagliatelle",
+          "price": "33dt"
+        },
+        {
+          "name_fr": "Pasta Alfredo (Poulet, Champignons, Sauce Blanche)",
+          "name_en": "Pasta Alfredo (Chicken, Mushrooms, White Sauce)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Spaghetti, Pennes, Tagliatelles",
+          "type_en": "Spaghetti, Penne, Tagliatelle",
+          "price": "26dt"
+        },
+        {
+          "name_fr": "Pasta The Wise (Crevette, Saumon, Sauce Rosée)",
+          "name_en": "Pasta The Wise (Shrimp, Salmon, Pink Sauce)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Spaghetti, Pennes, Tagliatelles",
+          "type_en": "Spaghetti, Penne, Tagliatelle",
+          "price": "39dt"
+        },
+        {
+          "name_fr": "Pasta Lasagne Bolognaise",
+          "name_en": "Pasta Lasagna Bolognese",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Lasagne",
+          "type_en": "Lasagna",
+          "price": "21dt"
+        },
+        {
+          "name_fr": "Pasta 4 Fromages",
+          "name_en": "Pasta 4 Cheese",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Spaghetti, Pennes, Tagliatelles",
+          "type_en": "Spaghetti, Penne, Tagliatelle",
+          "price": "25dt"
+        }
+      ]
+    },
+    {
+      "name_fr": "Pizzas",
+      "name_en": "Pizzas",
+      "description_fr": "Personnalisez votre pizza avec des options moitié-moitié ou créez une pizza mètre avec jusqu'à 4 saveurs différentes. Note: Nous offrons Margherita, Thon, 4 Saisons, Végétarien, Reine, Orientale, Pepperoni, Suprême Poulet, 4 Fromages, Regina, Poulet Grillé, Mexicain, Kentucky, Norvégien, Fruits de Mer, Newton, Einstein, Barlow, Millikan, Ampere, Gauss, John Locke, Pesto, Poulet Épicé, Carnot, Mariotte, Kepler, Van der waals, Tesla, et The Wise. ",
+      "description_en": "Customize your pizza with half-and-half options or create a meter pizza with up to 4 different flavors. Note: We offer Margherita, Tuna, 4 Seasons, Vegetarian, Queen, Oriental, Pepperoni, Chicken Supreme, 4 Cheese, Regina, Chicken Grilli, Mexican, Kentucky, Norwegian, Sea Food, Newton, Einstein, Barlow, Millikan, Ampere, Gauss, John Locke, Pesto, Chicken Spicy, Carnot, Mariotte, Kepler, Van der waals, Tesla, and The Wise. ",
+      "items": [
+        {
+          "name_fr": "Pizza Margherita",
+          "name_en": "Pizza Margherita",
+          "description_fr": "Sauce Tomate, Mozzarella",
+          "description_en": "Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 11dt, Moyenne: 15dt, Large: 19dt, 1/2 Moyenne: 7.5dt, 1/2 Large: 9.5dt, 1/4 m: 13dt, 1/2 mètre: 26dt, 1 mètre: 52dt"
+        },
+        {
+          "name_fr": "Pizza Thon",
+          "name_en": "Pizza Tuna",
+          "description_fr": "Thon, Tomates Fraîches, Oignons, Olives, Sauce Tomate, Mozzarella",
+          "description_en": "Tuna, Fresh Tomatoes, Onions, Olives, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 12.5dt, Moyenne: 17.5dt, Large: 26dt, 1/2 Moyenne: 8.75dt, 1/2 Large: 13dt, 1/4 m: 14.5dt, 1/2 mètre: 29dt, 1 mètre: 58dt"
+        },
+        {
+          "name_fr": "Pizza 4 Saisons",
+          "name_en": "Pizza 4 Seasons",
+          "description_fr": "Thon, Jambon de Dinde, Champignons, Poivrons, Oignons, Olives, Mozzarella, Sauce Tomate",
+          "description_en": "Tuna, Turkey Ham, Mushrooms, Peppers, Onions, Olives, Mozzarella, Tomato Sauce",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 14.5dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 15dt, 1/2 mètre: 30dt, 1 mètre: 60dt"
+        },
+        {
+          "name_fr": "Pizza Végétarien",
+          "name_en": "Pizza Vegetarian",
+          "description_fr": "Champignons, Poivrons, Oignons, Olives, Tomates Fraîches, Mozzarella, Sauce Tomate",
+          "description_en": "Mushrooms, Peppers, Onions, Olives, Fresh Tomatoes, Mozzarella, Tomato Sauce",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 12.5dt, Moyenne: 17.5dt, Large: 28dt, 1/2 Moyenne: 8.75dt, 1/2 Large: 14dt, 1/4 m: 14.5dt, 1/2 mètre: 29dt, 1 mètre: 58dt"
+        },
+        {
+          "name_fr": "Pizza Reine",
+          "name_en": "Pizza Queen",
+          "description_fr": "Jambon de Dinde, Champignons, Mozzarella, Sauce Tomate",
+          "description_en": "Turkey Ham, Mushrooms, Mozzarella, Tomato Sauce",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 12dt, Moyenne: 17dt, Large: 25dt, 1/2 Moyenne: 8.5dt, 1/2 Large: 12.5dt, 1/4 m: 14dt, 1/2 mètre: 28dt, 1 mètre: 56dt"
+        },
+        {
+          "name_fr": "Pizza Orientale",
+          "name_en": "Pizza Oriental",
+          "description_fr": "Merguez, Poivrons, Oignons, Champignons, Tomates Fraîches, Sauce Tomate, Mozzarella",
+          "description_en": "Merguez Sausage, Peppers, Onions, Mushrooms, Fresh Tomatoes, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 12dt, Moyenne: 17.5dt, Large: 23dt, 1/2 Moyenne: 8.75dt, 1/2 Large: 11.5dt, 1/4 m: 14dt, 1/2 mètre: 28dt, 1 mètre: 56dt"
+        },
+        {
+          "name_fr": "Pizza Pepperoni",
+          "name_en": "Pizza Pepperoni",
+          "description_fr": "Pepperoni, Oignons, Sauce Tomate, Mozzarella",
+          "description_en": "Pepperoni, Onions, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 12.5dt, Moyenne: 17.5dt, Large: 28dt, 1/2 Moyenne: 8.75dt, 1/2 Large: 14dt, 1/4 m: 14.5dt, 1/2 mètre: 29dt, 1 mètre: 58dt"
+        },
+        {
+          "name_fr": "Pizza Suprême Poulet",
+          "name_en": "Pizza Chicken Supreme",
+          "description_fr": "Poulet, Champignons, Poivrons, Sauce Tomate, Mozzarella",
+          "description_en": "Chicken, Mushrooms, Peppers, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 15dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 16dt, 1/2 mètre: 32dt, 1 mètre: 64dt"
+        },
+        {
+          "name_fr": "Pizza 4 Fromages",
+          "name_en": "Pizza 4 Cheese",
+          "description_fr": "Sauce Tomate, Mozzarella, Fromage, Sauce Blanche",
+          "description_en": "Tomato Sauce, Mozzarella, Cheese, White Sauce",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 12.5dt, Moyenne: 17.5dt, Large: 28dt, 1/2 Moyenne: 8.75dt, 1/2 Large: 14dt, 1/4 m: 14.5dt, 1/2 mètre: 29dt, 1 mètre: 58dt"
+        },
+        {
+          "name_fr": "Pizza Regina",
+          "name_en": "Pizza Regina",
+          "description_fr": "Jambon de Dinde, Champignons, Oignons, Olives, Sauce Tomate, Mozzarella",
+          "description_en": "Turkey Ham, Mushrooms, Onions, Olives, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 12dt, Moyenne: 17dt, Large: 25dt, 1/2 Moyenne: 8.5dt, 1/2 Large: 12.5dt, 1/4 m: 14dt, 1/2 mètre: 28dt, 1 mètre: 56dt"
+        },
+        {
+          "name_fr": "Pizza Poulet Grillé",
+          "name_en": "Pizza Chicken Grilli",
+          "description_fr": "Émincés de Poulet Grillés, Poivrons, Champignons, Oignons, Sauce Tomate, Mozzarella",
+          "description_en": "Grilled Chicken Strips, Peppers, Mushrooms, Onions, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 13dt, Moyenne: 20dt, Large: 29dt, 1/2 Moyenne: 10dt, 1/2 Large: 14.5dt, 1/4 m: 14dt, 1/2 mètre: 28dt, 1 mètre: 56dt"
+        },
+        {
+          "name_fr": "Pizza Mexicain",
+          "name_en": "Pizza Mexican",
+          "description_fr": "Poivrons, Piments Jalapeños, Champignons, Oignons, Tomates, Sauce Tomate, Mozzarella",
+          "description_en": "Peppers, Jalapeño Peppers, Mushrooms, Onions, Tomatoes, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 13dt, Moyenne: 20dt, Large: 29dt, 1/2 Moyenne: 10dt, 1/2 Large: 14.5dt, 1/4 m: 15dt, 1/2 mètre: 30dt, 1 mètre: 60dt"
+        },
+        {
+          "name_fr": "Pizza Kentucky",
+          "name_en": "Pizza Kentucky",
+          "description_fr": "Poulet Kentucky, Champignons, Oignons, Poivrons, Tomates, Sauce Tomate, Mozzarella",
+          "description_en": "Kentucky Chicken, Mushrooms, Onions, Peppers, Tomatoes, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 14dt, Moyenne: 21dt, Large: 30dt, 1/2 Moyenne: 10.5dt, 1/2 Large: 15dt, 1/4 m: 15dt, 1/2 mètre: 30dt, 1 mètre: 60dt"
+        },
+        {
+          "name_fr": "Pizza Norvégien",
+          "name_en": "Pizza Norwegian",
+          "description_fr": "Saumon Fumé, Crème Fraîche, Mozzarella",
+          "description_en": "Smoked Salmon, Fresh Cream, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 17dt, Moyenne: 27dt, Large: 35dt, 1/2 Moyenne: 13.5dt, 1/2 Large: 17.5dt, 1/4 m: 19dt, 1/2 mètre: 38dt, 1 mètre: 76dt"
+        },
+        {
+          "name_fr": "Pizza Fruits de Mer",
+          "name_en": "Pizza Sea Food",
+          "description_fr": "Fruits de Mer, Poivrons, Oignons, Olives, Sauce Tomate, Mozzarella",
+          "description_en": "Seafood, Peppers, Onions, Olives, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 17dt, Moyenne: 27dt, Large: 35dt, 1/2 Moyenne: 13.5dt, 1/2 Large: 17.5dt, 1/4 m: 19dt, 1/2 mètre: 38dt, 1 mètre: 76dt"
+        },
+        {
+          "name_fr": "Pizza Newton",
+          "name_en": "Pizza Newton",
+          "description_fr": "Poulet Grillé, Poulet Pané, Champignons, Poivrons, Oignons, Tomates, Sauce Tomate, Mozzarella",
+          "description_en": "Grilled Chicken, Breaded Chicken, Mushrooms, Peppers, Onions, Tomatoes, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 18dt, Moyenne: 29dt, Large: 32dt, 1/2 Moyenne: 14.5dt, 1/2 Large: 16dt, 1/4 m: 15.5dt, 1/2 mètre: 31dt, 1 mètre: 62dt"
+        },
+        {
+          "name_fr": "Pizza Einstein",
+          "name_en": "Pizza Einstein",
+          "description_fr": "Viande de Bœuf Hachée, Champignons, Tomates Fraîches, Oignons, Sauce Tomate, Mozzarella",
+          "description_en": "Minced Beef, Mushrooms, Fresh Tomatoes, Onions, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 18dt, Moyenne: 29dt, Large: 32dt, 1/2 Moyenne: 14.5dt, 1/2 Large: 16dt, 1/4 m: 15.5dt, 1/2 mètre: 31dt, 1 mètre: 62dt"
+        },
+        {
+          "name_fr": "Pizza Barlow",
+          "name_en": "Pizza Barlow",
+          "description_fr": "Viande de Bœuf Hachée, Jambon, Champignons, Poivrons, Oignons, Tomates, Sauce Tomate, Mozzarella",
+          "description_en": "Minced Beef, Ham, Mushrooms, Peppers, Onions, Tomatoes, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 18dt, Moyenne: 29dt, Large: 32dt, 1/2 Moyenne: 14.5dt, 1/2 Large: 16dt, 1/4 m: 15.5dt, 1/2 mètre: 31dt, 1 mètre: 62dt"
+        },
+        {
+          "name_fr": "Pizza Millikan",
+          "name_en": "Pizza Millikan",
+          "description_fr": "Anchois, Filet de Sardine, Olives, Poivrons, Sauce Tomate, Mozzarella",
+          "description_en": "Anchovies, Sardine Fillet, Olives, Peppers, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 18dt, Moyenne: 29dt, Large: 32dt, 1/2 Moyenne: 14.5dt, 1/2 Large: 16dt, 1/4 m: 16dt, 1/2 mètre: 32dt, 1 mètre: 64dt"
+        },
+        {
+          "name_fr": "Pizza Ampere",
+          "name_en": "Pizza Ampere",
+          "description_fr": "Pepperoni, Viande de Bœuf Hachée, Oignons, Poivrons, Olives, Sauce Tomate, Mozzarella",
+          "description_en": "Pepperoni, Minced Beef, Onions, Peppers, Olives, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 18dt, Moyenne: 29dt, Large: 32dt, 1/2 Moyenne: 14.5dt, 1/2 Large: 16dt, 1/4 m: 17.5dt, 1/2 mètre: 35dt, 1 mètre: 70dt"
+        },
+        {
+          "name_fr": "Pizza Gauss",
+          "name_en": "Pizza Gauss",
+          "description_fr": "Thon, Œuf, Roquefort, Gruyère, Oignons, Olives, Sauce Tomate, Mozzarella",
+          "description_en": "Tuna, Egg, Roquefort, Gruyere, Onions, Olives, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 13dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 16dt, 1/2 mètre: 32dt, 1 mètre: 64dt"
+        },
+        {
+          "name_fr": "Pizza John Locke",
+          "name_en": "Pizza John Locke",
+          "description_fr": "Poulet Pané, Sauce Piquante, Oignons, Poivrons, Olives, Sauce Tomate, Mozzarella",
+          "description_en": "Breaded Chicken, Spicy Sauce, Onions, Peppers, Olives, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 13dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 16dt, 1/2 mètre: 32dt, 1 mètre: 64dt"
+        },
+        {
+          "name_fr": "Pizza Pesto",
+          "name_en": "Pizza Pesto",
+          "description_fr": "Sauce Pesto, Mozzarella, Pepperoni",
+          "description_en": "Pesto Sauce, Mozzarella, Pepperoni",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 13dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 16dt, 1/2 mètre: 32dt, 1 mètre: 64dt"
+        },
+        {
+          "name_fr": "Pizza Poulet Épicé",
+          "name_en": "Pizza Chicken Spicy",
+          "description_fr": "Poulet Pané, Sauce Piquante, Poivrons, Oignons, Olives, Champignons, Sauce Tomate, Mozzarella",
+          "description_en": "Breaded Chicken, Spicy Sauce, Peppers, Onions, Olives, Mushrooms, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 13dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 16dt, 1/2 mètre: 32dt, 1 mètre: 64dt"
+        },
+        {
+          "name_fr": "Pizza Carnot",
+          "name_en": "Pizza Carnot",
+          "description_fr": "Gruyère, Oignons, Poivrons, Champignons, Sauce Tomate, Mozzarella",
+          "description_en": "Gruyere, Onions, Peppers, Mushrooms, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 15.5dt, Moyenne: 22dt, Large: 32dt, 1/2 Moyenne: 11dt, 1/2 Large: 16dt, 1/4 m: 17.5dt, 1/2 mètre: 35dt, 1 mètre: 70dt"
+        },
+        {
+          "name_fr": "Pizza Mariotte",
+          "name_en": "Pizza Mariotte",
+          "description_fr": "Poulet Pané, Gruyère, Oignons, Olives, Sauce Tomate, Mozzarella",
+          "description_en": "Breaded Chicken, Gruyere, Onions, Olives, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 14.5dt, Moyenne: 21dt, Large: 32dt, 1/2 Moyenne: 10.5dt, 1/2 Large: 16dt, 1/4 m: 16.5dt, 1/2 mètre: 33dt, 1 mètre: 66dt"
+        },
+        {
+          "name_fr": "Pizza Kepler",
+          "name_en": "Pizza Kepler",
+          "description_fr": "Crevettes, Champignons, Oignons, Sauce Tomate, Mozzarella",
+          "description_en": "Shrimp, Mushrooms, Onions, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 14dt, Moyenne: 21dt, Large: 32dt, 1/2 Moyenne: 10.5dt, 1/2 Large: 16dt, 1/4 m: 17dt, 1/2 mètre: 34dt, 1 mètre: 68dt"
+        },
+        {
+          "name_fr": "Pizza Van der waals",
+          "name_en": "Pizza Van der waals",
+          "description_fr": "Viande Hachée, Champignons, Oignons, Mozzarella, Sauce Barbecue",
+          "description_en": "Minced Meat, Mushrooms, Onions, Mozzarella, Barbecue Sauce",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 13dt, Moyenne: 21dt, Large: 32dt, 1/2 Moyenne: 10.5dt, 1/2 Large: 16dt, 1/4 m: 16.5dt, 1/2 mètre: 33dt, 1 mètre: 66dt"
+        },
+        {
+          "name_fr": "Pizza Tesla",
+          "name_en": "Pizza Tesla",
+          "description_fr": "Suprême de Poulet Fumé, Sauce Tomate, Mozzarella",
+          "description_en": "Smoked Chicken Supreme, Tomato Sauce, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 13dt, Moyenne: 21dt, Large: 32dt, 1/2 Moyenne: 10.5dt, 1/2 Large: 16dt, 1/4 m: 17dt, 1/2 mètre: 34dt, 1 mètre: 68dt"
+        },
+        {
+          "name_fr": "Pizza The Wise",
+          "name_en": "Pizza The Wise",
+          "description_fr": "Saumon Fumé, Crevettes, Fruits de Mer, Mozzarella",
+          "description_en": "Smoked Salmon, Shrimp, Seafood, Mozzarella",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Petite: 13dt, Moyenne: 21dt, Large: 32dt, 1/2 Moyenne: 10.5dt, 1/2 Large: 16dt, 1/4 m: 17dt, 1/2 mètre: 34dt, 1 mètre: 68dt"
+        },
+        {
+          "name_fr": "Pizza Moitié-Moitié",
+          "name_en": "Pizza Half-and-Half",
+          "description_fr": "Combinez deux pizzas en une. Disponible en tailles Moyenne, Large, 1/2m et 1m. Le prix est la somme des deux moitiés.",
+          "description_en": "Combine any two pizzas in one. Available in Moyenne, Large, 1/2m, and 1m sizes. Price is the sum of both halves.",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Exemple : Thon/Margherita (Moyenne) = 17.5dt + 15dt = 32.5dt"
+        },
+        {
+          "name_fr": "Pizza Mètre",
+          "name_en": "Pizza Meter",
+          "description_fr": "Créez votre propre pizza mètre avec jusqu'à 4 saveurs différentes. Choisissez les tailles 1/4m, 1/2m ou 1m.",
+          "description_en": "Create your own meter pizza with up to 4 different flavors. Choose 1/4m, 1/2m, or 1m sizes.",
+          "type_fr": "Pizza",
+          "type_en": "Pizza",
+          "price": "Exemple : 1/4m chacun de Margherita, Thon, 4 Saisons, Végétarien = 13dt + 14.5dt + 15dt + 14.5dt = 57dt"
+        }
+      ]
+    },
+    {
+      "name_fr": "Sandwiches",
+      "name_en": "Sandwiches",
+      "description_fr": "Sélection de sandwichs dans différents types de pain : Ciabatta, Tacos, Baguette Farcie/Makloub, et Spécial The Wise",
+      "description_en": "Selection of sandwiches in different bread types: Ciabatta, Tacos, Stuffed Baguette/Makloub, and The Wise Special",
+      "items": [
+        {
+          "name_fr": "Sandwiches Jambon Dinde (Ciabatta)",
+          "name_en": "Sandwiches Turkey Ham (Ciabatta)",
+          "description_fr": "Jambon de Dinde, Laitue, Tomate, Mayonnaise",
+          "description_en": "Turkey Ham, Lettuce, Tomato, Mayonnaise",
+          "type_fr": "Ciabatta",
+          "type_en": "Ciabatta",
+          "price": "8.5dt"
+        },
+        {
+          "name_fr": "Sandwiches Jambon Dinde (Tacos)",
+          "name_en": "Sandwiches Turkey Ham (Tacos)",
+          "description_fr": "Jambon de Dinde, Laitue, Tomate, Mayonnaise, Tortilla",
+          "description_en": "Turkey Ham, Lettuce, Tomato, Mayonnaise, Tortilla",
+          "type_fr": "Tacos",
+          "type_en": "Tacos",
+          "price": "8.5dt"
+        },
+        {
+          "name_fr": "Sandwiches Escalope Poulet Grillé (Ciabatta)",
+          "name_en": "Sandwiches Grilled Chicken Cutlet (Ciabatta)",
+          "description_fr": "Escalope de poulet grillée, Laitue, Tomate, Mayonnaise",
+          "description_en": "Grilled chicken cutlet, Lettuce, Tomato, Mayonnaise",
+          "type_fr": "Ciabatta",
+          "type_en": "Ciabatta",
+          "price": "9.5dt"
+        },
+        {
+          "name_fr": "Sandwiches Escalope Poulet Grillé (Tacos)",
+          "name_en": "Sandwiches Grilled Chicken Cutlet (Tacos)",
+          "description_fr": "Escalope de poulet grillée, Laitue, Tomate, Mayonnaise, Tortilla",
+          "description_en": "Grilled chicken cutlet, Lettuce, Tomato, Mayonnaise, Tortilla",
+          "type_fr": "Tacos",
+          "type_en": "Tacos",
+          "price": "9.5dt"
+        },
+        {
+          "name_fr": "Sandwiches Escalope Poulet Pané (Ciabatta)",
+          "name_en": "Sandwiches Breaded Chicken Cutlet (Ciabatta)",
+          "description_fr": "Escalope de poulet panée, Laitue, Tomate, Mayonnaise",
+          "description_en": "Breaded chicken cutlet, Lettuce, Tomato, Mayonnaise",
+          "type_fr": "Ciabatta",
+          "type_en": "Ciabatta",
+          "price": "10dt"
+        },
+        {
+          "name_fr": "Sandwiches Escalope Poulet Pané (Tacos)",
+          "name_en": "Sandwiches Breaded Chicken Cutlet (Tacos)",
+          "description_fr": "Escalope de poulet panée, Laitue, Tomate, Mayonnaise, Tortilla",
+          "description_en": "Breaded chicken cutlet, Lettuce, Tomato, Mayonnaise, Tortilla",
+          "type_fr": "Tacos",
+          "type_en": "Tacos",
+          "price": "10dt"
+        },
+        {
+          "name_fr": "Sandwiches Chich Taouk (Ciabatta)",
+          "name_en": "Sandwiches Shish Tawook (Ciabatta)",
+          "description_fr": "Poulet mariné grillé, Laitue, Tomate, Sauce Tzatziki",
+          "description_en": "Marinated grilled chicken, Lettuce, Tomato, Tzatziki Sauce",
+          "type_fr": "Ciabatta",
+          "type_en": "Ciabatta",
+          "price": "10dt"
+        },
+        {
+          "name_fr": "Sandwiches Chich Taouk (Tacos)",
+          "name_en": "Sandwiches Shish Tawook (Tacos)",
+          "description_fr": "Poulet mariné grillé, Laitue, Tomate, Sauce Tzatziki, Tortilla",
+          "description_en": "Marinated grilled chicken, Lettuce, Tomato, Tzatziki Sauce, Tortilla",
+          "type_fr": "Tacos",
+          "type_en": "Tacos",
+          "price": "10dt"
+        },
+        {
+          "name_fr": "Sandwiches Cordon Bleu (Ciabatta)",
+          "name_en": "Sandwiches Cordon Bleu (Ciabatta)",
+          "description_fr": "Escalope de poulet, jambon, fromage, Laitue, Tomate",
+          "description_en": "Chicken cutlet, ham, cheese, Lettuce, Tomato",
+          "type_fr": "Ciabatta",
+          "type_en": "Ciabatta",
+          "price": "11dt"
+        },
+        {
+          "name_fr": "Sandwiches Cordon Bleu (Tacos)",
+          "name_en": "Sandwiches Cordon Bleu (Tacos)",
+          "description_fr": "Escalope de poulet, jambon, fromage, Laitue, Tomate, Tortilla",
+          "description_en": "Chicken cutlet, ham, cheese, Lettuce, Tomato, Tortilla",
+          "type_fr": "Tacos",
+          "type_en": "Tacos",
+          "price": "11dt"
+        },
+        {
+          "name_fr": "Sandwiches Kabeb (Ciabatta)",
+          "name_en": "Sandwiches Kebab (Ciabatta)",
+          "description_fr": "Viande de kebab, oignons, persil, sauce tahini",
+          "description_en": "Kebab meat, onions, parsley, tahini sauce",
+          "type_fr": "Ciabatta",
+          "type_en": "Ciabatta",
+          "price": "12dt"
+        },
+        {
+          "name_fr": "Sandwiches Kabeb (Tacos)",
+          "name_en": "Sandwiches Kebab (Tacos)",
+          "description_fr": "Viande de kebab, oignons, persil, sauce tahini, Tortilla",
+          "description_en": "Kebab meat, onions, parsley, tahini sauce, Tortilla",
+          "type_fr": "Tacos",
+          "type_en": "Tacos",
+          "price": "12dt"
+        },
+        {
+          "name_fr": "Sandwiches Mariotte (Spécial The Wise)",
+          "name_en": "Sandwiches Mariotte (The Wise Special)",
+          "description_fr": "Poulet pané, fromage, oignons caramélisés, salade",
+          "description_en": "Breaded chicken, cheese, caramelized onions, salad",
+          "type_fr": "Spécial The Wise",
+          "type_en": "The Wise Special",
+          "price": "12dt"
+        },
+        {
+          "name_fr": "Sandwiches Wilson (Spécial The Wise)",
+          "name_en": "Sandwiches Wilson (The Wise Special)",
+          "description_fr": "Bœuf haché, fromage, oignons, cornichons, sauce spéciale",
+          "description_en": "Minced beef, cheese, onions, pickles, special sauce",
+          "type_fr": "Spécial The Wise",
+          "type_en": "The Wise Special",
+          "price": "13dt"
+        },
+        {
+          "name_fr": "Sandwiches Savored (Spécial The Wise)",
+          "name_en": "Sandwiches Savored (The Wise Special)",
+          "description_fr": "Poulet grillé, avocat, tomate, oignons rouges, sauce spéciale",
+          "description_en": "Grilled chicken, avocado, tomato, red onions, special sauce",
+          "type_fr": "Spécial The Wise",
+          "type_en": "The Wise Special",
+          "price": "13dt"
+        },
+        {
+          "name_fr": "Sandwiches TacoWise (Spécial The Wise)",
+          "name_en": "Sandwiches TacoWise (The Wise Special)",
+          "description_fr": "Viande hachée, laitue, fromage, tomate, sauce taco, tortilla",
+          "description_en": "Minced meat, lettuce, cheese, tomato, taco sauce, tortilla",
+          "type_fr": "Tacos",
+          "type_en": "Tacos",
+          "price": "14dt"
+        },
+        {
+          "name_fr": "Sandwiches Thon (Baguette Farcie / Makloub The Wise)",
+          "name_en": "Sandwiches Tuna (Stuffed Baguette / Makloub The Wise)",
+          "description_fr": "Thon, œuf dur, olives, cornichons, mayonnaise",
+          "description_en": "Tuna, hard-boiled egg, olives, pickles, mayonnaise",
+          "type_fr": "Baguette Farcie / Makloub",
+          "type_en": "Stuffed Baguette / Makloub",
+          "price": "12dt"
+        },
+        {
+          "name_fr": "Sandwiches Pepperoni (Baguette Farcie / Makloub The Wise)",
+          "name_en": "Sandwiches Pepperoni (Stuffed Baguette / Makloub The Wise)",
+          "description_fr": "Pepperoni, fromage, tomate, sauce tomate",
+          "description_en": "Pepperoni, cheese, tomato, tomato sauce",
+          "type_fr": "Baguette Farcie / Makloub",
+          "type_en": "Stuffed Baguette / Makloub",
+          "price": "12dt"
+        },
+        {
+          "name_fr": "Sandwiches Oriental (Baguette Farcie / Makloub The Wise)",
+          "name_en": "Sandwiches Oriental (Stuffed Baguette / Makloub The Wise)",
+          "description_fr": "Viande hachée, harissa, oignons, persil",
+          "description_en": "Minced meat, harissa, onions, parsley",
+          "type_fr": "Baguette Farcie / Makloub",
+          "type_en": "Stuffed Baguette / Makloub",
+          "price": "12dt"
+        },
+        {
+          "name_fr": "Sandwiches Corleone (Baguette Farcie / Makloub The Wise)",
+          "name_en": "Sandwiches Corleone (Stuffed Baguette / Makloub The Wise)",
+          "description_fr": "Viande hachée, fromage, champignons, sauce spéciale",
+          "description_en": "Minced meat, cheese, mushrooms, special sauce",
+          "type_fr": "Baguette Farcie / Makloub",
+          "type_en": "Stuffed Baguette / Makloub",
+          "price": "13dt"
+        },
+        {
+          "name_fr": "Sandwiches Kentucky (Baguette Farcie / Makloub The Wise)",
+          "name_en": "Sandwiches Kentucky (Stuffed Baguette / Makloub The Wise)",
+          "description_fr": "Poulet frit, laitue, tomate, mayonnaise",
+          "description_en": "Fried chicken, lettuce, tomato, mayonnaise",
+          "type_fr": "Baguette Farcie / Makloub",
+          "type_en": "Stuffed Baguette / Makloub",
+          "price": "12dt"
+        },
+        {
+          "name_fr": "Sandwiches Cheesy Wise (Baguette Farcie / Makloub The Wise)",
+          "name_en": "Sandwiches Cheesy Wise (Stuffed Baguette / Makloub The Wise)",
+          "description_fr": "Fromage fondu, poulet, oignons caramélisés",
+          "description_en": "Melted cheese, chicken, caramelized onions",
+          "type_fr": "Baguette Farcie / Makloub",
+          "type_en": "Stuffed Baguette / Makloub",
+          "price": "14dt"
+        },
+        {
+          "name_fr": "Sandwiches Chicken Wise (Baguette Farcie / Makloub The Wise)",
+          "name_en": "Sandwiches Chicken Wise (Stuffed Baguette / Makloub The Wise)",
+          "description_fr": "Poulet grillé, fromage, salade, sauce spéciale",
+          "description_en": "Grilled chicken, cheese, salad, special sauce",
+          "type_fr": "Baguette Farcie / Makloub",
+          "type_en": "Stuffed Baguette / Makloub",
+          "price": "13dt"
+        },
+        {
+          "name_fr": "Sandwiches The Wise (Baguette Farcie / Makloub The Wise)",
+          "name_en": "Sandwiches The Wise (Stuffed Baguette / Makloub The Wise)",
+          "description_fr": "Mélange de viandes, fromage, légumes, sauce spéciale",
+          "description_en": "Mixed meats, cheese, vegetables, special sauce",
+          "type_fr": "Baguette Farcie / Makloub",
+          "type_en": "Stuffed Baguette / Makloub",
+          "price": "14dt"
+        },
+        {
+          "name_fr": "Sandwiches Portion Frites (Suppléments Sandwich/Bowls)",
+          "name_en": "Sandwiches Portion Fries (Sandwich/Bowl Supplements)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "4dt"
+        },
+        {
+          "name_fr": "Sandwiches Thon (Suppléments Sandwich/Bowls)",
+          "name_en": "Sandwiches Tuna (Sandwich/Bowl Supplements)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "4.5dt"
+        },
+        {
+          "name_fr": "Sandwiches Nuggets (Suppléments Sandwich/Bowls)",
+          "name_en": "Sandwiches Nuggets (Sandwich/Bowl Supplements)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "4.5dt"
+        },
+        {
+          "name_fr": "Sandwiches Escalope Poulet Grillé (Suppléments Sandwich/Bowls)",
+          "name_en": "Sandwiches Grilled Chicken Cutlet (Sandwich/Bowl Supplements)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "4.5dt"
+        },
+        {
+          "name_fr": "Sandwiches Escalope Poulet Pané (Suppléments Sandwich/Bowls)",
+          "name_en": "Sandwiches Breaded Chicken Cutlet (Sandwich/Bowl Supplements)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "4.5dt"
+        },
+        {
+          "name_fr": "Sandwiches Jambon (Suppléments Sandwich/Bowls)",
+          "name_en": "Sandwiches Ham (Sandwich/Bowl Supplements)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "2.5dt"
+        },
+        {
+          "name_fr": "Sandwiches Œuf (Suppléments Sandwich/Bowls)",
+          "name_en": "Sandwiches Egg (Sandwich/Bowl Supplements)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "1dt"
+        },
+        {
+          "name_fr": "Sandwiches Champignons (Suppléments Sandwich/Bowls)",
+          "name_en": "Sandwiches Mushrooms (Sandwich/Bowl Supplements)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "2.5dt"
+        },
+        {
+          "name_fr": "Sandwiches Gruyère (Suppléments Sandwich/Bowls)",
+          "name_en": "Sandwiches Gruyere (Sandwich/Bowl Supplements)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "3.5dt"
+        },
+        {
+          "name_fr": "Sandwiches Cheddar (Suppléments Sandwich/Bowls)",
+          "name_en": "Sandwiches Cheddar (Sandwich/Bowl Supplements)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "3dt"
+        },
+        {
+          "name_fr": "Sandwiches Mozzarella (Suppléments Sandwich/Bowls)",
+          "name_en": "Sandwiches Mozzarella (Sandwich/Bowl Supplements)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "3dt"
+        },
+        {
+          "name_fr": "Sandwiches Cordon Bleu (Suppléments Sandwich/Bowls)",
+          "name_en": "Sandwiches Cordon Bleu (Sandwich/Bowl Supplements)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "5dt"
+        },
+        {
+          "name_fr": "Sandwiches Chich Taouk (Suppléments Sandwich/Bowls)",
+          "name_en": "Sandwiches Shish Tawook (Sandwich/Bowl Supplements)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "6dt"
+        },
+        {
+          "name_fr": "Sandwiches Kabeb (Suppléments Sandwich/Bowls)",
+          "name_en": "Sandwiches Kebab (Sandwich/Bowl Supplements)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "6dt"
+        }
+      ]
+    },
+    {
+      "name_fr": "Burgers",
+      "name_en": "Burgers",
+      "items": [
+        {
+          "name_fr": "Burgers Chicken Burger",
+          "name_en": "Burgers Chicken Burger",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Burger",
+          "type_en": "Burger",
+          "price": "13dt"
+        },
+        {
+          "name_fr": "Burgers Big Chicken Burger",
+          "name_en": "Burgers Big Chicken Burger",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Burger",
+          "type_en": "Burger",
+          "price": "18dt"
+        },
+        {
+          "name_fr": "Burgers Cheese Burger",
+          "name_en": "Burgers Cheese Burger",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Burger",
+          "type_en": "Burger",
+          "price": "15dt"
+        },
+        {
+          "name_fr": "Burgers Big Cheese Burger",
+          "name_en": "Burgers Big Cheese Burger",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Burger",
+          "type_en": "Burger",
+          "price": "21dt"
+        },
+        {
+          "name_fr": "Burgers Americain Burger",
+          "name_en": "Burgers American Burger",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Burger",
+          "type_en": "Burger",
+          "price": "19dt"
+        },
+        {
+          "name_fr": "Burgers The Wise Burger",
+          "name_en": "Burgers The Wise Burger",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Burger",
+          "type_en": "Burger",
+          "price": "22dt"
+        }
+      ]
+    },
+    {
+      "name_fr": "Chicken Box",
+      "name_en": "Chicken Box",
+      "items": [
+        {
+          "name_fr": "Chicken Box Bâtonnets de Poulet Panés",
+          "name_en": "Chicken Box Breaded Chicken Sticks",
+          "description_fr": "Bâtonnets de poulet Panés (9 pièces)",
+          "description_en": "Breaded Chicken Sticks (9 pieces)",
+          "type_fr": "Poulet Pané",
+          "type_en": "Breaded Chicken",
+          "price": "17dt"
+        },
+        {
+          "name_fr": "Chicken Box Cuisses de Poulet Épicées",
+          "name_en": "Chicken Box Spicy Chicken Legs",
+          "description_fr": "Cuisses de Poulet Épicées (6 pièces)",
+          "description_en": "Spicy Chicken Legs (6 pieces)",
+          "type_fr": "Poulet Épicé",
+          "type_en": "Spicy Chicken",
+          "price": "22dt"
+        },
+        {
+          "name_fr": "Chicken Box Poulet Pané Farci au Fromage",
+          "name_en": "Chicken Box Cheese-Stuffed Breaded Chicken",
+          "description_fr": "Poulet Pané Farci au Fromage (6 pièces)",
+          "description_en": "Cheese-Stuffed Breaded Chicken (6 pieces)",
+          "type_fr": "Poulet Pané",
+          "type_en": "Breaded Chicken",
+          "price": "25dt"
+        },
+        {
+          "name_fr": "Chicken Box Cuisses de Poulet Panées",
+          "name_en": "Chicken Box Breaded Chicken Legs",
+          "description_fr": "Cuisses de Poulet Panées (6 pièces)",
+          "description_en": "Breaded Chicken Legs (6 pieces)",
+          "type_fr": "Poulet Pané",
+          "type_en": "Breaded Chicken",
+          "price": "22dt"
+        },
+        {
+          "name_fr": "Chicken Box Ailes de Poulet Épicées",
+          "name_en": "Chicken Box Spicy Chicken Wings",
+          "description_fr": "Ailes de Poulet Épicées (8 pièces)",
+          "description_en": "Spicy Chicken Wings (8 pieces)",
+          "type_fr": "Poulet Épicé",
+          "type_en": "Spicy Chicken",
+          "price": "16dt"
+        },
+        {
+          "name_fr": "Chicken Box Mix Poulet",
+          "name_en": "Chicken Box Chicken Mix",
+          "description_fr": "3 bâtonnets + 2 ailes + 3 cuisses (8 pièces)",
+          "description_en": "3 sticks + 2 wings + 3 legs (8 pieces)",
+          "type_fr": "Mix Poulet",
+          "type_en": "Chicken Mix",
+          "price": "28dt"
+        }
+      ]
+    },
+    {
+      "name_fr": "Bowls",
+      "name_en": "Bowls",
+      "description_fr": "Nos Bowls sont Garnis d'une Sauce Maison, Frites, Mozzarella + Viande Au Choix",
+      "description_en": "Our Bowls are Topped with House Sauce, Fries, Mozzarella + Meat of Your Choice",
+      "items": [
+        {
+          "name_fr": "Bowls Escalope Grillé",
+          "name_en": "Bowls Grilled Cutlet",
+          "description_fr": "Nos Bowls sont Garnis d'une Sauce Maison, Frites, Mozzarella + Viande Au Choix",
+          "description_en": "Our Bowls are Topped with House Sauce, Fries, Mozzarella + Meat of Your Choice",
+          "type_fr": "Volaille",
+          "type_en": "Poultry",
+          "price": "14.5dt"
+        },
+        {
+          "name_fr": "Bowls Escalope Pané",
+          "name_en": "Bowls Breaded Cutlet",
+          "description_fr": "Nos Bowls sont Garnis d'une Sauce Maison, Frites, Mozzarella + Viande Au Choix",
+          "description_en": "Our Bowls are Topped with House Sauce, Fries, Mozzarella + Meat of Your Choice",
+          "type_fr": "Volaille",
+          "type_en": "Poultry",
+          "price": "15dt"
+        },
+        {
+          "name_fr": "Bowls Steak de Bœuf Haché",
+          "name_en": "Bowls Minced Beef Steak",
+          "description_fr": "Nos Bowls sont Garnis d'une Sauce Maison, Frites, Mozzarella + Viande Au Choix",
+          "description_en": "Our Bowls are Topped with House Sauce, Fries, Mozzarella + Meat of Your Choice",
+          "type_fr": "Viande",
+          "type_en": "Meat",
+          "price": "16dt"
+        },
+        {
+          "name_fr": "Bowls Pepperoni",
+          "name_en": "Bowls Pepperoni",
+          "description_fr": "Nos Bowls sont Garnis d'une Sauce Maison, Frites, Mozzarella + Viande Au Choix",
+          "description_en": "Our Bowls are Topped with House Sauce, Fries, Mozzarella + Meat of Your Choice",
+          "type_fr": "Charcuterie",
+          "type_en": "Cold Cuts",
+          "price": "14.5dt"
+        },
+        {
+          "name_fr": "Bowls Crevettes Sautées ou Panées",
+          "name_en": "Bowls Sautéed or Breaded Shrimp",
+          "description_fr": "Nos Bowls sont Garnis d'une Sauce Maison, Frites, Mozzarella + Viande Au Choix",
+          "description_en": "Our Bowls are Topped with House Sauce, Fries, Mozzarella + Meat of Your Choice",
+          "type_fr": "Fruits de Mer",
+          "type_en": "Seafood",
+          "price": "19dt"
+        }
+      ]
+    },
+    {
+      "name_fr": "Spécial The Wise",
+      "name_en": "The Wise Special",
+      "items": [
+        {
+          "name_fr": "Spécial The Wise Symphonie Fruits de Mer",
+          "name_en": "The Wise Special Seafood Symphony",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Fruits de Mer",
+          "type_en": "Seafood",
+          "price": "98dt"
+        },
+        {
+          "name_fr": "Spécial The Wise Paella (1 pers.)",
+          "name_en": "The Wise Special Paella (1 person)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Paella",
+          "type_en": "Paella",
+          "price": "39dt"
+        },
+        {
+          "name_fr": "Spécial The Wise Paella (2 pers.)",
+          "name_en": "The Wise Special Paella (2 persons)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Paella",
+          "type_en": "Paella",
+          "price": "85dt"
+        },
+        {
+          "name_fr": "Spécial The Wise Symphonie Mixte (Terre, Mer)",
+          "name_en": "The Wise Special Mixed Symphony (Land, Sea)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Mixte",
+          "type_en": "Mixed",
+          "price": "160dt"
+        }
+      ]
+    },
+    {
+      "name_fr": "Snacks",
+      "name_en": "Snacks",
+      "items": [
+        {
+          "name_fr": "Snacks Simple Nutella, Garniture (Crêpes Sucrées)",
+          "name_en": "Snacks Simple Nutella, Topping (Sweet Crepes)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Crêpes Sucrées",
+          "type_en": "Sweet Crepes",
+          "price": "9dt"
+        },
+        {
+          "name_fr": "Snacks Thon Fromage, Thon, Fromage (Crêpes Sucrées)",
+          "name_en": "Snacks Tuna Cheese, Tuna, Cheese (Sweet Crepes)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Crêpes Sucrées",
+          "type_en": "Sweet Crepes",
+          "price": "8.5dt"
+        },
+        {
+          "name_fr": "Snacks Nutella Banane, Nutella, Banane, Garniture (Crêpes Sucrées)",
+          "name_en": "Snacks Nutella Banana, Nutella, Banana, Topping (Sweet Crepes)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Crêpes Sucrées",
+          "type_en": "Sweet Crepes",
+          "price": "12dt"
+        },
+        {
+          "name_fr": "Snacks Jambon Fromage, Jambon, Fromage (Crêpes Sucrées)",
+          "name_en": "Snacks Ham Cheese, Ham, Cheese (Sweet Crepes)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Crêpes Sucrées",
+          "type_en": "Sweet Crepes",
+          "price": "9dt"
+        },
+        {
+          "name_fr": "Snacks Dolce, Nutella, Speculoos (Crêpes Sucrées)",
+          "name_en": "Snacks Dolce, Nutella, Speculoos (Sweet Crepes)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Crêpes Sucrées",
+          "type_en": "Sweet Crepes",
+          "price": "11dt"
+        },
+        {
+          "name_fr": "Snacks Puttanesca, Sauce Puttanesca, Sauce Napolitaine, Câpre, Piment de Cayenne, Thon, Olive (Crêpes Sucrées)",
+          "name_en": "Snacks Puttanesca, Puttanesca Sauce, Neapolitan Sauce, Caper, Cayenne Pepper, Tuna, Olive (Sweet Crepes)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Crêpes Sucrées",
+          "type_en": "Sweet Crepes",
+          "price": "11.5dt"
+        },
+        {
+          "name_fr": "Snacks Ecubana, Banane, Miel (Crêpes Sucrées)",
+          "name_en": "Snacks Ecubana, Banana, Honey (Sweet Crepes)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Crêpes Sucrées",
+          "type_en": "Sweet Crepes",
+          "price": "14dt"
+        },
+        {
+          "name_fr": "Snacks Complet, Œuf, Harissa, Jambon, Thon, Mozzarella (Crêpes Sucrées)",
+          "name_en": "Snacks Complete, Egg, Harissa, Ham, Tuna, Mozzarella (Sweet Crepes)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Crêpes Sucrées",
+          "type_en": "Sweet Crepes",
+          "price": "11dt"
+        },
+        {
+          "name_fr": "Snacks The Wise, Nutella, Chocolat Blanc, m&m's, Twix, Speculoos, Crème Cheese (Crêpes Sucrées)",
+          "name_en": "Snacks The Wise, Nutella, White Chocolate, m&m's, Twix, Speculoos, Cream Cheese (Sweet Crepes)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Crêpes Sucrées",
+          "type_en": "Sweet Crepes",
+          "price": "16dt"
+        },
+        {
+          "name_fr": "Snacks The Wise, Harissa, mozzarella, ricotta jambon fumée, emincé de poulet champignon sauté (Crêpes Sucrées)",
+          "name_en": "Snacks The Wise, Harissa, mozzarella, ricotta smoked ham, sautéed chicken mushroom (Sweet Crepes)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Crêpes Sucrées",
+          "type_en": "Sweet Crepes",
+          "price": "18dt"
+        },
+        {
+          "name_fr": "Snacks Thon Fromage (Crêpes Salées)",
+          "name_en": "Snacks Tuna Cheese (Savory Crepes)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Crêpes Salées",
+          "type_en": "Savory Crepes",
+          "price": "10dt"
+        },
+        {
+          "name_fr": "Snacks Jambon Fromage (Crêpes Salées)",
+          "name_en": "Snacks Ham Cheese (Savory Crepes)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Crêpes Salées",
+          "type_en": "Savory Crepes",
+          "price": "10.5dt"
+        },
+        {
+          "name_fr": "Snacks Puttanesca (Crêpes Salées)",
+          "name_en": "Snacks Puttanesca (Savory Crepes)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Crêpes Salées",
+          "type_en": "Savory Crepes",
+          "price": "11.5dt"
+        },
+        {
+          "name_fr": "Snacks The Wise (Crêpes Salées)",
+          "name_en": "Snacks The Wise (Savory Crepes)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Crêpes Salées",
+          "type_en": "Savory Crepes",
+          "price": "18dt"
+        },
+        {
+          "name_fr": "Snacks Nutella (Gaufres)",
+          "name_en": "Snacks Nutella (Waffles)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Gaufres",
+          "type_en": "Waffles",
+          "price": "9.5dt"
+        },
+        {
+          "name_fr": "Snacks Tropicale, Nutella, Kiwi, Banane, Chantilly (Gaufres)",
+          "name_en": "Snacks Tropical, Nutella, Kiwi, Banana, Whipped Cream (Waffles)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Gaufres",
+          "type_en": "Waffles",
+          "price": "11dt"
+        },
+        {
+          "name_fr": "Snacks Big Dolce, Nutella, Oreo, Speculoos, Fruit sec, garnitures (Gaufres)",
+          "name_en": "Snacks Big Dolce, Nutella, Oreo, Speculoos, Dried Fruit, Toppings (Waffles)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Gaufres",
+          "type_en": "Waffles",
+          "price": "13dt"
+        },
+        {
+          "name_fr": "Snacks The Wise, Nutella, Oreo, Speculoos, Fruit sec, garnitures (Gaufres)",
+          "name_en": "Snacks The Wise, Nutella, Oreo, Speculoos, Dried Fruit, Toppings (Waffles)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Gaufres",
+          "type_en": "Waffles",
+          "price": "16dt"
+        }
+      ]
+    },
+    {
+      "name_fr": "Boissons",
+      "name_en": "Drinks",
+      "items": [
+        {
+          "name_fr": "Boissons Express (Boissons Chaudes)",
+          "name_en": "Drinks Express (Hot Drinks)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Café",
+          "type_en": "Coffee",
+          "price": "2.5dt"
+        },
+        {
+          "name_fr": "Boissons Direct (Boissons Chaudes)",
+          "name_en": "Drinks Direct (Hot Drinks)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Café",
+          "type_en": "Coffee",
+          "price": "3dt"
+        },
+        {
+          "name_fr": "Boissons Cappuccin (Boissons Chaudes)",
+          "name_en": "Drinks Cappuccino (Hot Drinks)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Café",
+          "type_en": "Coffee",
+          "price": "2.8dt"
+        },
+        {
+          "name_fr": "Boissons Crème (Boissons Chaudes)",
+          "name_en": "Drinks Cream (Hot Drinks)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Café",
+          "type_en": "Coffee",
+          "price": "5.5dt"
+        },
+        {
+          "name_fr": "Boissons Cappuccino (Boissons Chaudes)",
+          "name_en": "Drinks Cappuccino (Hot Drinks)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Café",
+          "type_en": "Coffee",
+          "price": "4.5dt"
+        },
+        {
+          "name_fr": "Boissons Crème Nutella (Boissons Chaudes)",
+          "name_en": "Drinks Nutella Cream (Hot Drinks)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Café Spécial",
+          "type_en": "Special Coffee",
+          "price": "5.4dt"
+        },
+        {
+          "name_fr": "Boissons Chocolat au lait (Boissons Chaudes)",
+          "name_en": "Drinks Milk Chocolate (Hot Drinks)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Chocolat",
+          "type_en": "Chocolate",
+          "price": "3dt"
+        },
+        {
+          "name_fr": "Boissons Thé à la menthe (Boissons Chaudes)",
+          "name_en": "Drinks Mint Tea (Hot Drinks)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Thé",
+          "type_en": "Tea",
+          "price": "1.8dt"
+        },
+        {
+          "name_fr": "Boissons Thé aux amandes (Boissons Chaudes)",
+          "name_en": "Drinks Almond Tea (Hot Drinks)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Thé Spécial",
+          "type_en": "Special Tea",
+          "price": "4.8dt"
+        },
+        {
+          "name_fr": "Boissons Thé pignon (Boissons Chaudes)",
+          "name_en": "Drinks Pine Nut Tea (Hot Drinks)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Thé Spécial",
+          "type_en": "Special Tea",
+          "price": "7.8dt"
+        },
+        {
+          "name_fr": "Boissons Verveine (Boissons Chaudes)",
+          "name_en": "Drinks Verbena (Hot Drinks)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Tisane",
+          "type_en": "Herbal Tea",
+          "price": "2.8dt"
+        },
+        {
+          "name_fr": "Boissons Amoureux, Fraise, banane (Cocktails)",
+          "name_en": "Drinks Amoureux, Strawberry, Banana (Cocktails)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Cocktail",
+          "type_en": "Cocktail",
+          "price": "9.2dt"
+        },
+        {
+          "name_fr": "Boissons Scandinave, kiwi, Banane (Cocktails)",
+          "name_en": "Drinks Scandinavian, Kiwi, Banana (Cocktails)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Cocktail",
+          "type_en": "Cocktail",
+          "price": "9.8dt"
+        },
+        {
+          "name_fr": "Boissons Black & white, Banane, Nutella (Cocktails)",
+          "name_en": "Drinks Black & White, Banana, Nutella (Cocktails)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Cocktail",
+          "type_en": "Cocktail",
+          "price": "10.5dt"
+        },
+        {
+          "name_fr": "Boissons Palmier, Dattes, Banane (Cocktails)",
+          "name_en": "Drinks Palmier, Dates, Banana (Cocktails)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Cocktail",
+          "type_en": "Cocktail",
+          "price": "10.5dt"
+        },
+        {
+          "name_fr": "Boissons The wise, Banane, Datte, Miel, Fruits Secs+Garnitures (Cocktails)",
+          "name_en": "Drinks The Wise, Banana, Date, Honey, Dried Fruits+Toppings (Cocktails)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Cocktail",
+          "type_en": "Cocktail",
+          "price": "12.8dt"
+        },
+        {
+          "name_fr": "Boissons Virgin Mojito (Mojito)",
+          "name_en": "Drinks Virgin Mojito (Mojito)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Mojito",
+          "type_en": "Mojito",
+          "price": "7.8dt"
+        },
+        {
+          "name_fr": "Boissons Healthy Mojito (Mojito)",
+          "name_en": "Drinks Healthy Mojito (Mojito)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Mojito",
+          "type_en": "Mojito",
+          "price": "7.8dt"
+        },
+        {
+          "name_fr": "Boissons Blue Mojito (Mojito)",
+          "name_en": "Drinks Blue Mojito (Mojito)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Mojito",
+          "type_en": "Mojito",
+          "price": "8.8dt"
+        },
+        {
+          "name_fr": "Boissons Red Mojito (Mojito)",
+          "name_en": "Drinks Red Mojito (Mojito)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Mojito",
+          "type_en": "Mojito",
+          "price": "8.8dt"
+        },
+        {
+          "name_fr": "Boissons Fruit de Passion (Mojito)",
+          "name_en": "Drinks Passion Fruit (Mojito)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Mojito",
+          "type_en": "Mojito",
+          "price": "8.8dt"
+        },
+        {
+          "name_fr": "Boissons Energetic Mojito (Mojito)",
+          "name_en": "Drinks Energetic Mojito (Mojito)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Mojito Énergisant",
+          "type_en": "Energy Mojito",
+          "price": "12.8dt"
+        },
+        {
+          "name_fr": "Boissons Red Frutti (Smoothies)",
+          "name_en": "Drinks Red Frutti (Smoothies)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Smoothie",
+          "type_en": "Smoothie",
+          "price": "9.8dt"
+        },
+        {
+          "name_fr": "Boissons Pina Colada (Smoothies)",
+          "name_en": "Drinks Pina Colada (Smoothies)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Smoothie",
+          "type_en": "Smoothie",
+          "price": "10.5dt"
+        },
+        {
+          "name_fr": "Boissons Blue Berry (Smoothies)",
+          "name_en": "Drinks Blueberry (Smoothies)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Smoothie",
+          "type_en": "Smoothie",
+          "price": "9.8dt"
+        },
+        {
+          "name_fr": "Boissons Passion kiwi (Smoothies)",
+          "name_en": "Drinks Passion Kiwi (Smoothies)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Smoothie",
+          "type_en": "Smoothie",
+          "price": "11.5dt"
+        },
+        {
+          "name_fr": "Boissons The Wise (Smoothies)",
+          "name_en": "Drinks The Wise (Smoothies)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Smoothie",
+          "type_en": "Smoothie",
+          "price": "13.5dt"
+        },
+        {
+          "name_fr": "Boissons Citron (Les Jus)",
+          "name_en": "Drinks Lemon (Juices)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Jus de Fruit",
+          "type_en": "Fruit Juice",
+          "price": "3.8dt"
+        },
+        {
+          "name_fr": "Boissons Citron aux amandes (Les Jus)",
+          "name_en": "Drinks Lemon with Almonds (Juices)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Jus de Fruit",
+          "type_en": "Fruit Juice",
+          "price": "7.2dt"
+        },
+        {
+          "name_fr": "Boissons Banane (Les Jus)",
+          "name_en": "Drinks Banana (Juices)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Jus de Fruit",
+          "type_en": "Fruit Juice",
+          "price": "7.8dt"
+        },
+        {
+          "name_fr": "Boissons Orange (Les Jus)",
+          "name_en": "Drinks Orange (Juices)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Jus de Fruit",
+          "type_en": "Fruit Juice",
+          "price": "4.2dt"
+        },
+        {
+          "name_fr": "Boissons Fraise (Les Jus)",
+          "name_en": "Drinks Strawberry (Juices)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Jus de Fruit",
+          "type_en": "Fruit Juice",
+          "price": "6.5dt"
+        },
+        {
+          "name_fr": "Boissons Jus Fruits (Les Jus)",
+          "name_en": "Drinks Fruit Juice (Juices)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Jus de Fruit",
+          "type_en": "Fruit Juice",
+          "price": "9.8dt"
+        },
+        {
+          "name_fr": "Boissons Nutella (Frappuccino)",
+          "name_en": "Drinks Nutella (Frappuccino)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Frappuccino",
+          "type_en": "Frappuccino",
+          "price": "9.8dt"
+        },
+        {
+          "name_fr": "Boissons Spéculoos (Frappuccino)",
+          "name_en": "Drinks Speculoos (Frappuccino)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Frappuccino",
+          "type_en": "Frappuccino",
+          "price": "9.8dt"
+        },
+        {
+          "name_fr": "Boissons Oreo (Frappuccino)",
+          "name_en": "Drinks Oreo (Frappuccino)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Frappuccino",
+          "type_en": "Frappuccino",
+          "price": "9.8dt"
+        },
+        {
+          "name_fr": "Boissons Twix (Frappuccino)",
+          "name_en": "Drinks Twix (Frappuccino)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Frappuccino",
+          "type_en": "Frappuccino",
+          "price": "9.8dt"
+        },
+        {
+          "name_fr": "Boissons Snickers (Frappuccino)",
+          "name_en": "Drinks Snickers (Frappuccino)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Frappuccino",
+          "type_en": "Frappuccino",
+          "price": "9.8dt"
+        },
+        {
+          "name_fr": "Boissons The wise, Banane, Nutella, Oreo, Garnitures (Frappuccino)",
+          "name_en": "Drinks The Wise, Banana, Nutella, Oreo, Toppings (Frappuccino)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Frappuccino",
+          "type_en": "Frappuccino",
+          "price": "13.8dt"
+        },
+        {
+          "name_fr": "Boissons Mini The Wise (Jwajem)",
+          "name_en": "Drinks Mini The Wise (Jwajem)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Jwajem",
+          "type_en": "Jwajem",
+          "price": "12dt"
+        },
+        {
+          "name_fr": "Boissons Spécial The Wise (Jwajem)",
+          "name_en": "Drinks Special The Wise (Jwajem)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Jwajem",
+          "type_en": "Jwajem",
+          "price": "17dt"
+        },
+        {
+          "name_fr": "Boissons Tiramisu (Desserts)",
+          "name_en": "Drinks Tiramisu (Desserts)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Dessert",
+          "type_en": "Dessert",
+          "price": "6.8dt"
+        },
+        {
+          "name_fr": "Boissons Cheese Cake (Desserts)",
+          "name_en": "Drinks Cheesecake (Desserts)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Dessert",
+          "type_en": "Dessert",
+          "price": "6.8dt"
+        },
+        {
+          "name_fr": "Boissons American Chocolate (Desserts)",
+          "name_en": "Drinks American Chocolate (Desserts)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Dessert",
+          "type_en": "Dessert",
+          "price": "9.8dt"
+        },
+        {
+          "name_fr": "Boissons Dose arôme (Suppléments)",
+          "name_en": "Drinks Flavor Dose (Supplements)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "2.8dt"
+        },
+        {
+          "name_fr": "Boissons Chantilly (Suppléments)",
+          "name_en": "Drinks Whipped Cream (Supplements)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "1.8dt"
+        },
+        {
+          "name_fr": "Boissons Nutella (Suppléments)",
+          "name_en": "Drinks Nutella (Supplements)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "3.8dt"
+        },
+        {
+          "name_fr": "Boissons Amande (Suppléments)",
+          "name_en": "Drinks Almond (Supplements)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Supplément",
+          "type_en": "Supplement",
+          "price": "3.2dt"
+        },
+        {
+          "name_fr": "Boissons Eau Minérale 0.5L (Boissons)",
+          "name_en": "Drinks Mineral Water 0.5L (Drinks)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Eau",
+          "type_en": "Water",
+          "price": "1.3dt"
+        },
+        {
+          "name_fr": "Boissons Eau Minérale 1L (Boissons)",
+          "name_en": "Drinks Mineral Water 1L (Drinks)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Eau",
+          "type_en": "Water",
+          "price": "2.5dt"
+        },
+        {
+          "name_fr": "Boissons Soda (Boissons)",
+          "name_en": "Drinks Soda (Drinks)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Soda",
+          "type_en": "Soda",
+          "price": "2.8dt"
+        },
+        {
+          "name_fr": "Boissons Orangina (Boissons)",
+          "name_en": "Drinks Orangina (Drinks)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Soda",
+          "type_en": "Soda",
+          "price": "3.2dt"
+        },
+        {
+          "name_fr": "Boissons Energy Drink (Boissons)",
+          "name_en": "Drinks Energy Drink (Drinks)",
+          "description_fr": "",
+          "description_en": "",
+          "type_fr": "Boisson Énergisante",
+          "type_en": "Energy Drink",
+          "price": "8.8dt"
+        }
+      ]
+    }
+  ]
+}

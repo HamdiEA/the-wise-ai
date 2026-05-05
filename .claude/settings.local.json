@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\hamdo\\\\Downloads\\\\the-wise-ai-clean-wise-ui-fresh\\\\the-wise-ai-main\" -Recurse -Force)",
+      "Bash(Select-Object FullName)",
+      "PowerShell(head -100)",
+      "PowerShell(cmd /c \"dir /a /b `\"C:\\\\Users\\\\hamdo\\\\Downloads\\\\the-wise-ai-clean-wise-ui-fresh\\\\the-wise-ai-main\\\\public`\"\")",
+      "WebSearch"
+    ]
+  }
+}
